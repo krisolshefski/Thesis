@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  8 OCT 2019 11:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  9 OCT 2019 11:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1725,7 +1725,7 @@ LaTeX Warning: Citation `3' on page 1 undefined on input line 5.
 
 
 
-] [2] <figs/ACESjet.png, id=201, 1360.08125pt x 752.8125pt>
+] [2] <figs/ACESjet.png, id=207, 1360.08125pt x 752.8125pt>
 File: figs/ACESjet.png Graphic file (type png)
 
 <use figs/ACESjet.png>
@@ -1802,7 +1802,7 @@ LaTeX Warning: Citation `magoules' on page 7 undefined on input line 95.
 
 LaTeX Warning: Citation `Hirt1981' on page 7 undefined on input line 95.
 
-[7] <figs/unstruc.png, id=243, 283.0575pt x 176.66pt>
+[7] <figs/unstruc.png, id=249, 283.0575pt x 176.66pt>
 File: figs/unstruc.png Graphic file (type png)
  <use figs/unstruc.png>
 Package pdftex.def Info: figs/unstruc.png used on input line 99.
@@ -1842,7 +1842,7 @@ LaTeX Warning: Citation `TRYG' on page 9 undefined on input line 124.
 
 LaTeX Warning: Citation `NohWoodward' on page 9 undefined on input line 124.
 
-<figs/SLIC.png, id=251, 555.07375pt x 220.825pt>
+<figs/SLIC.png, id=257, 555.07375pt x 220.825pt>
 File: figs/SLIC.png Graphic file (type png)
  <use figs/SLIC.png>
 Package pdftex.def Info: figs/SLIC.png used on input line 128.
@@ -1860,7 +1860,7 @@ LaTeX Warning: Citation `youngs' on page 9 undefined on input line 133.
 
 LaTeX Warning: Citation `yeoh' on page 9 undefined on input line 133.
 
-[9] <figs/PLIC.png, id=258, 555.07375pt x 257.96375pt>
+[9] <figs/PLIC.png, id=264, 555.07375pt x 257.96375pt>
 File: figs/PLIC.png Graphic file (type png)
  <use figs/PLIC.png>
 Package pdftex.def Info: figs/PLIC.png used on input line 137.
@@ -1875,7 +1875,7 @@ LaTeX Warning: Citation `yeoh' on page 10 undefined on input line 138.
 
 LaTeX Warning: Citation `TRYG' on page 10 undefined on input line 143.
 
-<figs/StaggeredGrid.png, id=261, 1038.88126pt x 997.7275pt>
+<figs/StaggeredGrid.png, id=267, 1038.88126pt x 997.7275pt>
 File: figs/StaggeredGrid.png Graphic file (type png)
 
 <use figs/StaggeredGrid.png>
@@ -1904,7 +1904,7 @@ LaTeX Warning: Citation `Rudman' on page 10 undefined on input line 152.
 
 LaTeX Warning: Citation `MARK2013' on page 11 undefined on input line 233.
 
-<figs/curv.png, id=270, 472.76625pt x 317.185pt>
+<figs/curv.png, id=276, 472.76625pt x 317.185pt>
 File: figs/curv.png Graphic file (type png)
  <use figs/curv.png>
 Package pdftex.def Info: figs/curv.png used on input line 237.
@@ -1917,11 +1917,11 @@ LaTeX Warning: Citation `TRYG' on page 11 undefined on input line 238.
 LaTeX Warning: Citation `TRYG' on page 11 undefined on input line 238.
 
 [11 <./figs/StaggeredGrid.png>]
-<figs/surf.png, id=279, 747.79375pt x 888.31876pt>
+<figs/surf.png, id=285, 747.79375pt x 888.31876pt>
 File: figs/surf.png Graphic file (type png)
  <use figs/surf.png>
 Package pdftex.def Info: figs/surf.png used on input line 246.
-(pdftex.def)             Requested size: 108.405pt x 128.76903pt.
+(pdftex.def)             Requested size: 361.34999pt x 429.24818pt.
 
 
 LaTeX Warning: Citation `Desjardins13' on page 12 undefined on input line 247.
@@ -1941,41 +1941,54 @@ LaTeX Warning: Citation `3' on page 12 undefined on input line 251.
 
 LaTeX Warning: Citation `4' on page 12 undefined on input line 251.
 
-[12 <./figs/curv.png> <./figs/surf.png>] [13]
+[12 <./figs/curv.png>] [13 <./figs/surf.png>] [14]
 
-LaTeX Warning: Citation `1' on page 14 undefined on input line 305.
-
-
-LaTeX Warning: Citation `2' on page 14 undefined on input line 305.
+LaTeX Warning: Citation `1' on page 15 undefined on input line 305.
 
 
-LaTeX Warning: Citation `2' on page 14 undefined on input line 305.
+LaTeX Warning: Citation `2' on page 15 undefined on input line 305.
 
 
-LaTeX Warning: Citation `2' on page 14 undefined on input line 305.
+LaTeX Warning: Citation `2' on page 15 undefined on input line 305.
 
-<figs/bad.png, id=301, 750.805pt x 1021.8175pt>
+
+LaTeX Warning: Citation `2' on page 15 undefined on input line 305.
+
+<figs/bad.png, id=313, 750.805pt x 1021.8175pt>
 File: figs/bad.png Graphic file (type png)
  <use figs/bad.png>
 Package pdftex.def Info: figs/bad.png used on input line 315.
 (pdftex.def)             Requested size: 187.70079pt x 255.45375pt.
-) [14]
-[15 <./figs/bad.png>]
+) [15]
+[16 <./figs/bad.png>]
 \openout2 = `methodology.aux'.
 
  (./methodology.tex
 *****************  Chapter 3. Methodology  *****************
 
-LaTeX Warning: Citation `Salih2002' on page 16 undefined on input line 60.
+LaTeX Warning: Citation `Salih2002' on page 17 undefined on input line 60.
 
 
-LaTeX Warning: Citation `Rayleigh' on page 16 undefined on input line 60.
+LaTeX Warning: Citation `Rayleigh' on page 17 undefined on input line 60.
 
-) [16
+<figs/KEvT.png, id=324, 2983.145pt x 2378.8875pt>
+File: figs/KEvT.png Graphic file (type png)
+ <use figs/KEvT.png>
+Package pdftex.def Info: figs/KEvT.png used on input line 70.
+(pdftex.def)             Requested size: 361.34999pt x 288.1403pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+File: figs/KEvT.png Graphic file (type png)
+<use figs/KEvT.png>
+Package pdftex.def Info: figs/KEvT.png used on input line 79.
+(pdftex.def)             Requested size: 361.34999pt x 288.1403pt.
+) [17
 
 
 
-]
+] [18 <./figs/KEvT.png (PNG copy)>] [19]
 \openout2 = `results.aux'.
 
  (./results.tex
@@ -1985,7 +1998,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--199
 
  []
 
-[17
+[20
 
 
 
@@ -1994,7 +2007,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--199
 
  (./conclusion.tex
 *****************  Chapter 5. Conclusion  *****************
-) [18
+) [21
 
 
 
@@ -2003,7 +2016,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--199
 
  (./future.tex
 *****************  Chapter 6. Future Work  *****************
-) [19
+) [22
 
 
 
@@ -2018,7 +2031,7 @@ Overfull \hbox (0.3634pt too wide) in paragraph at lines 2--221
 n/12 mul-ti-phase fine-grid.f90, mul-ti-phase curv.f90,
  []
 
-[20
+[23
 
 
 
@@ -2037,10 +2050,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 37170 strings out of 492995
- 772167 string characters out of 6132704
- 1020769 words of memory out of 5000000
- 39954 multiletter control sequences out of 15000+600000
+ 37182 strings out of 492995
+ 772324 string characters out of 6132704
+ 1021769 words of memory out of 5000000
+ 39960 multiletter control sequences out of 15000+600000
  23074 words of font info for 86 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  63i,13n,101p,10375b,773s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2061,10 +2074,10 @@ e/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/
 2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/20
 17/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/201
 7/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on main.pdf (26 pages, 1357183 bytes).
+Output written on main.pdf (29 pages, 1562508 bytes).
 PDF statistics:
- 409 PDF objects out of 1000 (max. 8388607)
- 321 compressed objects within 4 object streams
- 82 named destinations out of 1000 (max. 500000)
- 317 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 431 PDF objects out of 1000 (max. 8388607)
+ 339 compressed objects within 4 object streams
+ 87 named destinations out of 1000 (max. 500000)
+ 322 words of extra memory for PDF output out of 10000 (max. 10000000)
 

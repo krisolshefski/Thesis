@@ -9,16 +9,16 @@
 \contentsline {subsection}{Volume of Fluid Formulation}{8}{subsection*.16}
 \contentsline {subsection}{Rudman Dual Grid Formulation}{10}{subsection*.20}
 \contentsline {subsection}{Curvature Estimation - Height Function Methods}{12}{subsection*.23}
-\contentsline {subsection}{Using Height Functions in Conjunction with Rudman Dual Mesh }{14}{subsection*.27}
+\contentsline {subsection}{Using Height Functions in Conjunction with Rudman Dual Mesh }{15}{subsection*.27}
 \setcounter {tocdepth}{3}
-\contentsline {chapter}{\numberline {3.}\MakeUppercase {Methodology}}{16}{chapter.3}
-\contentsline {subsection}{Oscillating Droplet Test Case}{16}{subsection*.29}
+\contentsline {chapter}{\numberline {3.}\MakeUppercase {Methodology}}{17}{chapter.3}
+\contentsline {subsection}{Oscillating Droplet Test Case}{17}{subsection*.29}
 \setcounter {tocdepth}{3}
-\contentsline {chapter}{\numberline {4.}\MakeUppercase {Results}}{17}{chapter.4}
+\contentsline {chapter}{\numberline {4.}\MakeUppercase {Results}}{20}{chapter.4}
 \setcounter {tocdepth}{3}
-\contentsline {chapter}{\numberline {5.}\MakeUppercase {Conclusion}}{18}{chapter.5}
+\contentsline {chapter}{\numberline {5.}\MakeUppercase {Conclusion}}{21}{chapter.5}
 \setcounter {tocdepth}{3}
-\contentsline {chapter}{\numberline {6.}\MakeUppercase {Future Work}}{19}{chapter.6}
+\contentsline {chapter}{\numberline {6.}\MakeUppercase {Future Work}}{22}{chapter.6}
 \setcounter {tocdepth}{3}
-\contentsline {chapter}{\MakeUppercase {\MakeUppercase {Appendix}}: Example Code}{20}{appendix.A}
+\contentsline {chapter}{\MakeUppercase {\MakeUppercase {Appendix}}: Example Code}{23}{appendix.A}
 \setcounter {tocdepth}{3}
