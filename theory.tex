@@ -7,14 +7,14 @@
 %Why do we choose to use a HFM?\\
 %Shortcomings of HFM's?\\
 %On this dual grid, why do we need a fine velocity?}\\
-Computational solutions for fluid flow rely on several fundamental ideas surrounding how fluids are simulated. The following section is an attempt to summarize several of these methods and lay the necessary framework for understanding the subsequent method, which is the primary focus of this work. Each of the methods discussed are present within NGA, the computational platform used in this research. Additionally, while these methods are prevalent in the CFD community, they are not the only options available. The interested reader is directed to \ref{TRYG} for a more comprehensive assessment.   
+\hl{Computational solutions for fluid flow rely on several fundamental ideas surrounding how fluids are simulated.}\todo{Not sure what this says} The following section is an attempt to summarize several of these methods and lay the necessary framework for understanding the subsequent method, which is the primary focus of this work. Each of the methods discussed are present within NGA, the computational platform used in this research. Additionally, while these methods are prevalent in the CFD community, they are not the only options available. The interested reader is directed to \ref{TRYG} for a more comprehensive assessment.   
 
 \subsection{The Navier-Stokes Equations}
 They exist, here they are....
 \hl{consider discussion}
 
 \subsection{Computational Platform}
-The proposed curvature estimation method exists as a module within a larger computational framework. While this scheme can be incorporated into any number of solvers, the platform used for this work was NGA~\cite{NGA1,NGA2}.  NGA solves low-Mach number, variable density formulations of mass and momentum conservation laws
+\todo{This section sounds ``very'' familiar, should probably paraphrase into your own words (read it, take notes, and then write it.} The proposed curvature estimation method exists as a module within a larger computational framework. While this scheme can be incorporated into any number of solvers, the platform used for this work was NGA~\cite{NGA1,NGA2}.  NGA solves low-Mach number, variable density formulations of mass and momentum conservation laws
 \begin{align}
 \frac{\partial \rho_\phi}{\partial t} +& \nabla \cdot \left(\rho_\phi\bm{u}_\phi\right) = 0\mbox{ \quad and}\\
 \frac{\partial \rho_\phi \bm{u}_\phi}{\partial t} +& \nabla \cdot \left(\rho_\phi\bm{u}_\phi\otimes\bm{u}_\phi\right) = -\nabla p_\phi + \nabla\cdot\left(\mu_\phi\left[\nabla\bm{u}_\phi+\nabla\bm{u}_\phi^\mathsf{T}\right]\right)+\rho_\phi\bm{g}
@@ -39,7 +39,7 @@ $\Gamma$ are written as
 [\mu]_\Gamma&%
 =\mu_l-\mu_g.
 \end{align}
-In the absence of a phase change, the velocity field is continuous, \ie, 
+In the absence of a phase change, the velocity field is continuous, \ie,
 \begin{equation}
 [\bm{u}]_\Gamma=0.
 \end{equation}
@@ -72,15 +72,22 @@ In Numerical analysis, the grid or mesh, often refers to the manner in which a d
 			\node[below right] at (3,2) {\scriptsize{$i+1,j$}};
 			\node[below right] at (3,3) {\scriptsize{$i+1,j+1$}};
 		%Node Circles
-			\draw [fill] (2,2) circle [radius=0.035];
-			\draw [fill] (1,2) circle [radius=0.035];
-			\draw [fill] (3,2) circle [radius=0.035];
-			\draw [fill] (2,1) circle [radius=0.035];
-			\draw [fill] (2,3) circle [radius=0.035];	
-			\draw [fill] (1,1) circle [radius=0.035];
-			\draw [fill] (1,3) circle [radius=0.035];
-			\draw [fill] (3,1) circle [radius=0.035];
-			\draw [fill] (3,3) circle [radius=0.035];		
+			% \draw [fill] (2,2) circle [radius=0.035];
+			% \draw [fill] (1,2) circle [radius=0.035];
+			% \draw [fill] (3,2) circle [radius=0.035];
+			% \draw [fill] (2,1) circle [radius=0.035];
+			% \draw [fill] (2,3) circle [radius=0.035];	
+			% \draw [fill] (1,1) circle [radius=0.035];
+			% \draw [fill] (1,3) circle [radius=0.035];
+			% \draw [fill] (3,1) circle [radius=0.035];
+			% \draw [fill] (3,3) circle [radius=0.035];
+                        \foreach \x in {1,3} {
+                          \foreach \y in {1,3} {
+                            \draw [fill] (\x,\y) circle [radius=0.035];
+                          }
+                        }
+                        
+                        
 		%Axes
 			\draw [arrows=->] (0,0) -- node[pos=1,right] {$\bm{x}$} (0.5,0);
 			\draw [arrows=->] (0,0) -- node[pos=1,right] {$\bm{y}$} (0,0.5);
@@ -88,11 +95,11 @@ In Numerical analysis, the grid or mesh, often refers to the manner in which a d
 			\draw [decorate,decoration={brace,amplitude=10pt},xshift=-4pt,yshift=0pt] (1.05,2.05) -- (1.05,2.95) node [black,midway,xshift=-0.6cm] {\footnotesize $\Delta y$};
 			\draw [decorate,decoration={brace,amplitude=10pt},xshift=-4pt,yshift=0pt] (2.2,3.05) -- (3.1,3.05) node [black,midway,yshift=0.6cm] {\footnotesize $\Delta x$};
 		\end{tikzpicture}
-		\caption{Typical notation of structured grid cells.}
+		\caption{Typical notation of structured grid cells. }
 		\label{fig:ijGrid}
-	\end{figure}
+	\end{figure}\todo{try foreach loop! this would be more informative if you showed the staggered grid with the location of $P$, $u$, $v$, $VOF=\alpha$.}
 
-\paragraph{} The type of grid used can be classified as being in one of two categories, structured or unstructured~\cite{anderson}. The choice of whether to use a structured or unstructured grid should be considered on a case by case basis. However, there are some important characteristics of each that are important to recognize prior to implementation. A structured grid in 2D can be thought of a series of quadrilateral elements (bricks) placed side by side in a uniform fashion~\cite{MIT}. Here, neighboring elements are referenced by adding or subtracting from the base cell indices~\cite{anderson}. Figure \ref{fig:Simple Grid} is an example of a structured grid. An unstructured grid does not retain uniformity and is normally (although, not always) comprised of triangular elements~\cite{tu}. To reference neighboring cells in an unstructured grid, storage of cell-to-cell pointers are required~\cite{MIT}. Unstructured grids normally require a greater amount of memory storage and can result in slower computation times than that of a structured grid~\cite{magoules}. A simplified example of an unstructured grid can be referenced in Figure \ref{fig:Unstructured Grid}. The NGA code, which is this focus of this research, uses a structured grid approach for simplicity and computational efficiency. However, it should be noted that unstructured grids are increasing in popularity as the accuracy obtained from modeling complex flow geometry may be higher than that of a structured grid~\cite{Hirt1981}. 
+\paragraph{} The type of grid used can be classified as being in one of two categories, structured or unstructured~\cite{anderson}. The choice of whether to use a structured or unstructured grid should be considered on a case by case basis. However, there are some important characteristics of each that are important to recognize prior to implementation. A structured grid in 2D can be thought of a series of quadrilateral elements (bricks) placed side by side in a uniform fashion~\cite{MIT}. Here, neighboring elements are referenced by adding or subtracting from the base cell indices~\cite{anderson}. Figure \ref{fig:Simple Grid} is an example of a structured grid. An unstructured grid does not retain uniformity and is \hl{normally (although, not always)}\todo{really?} comprised of triangular elements~\cite{tu}. To reference neighboring cells in an unstructured grid, storage of cell-to-cell pointers are required~\cite{MIT}. Unstructured grids normally require a greater amount of memory storage and can result in slower computation times than that of a structured grid~\cite{magoules}. A simplified example of an unstructured grid can be referenced in Figure \ref{fig:Unstructured Grid}. The NGA code, which is this focus of this research, uses a structured grid approach for simplicity and computational efficiency. However, it should be noted that unstructured grids are increasing in popularity as the accuracy obtained from modeling complex flow geometry may be higher than that of a structured grid~\cite{Hirt1981}. 
 
 \begin{figure}[htbp]
 	\centering
@@ -101,8 +108,8 @@ In Numerical analysis, the grid or mesh, often refers to the manner in which a d
 	\label{fig:Unstructured Grid}
 \end{figure}
 
-\subsection{Volume of Fluid Formulation}
-In order to accurately predict the behavior of a multiphase system, the location of the interface of the two fluids must be determined. One method for completing this is known as the Volume of Fluid (VOF) method. This method was first introduced by Hirt \& Nichols (1981) and has been expanded upon by several others~\cite{Hirt1981,1,2,3,4}. The defining contribution of the VOF method proposed by Hirt \& Nichols is the introduction of a scalar marker function assigned to each mesh cell which is indicative of the volume of a given fluid within that cell~\cite{Hirt1981}. This allows for interface to be tracked by the value of the marker cell in surrounding cells. For example, if $VOF = 1.0$ indicates a region of liquid and $VOF = 0.0$ indicates a region of gas, then a cell with a value $0.0 \leq VOF \leq 1.0$ indicates a cell which contains interface. It is important to recognize that volume of a fluid may only be advected into a new cell once the current cell is full~\cite{TRYG}. A one-dimensional example of this advection can be seen in Figure \ref{fig:1Dadvect}.
+\subsection{Volume of Fluid Formulation}\todo{Should have a broader section on interface tracking and capturing schemes and explain why VOF is often used.}
+In order to accurately predict the behavior of a multiphase system, the location of the interface of the two fluids must be determined. One method for completing this is known as the Volume of Fluid (VOF) method \todo{give mathematical definition of volume of fluid}. This method was first introduced by Hirt \& Nichols (1981) and has been expanded upon by several others~\cite{Hirt1981,1,2,3,4}. The defining contribution of the VOF method proposed by Hirt \& Nichols is the introduction of a scalar marker function assigned to each mesh cell which is indicative of the volume of a given fluid within that cell~\cite{Hirt1981}. This allows for interface to be tracked by the value of the marker cell in surrounding cells. For example, if $VOF = 1.0$ indicates a region of liquid and $VOF = 0.0$ indicates a region of gas, then a cell with a value $0.0 \leq VOF \leq 1.0$ indicates a cell which contains interface. It is important to recognize that volume of a fluid may only be advected into a new cell once the current cell is full~\cite{TRYG} \todo{this is true for 1D problems but not in general}. A one-dimensional example of this advection can be seen in Figure \ref{fig:1Dadvect}.
 
 \begin{figure}[htbp]
 	\centering
@@ -139,6 +146,7 @@ Improvement to the SLIC method was presented by Youngs (1982)  known as the Piec
 	\label{fig:PLIC}
 \end{figure}
 
+\todo{should mention other options such as PROST}
 \subsection{Rudman Dual Grid Formulation}
 Solution of the incompressible Navier-Stokes equations traditionally occurs on whats known as a staggered grid. On a staggered grid, pressure is typically stored at cell centers and velocity components are stored at cell faces~\cite{TRYG}. Building from the structured grid example given in Figure \ref{fig:ijGrid}, this implementation is illustrated in Figure \ref{fig:StagGrid}. 
 
@@ -149,7 +157,7 @@ Solution of the incompressible Navier-Stokes equations traditionally occurs on w
  	\label{fig:StagGrid}
  \end{figure}
 
-\noindent This approach was first introduced by Harlow and Welch (1965) and is now considered the standard approach in structured mesh CFD applications today \cite{HARLOW1965}. For incompressible flows, staggered grids offer the advantage of tightly coupling fluid property variables as well as eliminating pressure-velocity checkerboarding~\cite{rudman}. The Rudman Dual grid approach, first presented by Rudman (1998), is a technique developed for high density ratio, multiphase flows, which accurately conserves both mass and momentum. This is achieved by calculating momentum-flux values on a twice as fine mesh near the fluid interface as illustrated in Figure \ref{fig:rudmesh}~\cite{Rudman}. The Rudman Dual mesh is incorporated into NGA and is essential to the formulation of the method presented in this research.
+\todo{why no indent? if you want to put a figure call inside a paragraph, that is fine, just don't put empty lines before or after the figure.}\noindent This approach was first introduced by Harlow and Welch (1965) and is now considered the standard approach in structured mesh CFD applications today \cite{HARLOW1965}. For incompressible flows, staggered grids offer the advantage of tightly coupling fluid property variables as well as eliminating pressure-velocity checkerboarding~\cite{rudman}. The Rudman Dual grid approach, first presented by Rudman (1998), is a technique developed for high density ratio, multiphase flows, which accurately conserves both mass and momentum. This is achieved by calculating momentum-flux values on a twice as fine mesh near the fluid interface as illustrated in Figure \ref{fig:rudmesh}~\cite{Rudman}. The Rudman Dual mesh is incorporated into NGA and is essential to the formulation of the method presented in this research. \todo{Need more here.  how does a dual grid provide conservation. do other options exist?}
 
 \begin{figure}[htbp]
 	\centering
@@ -239,7 +247,7 @@ Curvature can be discretely described as the reciprocal of radius of a given sur
 	\label{fig:curv}
 \end{figure}
 
-\noindent Accurate simulations of multiphase flows require an accurate estimation of interface curvature. Figure \ref{fig:surf} illustrates this importance by presenting two atomizing jet simulations. These simulations vary only by their Weber number, which is directly proportional to the surface tension term, and thereby, the curvature at the interface. It is clear that the jet seen in Figure \ref{fig:surf}(b) is experiencing far greater breakup than that seen in Figure \ref{fig:surf}(a). The correct representation of reality is highly dependent on the estimation of curvature made by the numerical model. 
+\noindent \todo{noindent}Accurate simulations of multiphase flows require an accurate estimation of interface curvature. Figure \ref{fig:surf} illustrates this importance by presenting two atomizing jet simulations. These simulations vary only by their Weber number, which is directly proportional to the surface tension term, and thereby, the curvature at the interface. It is clear that the jet seen in Figure \ref{fig:surf}(b) is experiencing far greater breakup than that seen in Figure \ref{fig:surf}(a). The correct representation of reality is highly dependent on the estimation of curvature made by the numerical model. 
 
  \begin{figure}[htbp]
 	\centering
@@ -248,7 +256,7 @@ Curvature can be discretely described as the reciprocal of radius of a given sur
 	\label{fig:surf}
 \end{figure}
 
-Many techniques exist for calculating values of curvature, some of these include:  level set methods,  height functions, coupled level set volume of fluid (CLSVOF) methods, and others~\cite{1,2,3,4}. The focus of this work specifically, is on modified height function methods.
+Many techniques exist for calculating values of curvature, some of these include:  \hl{level set methods,  height functions, coupled level set volume of fluid (CLSVOF) methods}\todo{not sure about this list, these seem like mostly interface capturing methods and not ways to compute the curvature}, and others~\cite{1,2,3,4}. The focus of this work specifically, is on modified height function methods.
 
  \begin{figure}[htbp]
 	\centering
@@ -275,7 +283,7 @@ Many techniques exist for calculating values of curvature, some of these include
 	\label{fig:hts}
 \end{figure}
 
-\noindent Height functions work by integrating volume fractions ($\alpha$) within columns of cells as in equation \ref{eqn:hts} to form heights. A similar approach is taken using widths where an interface is more vertical than horizontal.
+\noindent Height functions work by integrating volume fractions ($\alpha$) within columns of cells as in \hl{equation}\todo[inline]{choose a consistent way to reference equations and have a tilde} \ref{eqn:hts} to form heights. A similar approach is taken using widths where an interface is more vertical than horizontal.  \todo{add text so the equations flow with the reading.}
  
 
 \begin{equation}
@@ -283,7 +291,7 @@ h_{i} = \sum_{i-1}^{i+1} \alpha_{i,j} \Delta y
 \label{eqn:hts}
 \end{equation}
 
-\noindent Figure \ref{fig:hts} gives an example of heights at a liquid-gas interface. In the simplest execution of a height function, approximation of the curvature ($\kappa$) at the point on the grid is achieved by using a simple finite difference of the heights to approximate first and second derivatives as seen in equations \ref{eqn:1st} and \ref{eqn:2nd} respectively. 
+\noindent Figure \ref{fig:hts} gives an example of heights at a liquid-gas interface. In the simplest execution of a height function, approximation of the curvature ($\kappa$) at the point on the grid is achieved by using a simple finite difference of the heights to approximate first and second derivatives as seen in equations \ref{eqn:1st} and \ref{eqn:2nd} respectively. \todo{Write the equations so they flow}
 
 \begin{equation}
 H_{x} = \frac{h_{i-1,j}-h_{i+1,j}}{2 \Delta x}
@@ -300,9 +308,9 @@ H_{xx} = \frac{h_{i+1,j}-2h_{i,j}+h_{i-1,j}}{ \Delta x^2}
 \label{eqn:kap}
 \end{equation}
 
-\noindent Clearly the above explanation is relevant for two-dimensional flows. Extension to three-dimensional flows is trivial.
+\noindent Clearly the above explanation is relevant for two-dimensional flows. Extension to three-dimensional flows is trivial. \todo{What's Eq. 2.10 in 3D?}
 
-Height functions remain a prevalent method for estimating curvature because of their relative ease of implementation. However, several adjustments to the standard model have been proposed. Adjustments include changing the stencil size over which the heights are gathered~\cite{1}, separating the columns from the computational mesh~\cite{2}, combining heights and widths for approximation~\cite{2}, and applying the approach to level sets~\cite{2}(\hl{this sentence is a paraphrase from Mark's 18 JCP consider revising}).
+Height functions remain a prevalent method for estimating curvature because of their relative ease of implementation.\todo{and their 2nd order convergence} However, several adjustments to the standard model have been proposed. Adjustments include changing the stencil size over which the heights are gathered~\cite{1}, separating the columns from the computational mesh~\cite{2}, combining heights and widths for approximation~\cite{2}, and applying the approach to level sets~\cite{2}(\hl{this sentence is a paraphrase from Mark's 18 JCP consider revising}).
 
 
 \subsection{Using Height Functions in Conjunction with Rudman Dual Mesh }
