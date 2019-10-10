@@ -56,39 +56,106 @@
 %	\label{fig:1Dadvect}
 %\end{figure}
 
-\subsection{Oscillating Droplet Test Case}
-To further quantify the problem that is occurring, a baseline test case which highlights the shortcomings of current methods is necessary. To this end, an oscillating two-dimensional droplet is used to assess the height function method and the proposed solution methods. This test case was chosen as it is considered a standard benchmark problem for testing the accurate prediction of multiphase flow behavior\cite{Salih2002}. Additionally, for the height function method, the oscillating droplet offers an extensive testing of interface orientations which is important for measuring the robustness of the method. The interface is initialized with an ellipsoid. Surface tension drives the droplet's semi-major axis to fluctuate between alignment with the $x$ and $y$ axes. The period of oscillation $T_{e}$, is a function of surface tension coefficient ($\sigma$), density ($\rho_l$ and $\rho_g$), and equivalent circular radius($R$), and can be computed analytically as~\cite{Rayleigh}
-\begin{equation}
-T_{e} = 2 \pi \sqrt{\frac{(\rho_{l}+\rho_{g})R^3}{6\sigma}}.
-\label{period}
-\end{equation}
+%\subsection{Oscillating Droplet Test Case}
+%To further quantify the problem that is occurring, a baseline test case which highlights the shortcomings of current methods is necessary. To this end, an oscillating two-dimensional droplet is used to assess the height function method and the proposed solution methods. This test case was chosen as it is considered a standard benchmark problem for testing the accurate prediction of multiphase flow behavior\cite{Salih2002}. Additionally, for the height function method, the oscillating droplet offers an extensive testing of interface orientations which is important for measuring the robustness of the method. The interface is initialized with an ellipsoid. Surface tension drives the droplet's semi-major axis to fluctuate between alignment with the $x$ and $y$ axes. The period of oscillation $T_{e}$, is a function of surface tension coefficient ($\sigma$), density ($\rho_l$ and $\rho_g$), and equivalent circular radius($R$), and can be computed analytically as~\cite{Rayleigh}
+%\begin{equation}
+%T_{e} = 2 \pi \sqrt{\frac{(\rho_{l}+\rho_{g})R^3}{6\sigma}}.
+%\label{period}
+%\end{equation}
+%
+%To establish successful algorithm performance of NGA, an alternate curvature scheme was selected and an oscillating droplet test case ran. Simulation parameters include a density ratio of 1000, viscosity in both the liquid and gas phases are 0, and no walls are present in the computational domain. For the initial baseline, a mesh of 64x64 grid cells make up the domain. A semi-major radius of 0.24 and a semi-minor axes radius of 0.20 define the initial displacement of the droplet. The total domain length is set to 1.0. These parameters are chosen as they align with the analytic solution assumptions made. Figure \ref{fig:acesKE} shows kinetic energy conservation through the progression of the simulation. Simulation success is quantified by normal periods of oscillation and diminishing kinetic energy with time. Close adherence to this model can be used as a measure of success with cases from here forward and this case will be plotted with all further test cases. 
+%
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[width=5.0in]{figs/KEvT}
+%	\caption{Kinetic Energy with Time \hl{THIS IS NOT THE CORRECT FIGURE}}
+%	\label{fig:acesKE}
+%\end{figure}
+%
+% Alternatively, Figure \ref{fig:stdKE} shows the result of the same test case ran with a standard, coarse grid, curvature estimation scheme. The uncontrolled growth seen in the kinetic energy of the standard method is a result of the aformentioned interfacial perturbations. The curvature estimation error and resulting non-physical dynamics are the basis for this research. 
 
-To establish successful oscillating droplet performance, an alternate curvature scheme was used and the simulation was run. Figure \ref{fig:acesKE} shows kinetic energy conservation through the progression of the simulation. Simulation success is quantified by normal periods of oscillation and diminishing kinetic energy with time. Close adherence to this model can be used as a measure of success with cases from here forward and this case will be plotted with all further test cases. 
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[width=5.0in]{figs/KEvT}
+%	\caption{Kinetic Energy with Time \hl{THIS IS NOT THE CORRECT FIGURE}}
+%	\label{fig:stdKE}
+%\end{figure}
 
+The aim of this research is to allow the coarse grid to be aware of information from the fine grid. The following section will describe several methods which have been proposed and discuss the strengths and shortcomings of each. \hl{ADD MORE HERE.}
+
+\subsection{Fifth Order Height Function Method}
+When considering how to inform the coarse grid from the finer mesh, a natural direction is to adopt a height function method directly onto the fine grid. Implementing a height function is straightforward as previously described and, the same curvature stencil should result in a more accurate curvature estimation as there is more information available. Figure \ref{fig:fgHFM} gives an example of what this could look like. 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=5.0in]{figs/KEvT}
-	\caption{Kinetic Energy with Time \hl{THIS IS NOT THE CORRECT FIGURE}}
-	\label{fig:acesKE}
+	\begin{tikzpicture}[scale=1.5]
+	% Liquid
+	\draw [line width=0,fill=lightblue] (0.5,3.5) to[out=20,in=170] (4,4.5) to[out=-10,in=100] (7.0,0.5);
+	\draw [lightblue,fill=lightblue] (0.5,3.5) -- (7.0,0.5) -- (0.5,0.5) -- cycle;
+	% \node [] at (0.25,3.5) {$\Gamma$};
+	% Mesh
+	\draw [step=1.0, help lines] (0.5 , 0.5) grid (7.5,5.5);
+	\draw [dashed,step=0.5, help lines] (0.5 ,0.5) grid (7.5,5.5);
+	% kappa 1
+	\draw [fill] (3.5,4.55) circle [radius=0.1];
+	\node [above right] at (3.5,4.55) {$\kappa$};
+	\draw [arrows=->,line width=1.0] (2.25,2) -- (2.25,4.3);\node [below] at (2.15,2.15) {\scriptsize $h_{\text{-}3}$};
+	\draw [arrows=->,line width=1.0] (2.75,2) -- (2.75,4.45);\node [below] at (2.70,2.15) {\scriptsize $h_{\text{-}2}$};
+	\draw [arrows=->,line width=1.0] (3.25,2) -- (3.25,4.53);\node [below] at (3.25,2.15) {\scriptsize $h_{\text{-}1}$};
+	\draw [arrows=->,line width=1.0] (3.75,2) -- (3.75,4.54);\node [below] at (3.75,2.15) {\scriptsize $h_{1}$};
+	\draw [arrows=->,line width=1.0] (4.25,2) -- (4.25,4.44);\node [below] at (4.25,2.15) {\scriptsize $h_{2}$};
+	\draw [arrows=->,line width=1.0] (4.75,2) -- (4.75,4.27);\node [below] at (4.75,2.15) {\scriptsize $h_{3}$};	    
+	\end{tikzpicture}
+	\caption{Fine grid height function}
+	\label{fig:fgHFM}
 \end{figure}
+ 
+\noindent As seen in Figure \ref{fig:fgHFM}, there are now six columns over which information is being provided. With this information, it is possible to derive fifth order approximations for the first and second derivatives needed for the curvature calculation. A general formula for deriving a finite difference approximation given a set of points is given by
+\begin{equation}
+f'_j + \sum_{k=0}^{2} a_k f_{j+k} = O(?).
+\end{equation}
 
- Alternatively, Figure \ref{fig:stdKE} shows the result of the same test case ran with a standard, coarse grid, curvature estimation scheme. 
+\noindent Here, $a_k$ are the coefficients associated with the linear Taylor series which need to be solved for~\cite{moin}. For the six heights given by our fine grid stencil Table \ref{tab:findiff} shows how the linear equations can be formed to find the first derivative.
 
-\begin{figure}[htbp]
+
+\begin{table}[htbp]
 	\centering
-	\includegraphics[width=5.0in]{figs/KEvT}
-	\caption{Kinetic Energy with Time \hl{THIS IS NOT THE CORRECT FIGURE}}
-	\label{fig:stdKE}
-\end{figure}
+	\caption{Taylor Series Table}
+		\begin{tabular}{c|c|c|c|c|c|c|c} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+			\textbf{}          &\textbf{$f$} & \textbf{$f'$}            & \textbf{$f''$}                                 & \textbf{$f'''$}                                 & \textbf{$f^{iv}$}                             & \textbf{$f^{v}$}                                \\
+			\hline
+			$f'$                                     & 0                                     & 1                                                       &                                                    0       &                                                              0&                                                      0&                                                                     0&\\
+			$a_{\text{-}3}f_{\text{-}3}$& $\frac{a_{\text{-}3}}{0!}$ &$a_{\text{-}3}\frac{(\text{-}3h)}{1!}$ &$a_{\text{-}3}\frac{(\text{-}3h)^2}{2!}$  &$a_{\text{-}3}\frac{(\text{-}3h)^3}{3!}$   &$a_{\text{-}3}\frac{(\text{-}3h)^4}{4!}$    &$a_{\text{-}3}\frac{(\text{-}3h)^5}{5!}$   &\\ 
+			$a_{\text{-}2}f_{\text{-}2}$& $\frac{a_{\text{-}2}}{0!}$ &$a_{\text{-}2}\frac{(\text{-}2h)}{1!}$ &$a_{\text{-}2}\frac{(\text{-}2h)^2}{2!}$  &$a_{\text{-}2}\frac{(\text{-}2h)^3}{3!}$   &$a_{\text{-}2}\frac{(\text{-}2h)^4}{4!}$    &$a_{\text{-}2}\frac{(\text{-}2h)^5}{5!}$   &\\
+			$a_{\text{-}1}f_{\text{-}1}$& $\frac{a_{\text{-}1}}{0!}$ &$a_{\text{-}1}\frac{(\text{-}h)}{1!}$   &$a_{\text{-}1}\frac{(\text{-}h)^2}{2!}$    &$a_{\text{-}1}\frac{(\text{-}h  )^3}{3!}$   &$a_{\text{-}1}\frac{(\text{-}h )^4}{4!}$     &$a_{\text{-}1}\frac{(\text{-}h )^5}{5!}$    &\\
+			$a_{+1}f_{+1}$                   & $\frac{a_{+1}}{0!}$           &$a_{+1}\frac{(h)}{1!}$                         &$a_{+1}\frac{(h)^2}{2!}$                         &$a_{+1}\frac{(\frac{h}{2})^3 }{3!}$           &$a_{+1}\frac{(\frac{h}{2})         ^4}{4!}$     &$a_{+1}\frac{(\frac{h}{2})^5}{5!}$             &\\
+			$a_{+2}f_{+2}$                   & $\frac{a_{+2}}{0!}$           &$a_{+2}\frac{(2h)}{1!}$                       &$a_{+2}\frac{(2h)^2}{2!}$                       &$a_{+2}\frac{(\frac{2h}{2})^3}{3!}$          &$a_{+2}\frac{(\frac{2h}{2})       ^4}{4!}$     &$a_{+2}\frac{(\frac{2h}{2})^5}{5!}$           &\\
+			$a_{+3}f_{+3}$                  & $\frac{a_{+3}}{0!}$            &$a_{+3}\frac{(3h)}{1!}$                       &$a_{+3}\frac{(3h)^2}{2!}$                       &$a_{+3}\frac{(\frac{3h}{2})^3}{3!}$          &$a_{+3}\frac{(\frac{3h}{2})       ^4}{4!}$     &$a_{+3}\frac{(\frac{3h}{2})^5}{5!}$           &\\
+		\end{tabular}
+		\label{tab:findiff}
+\end{table}
 
+\noindent To force a symmetric solution, we assume 
+\begin{equation}
+a_{-1} = -a_1
+\end{equation}
+\begin{equation}
+a_{-2} = -a_2
+\end{equation}
+\begin{equation}
+a_{-3} = -a_3 .
+\end{equation}
+Solving these equations, we find that the trivial solutions exists for the first, third, and fifth columns. The remaining equations are
+\begin{equation}
+a_1 (2h)+ a_2 (4h)+ a_3 (6h) = -1
+\end{equation}
+\begin{equation}
+a_1 \frac{(h)^3}{3}     +a_2  \frac{(2h)^3}{3}    +a_3 \frac{(3h)^3}{3}     = 0
+\end{equation}
+\begin{equation}
+a_1 \frac{(h)^5}{60}     +a_2  \frac{(2h)^5}{60}    +a_3 \frac{(3h)^5}{60}     = 0.
+\end{equation}
 
-
-
-
-
-
-
-
+\noindent We now have as many equations as unknown variables and can solve for the coefficient values. 
 
 
 
