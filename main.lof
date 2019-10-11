@@ -1,15 +1,15 @@
 \setcounter {tocdepth}{1}
-\contentsline {figure}{\numberline {1.1}{\ignorespaces DNS Simulation of Atomizing Jet\relax }}{3}{figure.caption.9}
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Typical notation of structured grid cells.\relax }}{7}{figure.caption.13}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Simple Unstructured Grid \cite {MIT}\relax }}{8}{figure.caption.15}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Advection of a one-dimensional fluid interface\relax }}{9}{figure.caption.17}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Simple Line Interface Calculation of Noh and Woodward adapted from \cite {SLICfig}\relax }}{10}{figure.caption.18}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Piecewise Linear Interface Calculation of Youngs adapted from \cite {yeoh}\relax }}{10}{figure.caption.19}
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Typical staggered grid, adopted from \cite {TRYG}.\relax }}{11}{figure.caption.21}
-\contentsline {figure}{\numberline {2.7}{\ignorespaces \texthl {FIX THIS FIGURE}\relax }}{11}{figure.caption.22}
-\contentsline {figure}{\numberline {2.8}{\ignorespaces Typical staggered grid, adopted from \cite {TRYG}.\relax }}{12}{figure.caption.24}
-\contentsline {figure}{\numberline {2.9}{\ignorespaces Atomization simulations with varying Weber number, adopted from \cite {Desjardins13}.\texthl {figure this spacing out}\relax }}{13}{figure.caption.25}
-\contentsline {figure}{\numberline {2.10}{\ignorespaces Traditional height function\relax }}{14}{figure.caption.26}
-\contentsline {figure}{\numberline {2.11}{\ignorespaces Standard method interface breakup.\relax }}{16}{figure.caption.28}
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Kinetic Energy with Time \texthl {THIS IS NOT THE CORRECT FIGURE}\relax }}{18}{figure.caption.30}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Kinetic Energy with Time \texthl {THIS IS NOT THE CORRECT FIGURE}\relax }}{19}{figure.caption.31}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces DNS Simulation of Atomizing Jet\relax }}{3}{figure.caption.14}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Typical notation of structured grid cells. \relax }}{7}{figure.caption.26}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Simple Unstructured Grid \cite {MIT}\relax }}{8}{figure.caption.30}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Advection of a one-dimensional fluid interface\relax }}{9}{figure.caption.35}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Simple Line Interface Calculation of Noh and Woodward adapted from \cite {SLICfig}\relax }}{10}{figure.caption.36}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Piecewise Linear Interface Calculation of Youngs adapted from \cite {yeoh}\relax }}{10}{figure.caption.37}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Typical staggered grid, adopted from \cite {TRYG}.\relax }}{11}{figure.caption.40}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces \texthl {FIX THIS FIGURE}\relax }}{12}{figure.caption.43}
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Typical staggered grid, adopted from \cite {TRYG}.\relax }}{12}{figure.caption.45}
+\contentsline {figure}{\numberline {2.9}{\ignorespaces Atomization simulations with varying Weber number, adopted from \cite {Desjardins13}.\texthl {figure this spacing out}\relax }}{13}{figure.caption.47}
+\contentsline {figure}{\numberline {2.10}{\ignorespaces Traditional height function\relax }}{14}{figure.caption.49}
+\contentsline {figure}{\numberline {2.11}{\ignorespaces Standard method interface breakup.\relax }}{16}{figure.caption.56}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Kinetic Energy with Time \texthl {THIS IS NOT THE CORRECT FIGURE}\relax }}{18}{figure.caption.58}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Kinetic Energy with Time \texthl {THIS IS NOT THE CORRECT FIGURE}\relax }}{19}{figure.caption.59}

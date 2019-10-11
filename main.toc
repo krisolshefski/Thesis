@@ -2,17 +2,17 @@
 \contentsline {chapter}{\numberline {1.}\MakeUppercase {Introduction}}{1}{chapter.1}
 \setcounter {tocdepth}{3}
 \contentsline {chapter}{\numberline {2.}\MakeUppercase {Theory}}{5}{chapter.2}
-\contentsline {subsection}{The Navier-Stokes Equations}{5}{subsection*.10}
-\contentsline {subsection}{Computational Platform}{5}{subsection*.11}
-\contentsline {subsection}{Mesh Generation}{7}{subsection*.12}
-\contentsline {paragraph}{}{7}{paragraph*.14}
-\contentsline {subsection}{Volume of Fluid Formulation}{8}{subsection*.16}
-\contentsline {subsection}{Rudman Dual Grid Formulation}{10}{subsection*.20}
-\contentsline {subsection}{Curvature Estimation - Height Function Methods}{12}{subsection*.23}
-\contentsline {subsection}{Using Height Functions in Conjunction with Rudman Dual Mesh }{15}{subsection*.27}
+\contentsline {subsection}{The Navier-Stokes Equations}{5}{subsection*.22}
+\contentsline {subsection}{Computational Platform}{5}{subsection*.23}
+\contentsline {subsection}{Mesh Generation}{7}{subsection*.25}
+\contentsline {paragraph}{}{7}{paragraph*.28}
+\contentsline {subsection}{Volume of Fluid Formulation}{8}{subsection*.31}
+\contentsline {subsection}{Rudman Dual Grid Formulation}{10}{subsection*.39}
+\contentsline {subsection}{Curvature Estimation - Height Function Methods}{11}{subsection*.44}
+\contentsline {subsection}{Using Height Functions in Conjunction with Rudman Dual Mesh }{15}{subsection*.55}
 \setcounter {tocdepth}{3}
 \contentsline {chapter}{\numberline {3.}\MakeUppercase {Methodology}}{17}{chapter.3}
-\contentsline {subsection}{Oscillating Droplet Test Case}{17}{subsection*.29}
+\contentsline {subsection}{Oscillating Droplet Test Case}{17}{subsection*.57}
 \setcounter {tocdepth}{3}
 \contentsline {chapter}{\numberline {4.}\MakeUppercase {Results}}{20}{chapter.4}
 \setcounter {tocdepth}{3}
