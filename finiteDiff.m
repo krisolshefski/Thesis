@@ -71,59 +71,64 @@ er5xx = sqrt((Hxx5-ana).^2) ./ sqrt(ana.^2);
 %     PLOTS
 % ===============
 
-figure(1); clf(1)
-plot (x,ana,'ko')
+h=figure(1); clf(1)
+plot (x,ana,'k-','LineWidth',2)
 hold on
-plot (x,Hxx5,'b--')
-xlabel('Values of "x"')
-ylabel('Values of e^x','interpreter','latex')
-legend('analytic','findiff-5th','findiff-2nd','Location','NorthWest')
-title('$\frac{d^2h}{dx^2}$','interpreter','latex','fontsize',24)
+plot (x(1:10:end),Hxx5(1:10:end),'ro','LineWidth',2)
+xlabel('Values of x','interpreter','latex','fontsize',16)
+ylabel('Values of $e^x$','interpreter','latex','fontsize',16)
+legend('Analytic','5th Order','Location','NorthWest')
+%title('Calculation of $\frac{d^2h}{dx^2}$ vs Analytic Solution','interpreter','latex','fontsize',18)
+basefile = 'figs';
+saveas(h,fullfile(basefile,'2ndDer.png'));
 
 Hx5 =  sum(hx5.*f)./dx;
-
 er5 = sqrt((Hx5-ana).^2) ./ sqrt(ana.^2);
 
-figure(2); clf(2)
-plot (x,ana,'ko')
+h=figure(2); clf(2)
+plot (x,ana,'k-','LineWidth',2)
 hold on
-plot (x,Hx5,'b--')
-xlabel('Values of "x"')
-ylabel('Values of exp(x)')
-legend('analytic','findiff-5th','findiff-2nd','Location','NorthWest')
-title('$\frac{dh}{dx}$','interpreter','latex','fontsize',24)
+plot (x(1:10:end),Hx5(1:10:end),'ro','LineWidth',2)
+xlabel('Values of x','interpreter','latex','fontsize',16)
+ylabel('Values of $e^x$','interpreter','latex','fontsize',16)
+legend('Analytic','5th Order','Location','NorthWest')
+%title('Calculation of $\frac{dh}{dx}$ vs Analytic Solution','interpreter','latex','fontsize',18)
+basefile = 'figs';
+saveas(h,fullfile(basefile,'1stDer.png'));
 
-figure(3); clf(3)
-loglog(dx,er5,'-^');
+h=figure(3); clf(3)
+loglog(dx,er5,'-o','LineWidth',2);
 hold on ;
-loglog(dx,dx.^(2)*1e-2);
+loglog(dx,dx.^(2)*1e-2,'LineWidth',2);
 hold on ;
-loglog(dx,dx.^(3)*1e2);
+loglog(dx,dx.^(3)*1e2,'LineWidth',2);
 hold on ;
-loglog(dx,dx.^(4)*1e6);
+loglog(dx,dx.^(4)*1e6,'LineWidth',2);
 hold on ;
-loglog(dx,dx.^(5)*1e10);
-xlabel_h=xlabel({'','dx',''},'fontsize',20,'FontWeight','bold');
-ylabel_h=ylabel({'','Error',''},'fontsize',20,'FontWeight','bold');
-title('Convergence of $\frac{dh}{dx}$ Error With Mesh Refinement','interpreter','latex','fontsize',18);
-legend('Calculated-2nd','2nd Order','3rd Order','4th Order','5th Order', 'Location', 'NorthWest')
+loglog(dx,dx.^(5)*1e10,'LineWidth',2);
+xlabel_h=xlabel({'','dx',''},'interpreter','latex','fontsize',16);
+ylabel_h=ylabel({'','Error',''},'interpreter','latex','fontsize',16);
+%title('Convergence of $\frac{dh}{dx}$ Error With Mesh Refinement','interpreter','latex','fontsize',18);
+legend('5th Order Method','2nd Order','3rd Order','4th Order','5th Order', 'Location', 'NorthWest')
 set(gca, 'Color', 'none'); % Sets axes background
+basefile = 'figs';
+saveas(h,fullfile(basefile,'1stErr.png'));
 
-
-figure(4); clf(4)
-loglog(dx,er5xx,'-^');
+h=figure(4); clf(4)
+loglog(dx,er5xx,'-o','LineWidth',2);
 hold on ;
-loglog(dx,dx.^(2)*1e-2);
+loglog(dx,dx.^(2)*1e-2,'LineWidth',2);
 hold on ;
-loglog(dx,dx.^(3)*1e2);
+loglog(dx,dx.^(3)*1e2,'LineWidth',2);
 hold on ;
-loglog(dx,dx.^(4)*1e6);
+loglog(dx,dx.^(4)*1e6,'LineWidth',2);
 hold on ;
-loglog(dx,dx.^(5)*1e10);
-xlabel_h=xlabel({'','dx',''},'fontsize',20,'FontWeight','bold');
-ylabel_h=ylabel({'','Error',''},'fontsize',20,'FontWeight','bold');
-title('Convergence of $\frac{d^2h}{dx^2}$ Error With Mesh Refinement','interpreter','latex','fontsize',18);
-legend('Calculated-2nd','2nd Order','3rd Order','4th Order','5th Order', 'Location', 'NorthWest')
+loglog(dx,dx.^(5)*1e10,'LineWidth',2);
+xlabel_h=xlabel({'','dx',''},'interpreter','latex','fontsize',16);
+ylabel_h=ylabel({'','Error',''},'interpreter','latex','fontsize',16);
+%title('Convergence of $\frac{d^2h}{dx^2}$ Error With Mesh Refinement','interpreter','latex','fontsize',18);
+legend('5th Order Method','2nd Order','3rd Order','4th Order','5th Order', 'Location', 'NorthWest')
 set(gca, 'Color', 'none'); % Sets axes background
-
+basefile = 'figs';
+saveas(h,fullfile(basefile,'2ndErr.png'));
 

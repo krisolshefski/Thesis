@@ -7,7 +7,7 @@
 %Why do we choose to use a HFM?\\
 %Shortcomings of HFM's?\\
 %On this dual grid, why do we need a fine velocity?}\\
-Computational solutions for fluid flow rely on several fundamental ideas surrounding how fluids are simulated. The following section is an attempt to summarize several of these methods and lay the necessary framework for understanding the subsequent method, which is the primary focus of this work. Each of the methods discussed are present within NGA, the computational platform used in this research. Additionally, while these methods are prevalent in the CFD community, they are not the only options available. The interested reader is directed to \ref{TRYG} for a more comprehensive assessment.   
+Computational solutions for fluid flow rely on several fundamental ideas surrounding how fluids are simulated. The following section is an attempt to summarize several of these methods and lay the necessary framework for understanding the subsequent method, which is the primary focus of this work. Each of the methods discussed are present within NGA, the computational platform used in this research. Additionally, while these methods are prevalent in the CFD community, they are not the only options available. The interested reader is directed to \cite{TRYG} for a more comprehensive assessment.   
 
 \subsection{The Navier-Stokes Equations}
 They exist, here they are....
@@ -96,7 +96,7 @@ In Numerical analysis, the grid or mesh, often refers to the manner in which a d
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=2.5in]{figs/unstruc}
+	\includegraphics[width=0.5\textwidth]{figs/unstruc}
 	\caption{Simple Unstructured Grid \cite{MIT}}
 	\label{fig:Unstructured Grid}
 \end{figure}
@@ -125,7 +125,7 @@ The advection procedure for a VOF method is completed in two primary steps. Firs
      
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.7\textwidth]{figs/SLIC.png}
+	\includegraphics[width=1.0\textwidth]{figs/SLIC.png}
 	\caption{Simple Line Interface Calculation of Noh and Woodward adapted from \cite{SLICfig}}
 	\label{fig:SLIC}
 \end{figure}
@@ -134,7 +134,7 @@ Improvement to the SLIC method was presented by Youngs (1982)  known as the Piec
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.5\textwidth]{figs/PLIC.png}
+	\includegraphics[width=1.0\textwidth]{figs/PLIC.png}
 	\caption{Piecewise Linear Interface Calculation of Youngs adapted from \cite{yeoh}}
 	\label{fig:PLIC}
 \end{figure}
@@ -144,7 +144,7 @@ Solution of the incompressible Navier-Stokes equations traditionally occurs on w
 
  \begin{figure}[h!]
  	\centering
- 	\includegraphics[width=2.5in]{figs/StaggeredGrid}
+ 	\includegraphics[width=0.5\textwidth]{figs/StaggeredGrid}
  	\caption{Typical staggered grid, adopted from \cite{TRYG}.}
  	\label{fig:StagGrid}
  \end{figure}
@@ -234,7 +234,7 @@ Curvature can be discretely described as the reciprocal of radius of a given sur
 
  \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=2.5in]{figs/curv}
+	\includegraphics[width=0.5\textwidth]{figs/curv}
 	\caption{Typical staggered grid, adopted from \cite{TRYG}.}
 	\label{fig:curv}
 \end{figure}
@@ -243,7 +243,7 @@ Curvature can be discretely described as the reciprocal of radius of a given sur
 
  \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=5.0in]{figs/surf}
+	\includegraphics[width=0.5\textwidth]{figs/surf}
 	\caption{Atomization simulations with varying Weber number, adopted from \cite{Desjardins13}.\hl{figure this spacing out}}
 	\label{fig:surf}
 \end{figure}
@@ -308,7 +308,7 @@ Height functions remain a prevalent method for estimating curvature because of t
 When a dual grid is used, the standard height function method fails to capture the dynamics occurring on the fine grid. Left unmitigated, these dynamics can result in fine grid interfacial perturbations, small discontinuities in interface structures. These perturbations can grow uncontrollably and result in non-physical dynamics materializing in simulations. An example of this uncontrolled growth resulting in non-physical dynamics can be seen in Figure~\ref{bad2}. The focus of this research is to develop an extension of the standard height function to include information from the Rudman dual mesh. This method results in consistent mass and momentum transport while also providing accurate interface transport that avoids non-physical dynamics.
 \begin{figure}[h!]
 	\centering
-		\includegraphics[scale=0.25]{figs/bad.png}
+		\includegraphics[width=0.5\textwidth]{figs/bad.png}
 	\caption{Standard method interface breakup.}
 	\label{bad2} 
 \end{figure} 
@@ -323,7 +323,7 @@ T_{e} = 2 \pi \sqrt{\frac{(\rho_{l}+\rho_{g})R^3}{6\sigma}}.
 To establish successful algorithm performance of NGA, an alternate curvature scheme was selected and an oscillating droplet test case ran. Simulation parameters include a density ratio of 1000, viscosity in both the liquid and gas phases are 0, and no walls are present in the computational domain. For the initial baseline, a mesh of 64x64 grid cells make up the domain. A semi-major radius of 0.24 and a semi-minor axes radius of 0.20 define the initial displacement of the droplet. The total domain length is set to 1.0. These parameters are chosen as they align with the analytic solution assumptions made. Figure \ref{fig:acesKE} shows kinetic energy conservation through the progression of the simulation. Simulation success is quantified by normal periods of oscillation and diminishing kinetic energy with time. Close adherence to this model can be used as a measure of success with cases from here forward and this case will be plotted with all further test cases. 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=5.0in]{figs/KEvT}
+	\includegraphics[width=0.5\textwidth]{figs/KEvT}
 	\caption{Kinetic Energy with Time \hl{THIS IS NOT THE CORRECT FIGURE}}
 	\label{fig:acesKE}
 \end{figure}
@@ -331,7 +331,7 @@ To establish successful algorithm performance of NGA, an alternate curvature sch
 Alternatively, Figure \ref{fig:stdKE} shows the result of the same test case ran with a standard, coarse grid, curvature estimation scheme. The uncontrolled growth seen in the kinetic energy of the standard method is a result of the aformentioned interfacial perturbations. The curvature estimation error and resulting non-physical dynamics are the basis for this research. 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=5.0in]{figs/KEvT}
+	\includegraphics[width=0.5\textwidth]{figs/KEvT}
 	\caption{Kinetic Energy with Time \hl{THIS IS NOT THE CORRECT FIGURE}}
 	\label{fig:stdKE}
 \end{figure}

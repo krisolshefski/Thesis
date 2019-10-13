@@ -59,6 +59,8 @@
 \usepackage{xcolor}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{multicol}
+
 
 % Math
 \def\bm#1{\mbox{\boldmath{$#1$}}}
@@ -133,7 +135,7 @@
 % put searchable words you want internet search engines to find here
 \keys{Engineering, Thesis, Template, Latex, Montana, Montana State University} 
  
-\bibfiles{mybib} %your .bib file(s), files containing bibliographic 
+%\bibfiles{mybib} %your .bib file(s), files containing bibliographic 
 
 %  Configuration of hyperref package
 \hypersetup{%
@@ -201,17 +203,9 @@
 \include{future}
 % Add additional chapters here
 
-% REFERENCES
+	% REFERENCES
 \bibliographystyle{abbrv} % Use a style you and your adviser like
-
-
-%*****************************************************************
-%             UNCOMMENT THIS LINE TO BUILD BIB
-%*****************************************************************
-%\references  %do not change this
-%*****************************************************************
-%*****************************************************************
-%*****************************************************************
+\bibliography{mybib.bib} % Bibliography.  Add your .bib file(s) here
 
 
 % APPENDIX

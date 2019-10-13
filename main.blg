@@ -4,7 +4,7 @@ The top-level auxiliary file: main.aux
 A level-1 auxiliary file: introduction.aux
 A level-1 auxiliary file: theory.aux
 Case mismatch error between cite keys Rudman and rudman
----line 47 of file theory.aux
+---line 52 of file theory.aux
  : \citation{Rudman
  :                 }
 I'm skipping whatever remains of this command
@@ -14,72 +14,69 @@ A level-1 auxiliary file: conclusion.aux
 A level-1 auxiliary file: future.aux
 The style file: abbrv.bst
 A level-1 auxiliary file: appendixa.aux
-I found no \bibdata command---while reading file main.aux
-Warning--I didn't find a database entry for "MIT"
+Database file #1: mybib.bib.bib
 Warning--I didn't find a database entry for "SLICfig"
 Warning--I didn't find a database entry for "yeoh"
-Warning--I didn't find a database entry for "TRYG"
 Warning--I didn't find a database entry for "Desjardins13"
+Warning--I didn't find a database entry for "magoules"
 Warning--I didn't find a database entry for "1"
 Warning--I didn't find a database entry for "2"
 Warning--I didn't find a database entry for "3"
-Warning--I didn't find a database entry for "desjardins_direct_2013"
-Warning--I didn't find a database entry for "NGA1"
-Warning--I didn't find a database entry for "NGA2"
-Warning--I didn't find a database entry for "choi"
-Warning--I didn't find a database entry for "Owkes2017"
-Warning--I didn't find a database entry for "Owkes2014"
-Warning--I didn't find a database entry for "OwkesAIAA"
-Warning--I didn't find a database entry for "Desjardins2013"
-Warning--I didn't find a database entry for "sheehy"
-Warning--I didn't find a database entry for "anderson"
-Warning--I didn't find a database entry for "tu"
-Warning--I didn't find a database entry for "magoules"
-Warning--I didn't find a database entry for "Hirt1981"
 Warning--I didn't find a database entry for "4"
 Warning--I didn't find a database entry for "NohWoodward"
 Warning--I didn't find a database entry for "youngs"
 Warning--I didn't find a database entry for "HARLOW1965"
 Warning--I didn't find a database entry for "rudman"
-You've used 0 entries,
+Warning--I didn't find a database entry for "MARK2013"
+Warning--I didn't find a database entry for "Salih2002"
+Warning--I didn't find a database entry for "moin"
+Warning--empty journal in NGA1
+Warning--empty journal in Desjardins2013
+Warning--there's a number but no volume in Desjardins2013
+Warning--empty journal in OwkesAIAA
+Warning--there's a number but no volume in OwkesAIAA
+Warning--empty journal in shadow
+Warning--there's a number but no volume in sheehy
+Warning--empty publisher in TRYG
+You've used 26 entries,
             2118 wiz_defined-function locations,
-            538 strings with 4060 characters,
-and the built_in function-call counts, 18 in all, are:
-= -- 0
-> -- 0
+            674 strings with 7837 characters,
+and the built_in function-call counts, 7845 in all, are:
+= -- 764
+> -- 350
 < -- 0
-+ -- 0
-- -- 0
-* -- 2
-:= -- 7
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
++ -- 142
+- -- 112
+* -- 557
+:= -- 1353
+add.period$ -- 77
+call.type$ -- 26
+change.case$ -- 131
 chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 1
-format.name$ -- 0
-if$ -- 1
+cite$ -- 34
+duplicate$ -- 280
+empty$ -- 626
+format.name$ -- 112
+if$ -- 1596
 int.to.chr$ -- 0
-int.to.str$ -- 0
-missing$ -- 0
-newline$ -- 3
-num.names$ -- 0
-pop$ -- 0
+int.to.str$ -- 26
+missing$ -- 28
+newline$ -- 132
+num.names$ -- 52
+pop$ -- 120
 preamble$ -- 1
-purify$ -- 0
+purify$ -- 108
 quote$ -- 0
-skip$ -- 1
+skip$ -- 190
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
+substring$ -- 520
+swap$ -- 22
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 0
-warning$ -- 0
-while$ -- 0
-width$ -- 0
-write$ -- 2
-(There were 2 error messages)
+type$ -- 98
+warning$ -- 8
+while$ -- 77
+width$ -- 28
+write$ -- 275
+(There was 1 error message)

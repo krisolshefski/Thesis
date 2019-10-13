@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  10 OCT 2019 14:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  13 OCT 2019 11:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -701,19 +701,68 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
+(/usr/local/texlive/2017/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2017/04/11 v1.8q multicolumn formatting (FMi)
+\c@tracingmulticols=\count190
+\mult@box=\box54
+\multicol@leftmargin=\dimen184
+\c@unbalance=\count191
+\c@collectmore=\count192
+\doublecol@number=\count193
+\multicoltolerance=\count194
+\multicolpretolerance=\count195
+\full@width=\dimen185
+\page@free=\dimen186
+\premulticols=\dimen187
+\postmulticols=\dimen188
+\multicolsep=\skip78
+\multicolbaselineskip=\skip79
+\partial@page=\box55
+\last@line=\box56
+\maxbalancingoverflow=\dimen189
+\mult@rightbox=\box57
+\mult@grightbox=\box58
+\mult@gfirstbox=\box59
+\mult@firstbox=\box60
+\@tempa=\box61
+\@tempa=\box62
+\@tempa=\box63
+\@tempa=\box64
+\@tempa=\box65
+\@tempa=\box66
+\@tempa=\box67
+\@tempa=\box68
+\@tempa=\box69
+\@tempa=\box70
+\@tempa=\box71
+\@tempa=\box72
+\@tempa=\box73
+\@tempa=\box74
+\@tempa=\box75
+\@tempa=\box76
+\@tempa=\box77
+\c@columnbadness=\count196
+\c@finalcolumnbadness=\count197
+\last@try=\dimen190
+\multicolovershoot=\dimen191
+\multicolundershoot=\dimen192
+\mult@nat@firstbox=\box78
+\colbreak@box=\box79
+\mc@col@check@num=\count198
+)
 (/usr/local/texlive/2017/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/usr/local/texlive/2017/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/local/texlive/2017/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
 x
 \pgfutil@everybye=\toks29
-\pgfutil@tempdima=\dimen184
-\pgfutil@tempdimb=\dimen185
+\pgfutil@tempdima=\dimen193
+\pgfutil@tempdimb=\dimen194
 
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-li
 sts.tex))
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-\pgfutil@abb=\box54
+\pgfutil@abb=\box80
 (/usr/local/texlive/2017/texmf-dist/tex/latex/ms/everyshi.sty
 Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
 ))
@@ -733,20 +782,20 @@ Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
 ode.tex
 \pgfkeys@tmptoks=\toks32
 ))
-\pgf@x=\dimen186
-\pgf@y=\dimen187
-\pgf@xa=\dimen188
-\pgf@ya=\dimen189
-\pgf@xb=\dimen190
-\pgf@yb=\dimen191
-\pgf@xc=\dimen192
-\pgf@yc=\dimen193
+\pgf@x=\dimen195
+\pgf@y=\dimen196
+\pgf@xa=\dimen197
+\pgf@ya=\dimen198
+\pgf@xb=\dimen199
+\pgf@yb=\dimen256
+\pgf@xc=\dimen257
+\pgf@yc=\dimen258
 \w@pgf@writea=\write3
 \r@pgf@reada=\read1
-\c@pgf@counta=\count190
-\c@pgf@countb=\count191
-\c@pgf@countc=\count192
-\c@pgf@countd=\count193
+\c@pgf@counta=\count199
+\c@pgf@countb=\count266
+\c@pgf@countc=\count267
+\c@pgf@countd=\count268
 \t@pgf@toka=\toks33
 \t@pgf@tokb=\toks34
 \t@pgf@tokc=\toks35
@@ -767,8 +816,8 @@ File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
 code.tex
 File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
-\pgfsyssoftpath@smallbuffer@items=\count194
-\pgfsyssoftpath@bigbuffer@items=\count195
+\pgfsyssoftpath@smallbuffer@items=\count269
+\pgfsyssoftpath@bigbuffer@items=\count270
 )
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
 code.tex
@@ -780,9 +829,9 @@ Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-\pgfmath@dimen=\dimen194
-\pgfmath@count=\count196
-\pgfmath@box=\box55
+\pgfmath@dimen=\dimen259
+\pgfmath@count=\count271
+\pgfmath@box=\box81
 \pgfmath@toks=\toks36
 \pgfmath@stack@operand=\toks37
 \pgfmath@stack@operation=\toks38
@@ -806,57 +855,57 @@ code.tex)
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
 erarithmetics.code.tex)))
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count197
+\c@pgfmathroundto@lastzeros=\count272
 ))
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
 de.tex
 File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
-\pgf@picminx=\dimen195
-\pgf@picmaxx=\dimen196
-\pgf@picminy=\dimen197
-\pgf@picmaxy=\dimen198
-\pgf@pathminx=\dimen199
-\pgf@pathmaxx=\dimen256
-\pgf@pathminy=\dimen257
-\pgf@pathmaxy=\dimen258
-\pgf@xx=\dimen259
-\pgf@xy=\dimen260
-\pgf@yx=\dimen261
-\pgf@yy=\dimen262
-\pgf@zx=\dimen263
-\pgf@zy=\dimen264
+\pgf@picminx=\dimen260
+\pgf@picmaxx=\dimen261
+\pgf@picminy=\dimen262
+\pgf@picmaxy=\dimen263
+\pgf@pathminx=\dimen264
+\pgf@pathmaxx=\dimen265
+\pgf@pathminy=\dimen266
+\pgf@pathmaxy=\dimen267
+\pgf@xx=\dimen268
+\pgf@xy=\dimen269
+\pgf@yx=\dimen270
+\pgf@yy=\dimen271
+\pgf@zx=\dimen272
+\pgf@zy=\dimen273
 )
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
 ruct.code.tex
 File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
-\pgf@path@lastx=\dimen265
-\pgf@path@lasty=\dimen266
+\pgf@path@lastx=\dimen274
+\pgf@path@lasty=\dimen275
 )
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
 .code.tex
 File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
-\pgf@shorten@end@additional=\dimen267
-\pgf@shorten@start@additional=\dimen268
+\pgf@shorten@end@additional=\dimen276
+\pgf@shorten@start@additional=\dimen277
 )
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
 de.tex
 File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
-\pgfpic=\box56
-\pgf@hbox=\box57
-\pgf@layerbox@main=\box58
-\pgf@picture@serial@count=\count198
+\pgfpic=\box82
+\pgf@hbox=\box83
+\pgf@layerbox@main=\box84
+\pgf@picture@serial@count=\count273
 )
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
 ate.code.tex
 File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
-\pgflinewidth=\dimen269
+\pgflinewidth=\dimen278
 )
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
 ations.code.tex
 File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
-\pgf@pt@x=\dimen270
-\pgf@pt@y=\dimen271
-\pgf@pt@temp=\dimen272
+\pgf@pt@x=\dimen279
+\pgf@pt@y=\dimen280
+\pgf@pt@temp=\dimen281
 )
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
 e.tex
@@ -873,13 +922,13 @@ File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
 de.tex
 File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
-\pgfarrowsep=\dimen273
+\pgfarrowsep=\dimen282
 )
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
 e.tex
 File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
-\pgf@max=\dimen274
-\pgf@sys@shading@range@num=\count199
+\pgf@max=\dimen283
+\pgf@sys@shading@range@num=\count274
 )
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
 e.tex
@@ -888,7 +937,7 @@ File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
 code.tex
 File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
-\pgfexternal@startupbox=\box59
+\pgfexternal@startupbox=\box85
 ))
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
 de.tex
@@ -905,7 +954,7 @@ File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
 e.tex
 File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
-\pgfnodeparttextbox=\box60
+\pgfnodeparttextbox=\box86
 )
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
 tex
@@ -914,8 +963,8 @@ File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
 (/usr/local/texlive/2017/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
 -0-65.sty
 Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
-\pgf@nodesepstart=\dimen275
-\pgf@nodesepend=\dimen276
+\pgf@nodesepstart=\dimen284
+\pgf@nodesepend=\dimen285
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
 -1-18.sty
@@ -930,8 +979,8 @@ Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
 Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
 
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
-\pgffor@iter=\dimen277
-\pgffor@skip=\dimen278
+\pgffor@iter=\dimen286
+\pgffor@skip=\dimen287
 \pgffor@stack=\toks39
 \pgffor@toks=\toks40
 ))
@@ -942,32 +991,32 @@ Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
 dlers.code.tex
 File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
-\pgf@plot@mark@count=\count266
-\pgfplotmarksize=\dimen279
+\pgf@plot@mark@count=\count275
+\pgfplotmarksize=\dimen288
 )
-\tikz@lastx=\dimen280
-\tikz@lasty=\dimen281
-\tikz@lastxsaved=\dimen282
-\tikz@lastysaved=\dimen283
-\tikzleveldistance=\dimen284
-\tikzsiblingdistance=\dimen285
-\tikz@figbox=\box61
-\tikz@figbox@bg=\box62
-\tikz@tempbox=\box63
-\tikz@tempbox@bg=\box64
-\tikztreelevel=\count267
-\tikznumberofchildren=\count268
-\tikznumberofcurrentchild=\count269
-\tikz@fig@count=\count270
+\tikz@lastx=\dimen289
+\tikz@lasty=\dimen290
+\tikz@lastxsaved=\dimen291
+\tikz@lastysaved=\dimen292
+\tikzleveldistance=\dimen293
+\tikzsiblingdistance=\dimen294
+\tikz@figbox=\box87
+\tikz@figbox@bg=\box88
+\tikz@tempbox=\box89
+\tikz@tempbox@bg=\box90
+\tikztreelevel=\count276
+\tikznumberofchildren=\count277
+\tikznumberofcurrentchild=\count278
+\tikz@fig@count=\count279
 
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
 e.tex
 File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
-\pgfmatrixcurrentrow=\count271
-\pgfmatrixcurrentcolumn=\count272
-\pgf@matrix@numberofcolumns=\count273
+\pgfmatrixcurrentrow=\count280
+\pgfmatrixcurrentcolumn=\count281
+\pgf@matrix@numberofcolumns=\count282
 )
-\tikz@expandcount=\count274
+\tikz@expandcount=\count283
 
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarytopaths.code.tex
@@ -998,26 +1047,26 @@ File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
 shapes.multipart.code.tex
 File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.1a (rcs-revision 1.2)
 
-\pgfnodepartlowerbox=\box65
-\pgfnodeparttwobox=\box66
-\pgfnodepartthreebox=\box67
-\pgfnodepartfourbox=\box68
-\pgfnodeparttwentybox=\box69
-\pgfnodepartnineteenbox=\box70
-\pgfnodeparteighteenbox=\box71
-\pgfnodepartseventeenbox=\box72
-\pgfnodepartsixteenbox=\box73
-\pgfnodepartfifteenbox=\box74
-\pgfnodepartfourteenbox=\box75
-\pgfnodepartthirteenbox=\box76
-\pgfnodeparttwelvebox=\box77
-\pgfnodepartelevenbox=\box78
-\pgfnodeparttenbox=\box79
-\pgfnodepartninebox=\box80
-\pgfnodeparteightbox=\box81
-\pgfnodepartsevenbox=\box82
-\pgfnodepartsixbox=\box83
-\pgfnodepartfivebox=\box84
+\pgfnodepartlowerbox=\box91
+\pgfnodeparttwobox=\box92
+\pgfnodepartthreebox=\box93
+\pgfnodepartfourbox=\box94
+\pgfnodeparttwentybox=\box95
+\pgfnodepartnineteenbox=\box96
+\pgfnodeparteighteenbox=\box97
+\pgfnodepartseventeenbox=\box98
+\pgfnodepartsixteenbox=\box99
+\pgfnodepartfifteenbox=\box100
+\pgfnodepartfourteenbox=\box101
+\pgfnodepartthirteenbox=\box102
+\pgfnodeparttwelvebox=\box103
+\pgfnodepartelevenbox=\box104
+\pgfnodeparttenbox=\box105
+\pgfnodepartninebox=\box106
+\pgfnodeparteightbox=\box107
+\pgfnodepartsevenbox=\box108
+\pgfnodepartsixbox=\box109
+\pgfnodepartfivebox=\box110
 )))
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarypositioning.code.tex
@@ -1029,16 +1078,16 @@ s/tikzlibrarydecorations.markings.code.tex
 s/tikzlibrarydecorations.code.tex
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/modules/pgfmoduledecoration
 s.code.tex
-\pgfdecoratedcompleteddistance=\dimen286
-\pgfdecoratedremainingdistance=\dimen287
-\pgfdecoratedinputsegmentcompleteddistance=\dimen288
-\pgfdecoratedinputsegmentremainingdistance=\dimen289
-\pgf@decorate@distancetomove=\dimen290
-\pgf@decorate@repeatstate=\count275
-\pgfdecorationsegmentamplitude=\dimen291
-\pgfdecorationsegmentlength=\dimen292
+\pgfdecoratedcompleteddistance=\dimen295
+\pgfdecoratedremainingdistance=\dimen296
+\pgfdecoratedinputsegmentcompleteddistance=\dimen297
+\pgfdecoratedinputsegmentremainingdistance=\dimen298
+\pgf@decorate@distancetomove=\dimen299
+\pgf@decorate@repeatstate=\count284
+\pgfdecorationsegmentamplitude=\dimen300
+\pgfdecorationsegmentlength=\dimen301
 )
-\tikz@lib@dec@box=\box85
+\tikz@lib@dec@box=\box111
 )
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/libraries/decorations/pgfli
 brarydecorations.markings.code.tex))
@@ -1073,12 +1122,12 @@ s/tikzlibraryintersections.code.tex
 ctions.code.tex
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.cod
 e.tex)
-\pgf@intersect@solutions=\count276
+\pgf@intersect@solutions=\count285
 ))
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibraryspy.code.tex
 File: tikzlibraryspy.code.tex 2011/05/19 v3.0.1a (rcs-revision 1.4)
-\tikz@lib@spybox=\box86
+\tikz@lib@spybox=\box112
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/pgf-blur/tikzlibraryshadows.blur.
 code.tex  v1.01, 2012/04/24
@@ -1131,47 +1180,47 @@ Package: environ 2014/05/04 v0.3 A new way to define environments
 (/usr/local/texlive/2017/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
-\tcb@titlebox=\box87
-\tcb@upperbox=\box88
-\tcb@lowerbox=\box89
-\tcb@phantombox=\box90
-\c@tcbbreakpart=\count277
-\c@tcblayer=\count278
-\tcolorbox@number=\count279
-\tcb@temp=\box91
-\tcb@temp=\box92
-\tcb@temp=\box93
-\tcb@temp=\box94
+\tcb@titlebox=\box113
+\tcb@upperbox=\box114
+\tcb@lowerbox=\box115
+\tcb@phantombox=\box116
+\c@tcbbreakpart=\count286
+\c@tcblayer=\count287
+\tcolorbox@number=\count288
+\tcb@temp=\box117
+\tcb@temp=\box118
+\tcb@temp=\box119
+\tcb@temp=\box120
 \tcb@out=\write4
 \tcb@record@out=\write5
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/tcolorbox/tcbraster.code.tex
 Library (tcolorbox): 'tcbraster.code.tex' version '4.03'
-\c@tcbrastercolumn=\count280
-\c@tcbrasterrow=\count281
-\c@tcbraster=\count282
+\c@tcbrastercolumn=\count289
+\c@tcbrasterrow=\count290
+\c@tcbraster=\count291
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
 Library (tcolorbox): 'tcbskins.code.tex' version '4.03'
-\tcb@waterbox=\box95
+\tcb@waterbox=\box121
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/tcolorbox/tcbskinsjigsaw.code.tex
 Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '4.03'
 ))
 (/usr/local/texlive/2017/texmf-dist/tex/latex/tcolorbox/tcbbreakable.code.tex
 Library (tcolorbox): 'tcbbreakable.code.tex' version '4.03'
-\tcb@testbox=\box96
-\tcb@totalupperbox=\box97
-\tcb@totallowerbox=\box98
+\tcb@testbox=\box122
+\tcb@totalupperbox=\box123
+\tcb@totallowerbox=\box124
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/tcolorbox/tcbhooks.code.tex
 Library (tcolorbox): 'tcbhooks.code.tex' version '4.03'
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/tcolorbox/tcbtheorems.code.tex
 Library (tcolorbox): 'tcbtheorems.code.tex' version '4.03'
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/tcolorbox/tcbfitting.code.tex
 Library (tcolorbox): 'tcbfitting.code.tex' version '4.03'
-\tcbfitdim=\dimen293
-\tcb@lowerfitdim=\dimen294
-\tcb@upperfitdim=\dimen295
-\tcb@cur@hbadness=\count283
+\tcbfitdim=\dimen302
+\tcb@lowerfitdim=\dimen303
+\tcb@upperfitdim=\dimen304
+\tcb@cur@hbadness=\count292
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/tcolorbox/tcbxparse.code.tex
 Library (tcolorbox): 'tcbxparse.code.tex' version '4.03'
 .................................................
@@ -1207,7 +1256,7 @@ Library (tcolorbox): 'tcbprocessing.code.tex' version '4.03'
 Package: shellesc 2016/06/07 v0.02a unified shell escape interface for LaTeX
 Package shellesc Info: Restricted shell escape enabled on input line 69.
 ))
-\c@tcblisting=\count284
+\c@tcblisting=\count293
 )))
 (/usr/local/texlive/2017/texmf-dist/tex/latex/tcolorbox/tcbexternal.code.tex
 Library (tcolorbox): 'tcbexternal.code.tex' version '4.03'
@@ -1223,10 +1272,10 @@ File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.
 code.tex
 File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
-\arrowsize=\dimen296
+\arrowsize=\dimen305
 )) (/usr/local/texlive/2017/texmf-dist/tex/latex/lipsum/lipsum.sty
 Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
-\c@lips@count=\count285
+\c@lips@count=\count294
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/soul/soul.sty
 Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
@@ -1235,51 +1284,54 @@ Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
 \SOUL@cmds=\toks45
 \SOUL@buffer=\toks46
 \SOUL@token=\toks47
-\SOUL@spaceskip=\skip78
-\SOUL@ttwidth=\dimen297
-\SOUL@uldp=\dimen298
-\SOUL@ulht=\dimen299
+\SOUL@spaceskip=\skip80
+\SOUL@ttwidth=\dimen306
+\SOUL@uldp=\dimen307
+\SOUL@ulht=\dimen308
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 156.
-Package hyperref Info: Option `draft' set `false' on input line 156.
-Package hyperref Info: Option `pdfdisplaydoctitle' set `true' on input line 156
+Package hyperref Info: Option `colorlinks' set `true' on input line 158.
+Package hyperref Info: Option `draft' set `false' on input line 158.
+Package hyperref Info: Option `pdfdisplaydoctitle' set `true' on input line 158
 .
-Package hyperref Info: Option `pdffitwindow' set `true' on input line 156.
+Package hyperref Info: Option `pdffitwindow' set `true' on input line 158.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\\' on input line 156.
+(hyperref)                removing `\\' on input line 158.
 
-Package hyperref Info: Option `plainpages' set `false' on input line 156.
-(./main.aux (./introduction.aux) (./theory.aux) (./methodology.aux)
-(./results.aux) (./conclusion.aux) (./future.aux) (./appendixa.aux))
+Package hyperref Info: Option `plainpages' set `false' on input line 158.
+(./main.aux (./introduction.aux) (./theory.aux) (./methodology.aux
+
+LaTeX Warning: Label `fig:1stDer' multiply defined.
+
+) (./results.aux) (./conclusion.aux) (./future.aux) (./appendixa.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 161.
-LaTeX Font Info:    ... okay on input line 161.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 161.
-LaTeX Font Info:    ... okay on input line 161.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 161.
-LaTeX Font Info:    ... okay on input line 161.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 161.
-LaTeX Font Info:    ... okay on input line 161.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 161.
-LaTeX Font Info:    ... okay on input line 161.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 161.
-LaTeX Font Info:    ... okay on input line 161.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 161.
-LaTeX Font Info:    ... okay on input line 161.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 161.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 161.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 163.
+LaTeX Font Info:    ... okay on input line 163.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 163.
+LaTeX Font Info:    ... okay on input line 163.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 163.
+LaTeX Font Info:    ... okay on input line 163.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 163.
+LaTeX Font Info:    ... okay on input line 163.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 163.
+LaTeX Font Info:    ... okay on input line 163.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 163.
+LaTeX Font Info:    ... okay on input line 163.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 163.
+LaTeX Font Info:    ... okay on input line 163.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 163.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 163.
 
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    ... okay on input line 163.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1317,16 +1369,16 @@ LaTeX Font Info:    ... okay on input line 161.
 
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count286
-\scratchdimen=\dimen300
-\scratchbox=\box99
-\nofMPsegments=\count287
-\nofMParguments=\count288
+\scratchcounter=\count295
+\scratchdimen=\dimen309
+\scratchbox=\box125
+\nofMPsegments=\count296
+\nofMParguments=\count297
 \everyMPshowfont=\toks48
-\MPscratchCnt=\count289
-\MPscratchDim=\dimen301
-\MPnumerator=\count290
-\makeMPintoPDFobject=\count291
+\MPscratchCnt=\count298
+\MPscratchDim=\dimen310
+\MPnumerator=\count299
+\makeMPintoPDFobject=\count300
 \everyMPtoPDFconversion=\toks49
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -1349,9 +1401,9 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count292
-\AtBeginShipoutBox=\box100
-Package hyperref Info: Link coloring ON on input line 161.
+\c@lstlisting=\count301
+\AtBeginShipoutBox=\box126
+Package hyperref Info: Link coloring ON on input line 163.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -1359,54 +1411,54 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count293
+\c@section@level=\count302
 LaTeX Info: Redefining \Ref on input line 515.
 )
-LaTeX Info: Redefining \ref on input line 161.
-LaTeX Info: Redefining \pageref on input line 161.
-LaTeX Info: Redefining \nameref on input line 161.
+LaTeX Info: Redefining \ref on input line 163.
+LaTeX Info: Redefining \pageref on input line 163.
+LaTeX Info: Redefining \nameref on input line 163.
 
 (./main.out) (./main.out)
 \@outlinefile=\write6
 \openout6 = `main.out'.
 
-LaTeX Info: Redefining \Ref on input line 161.
+LaTeX Info: Redefining \Ref on input line 163.
  ABD: EveryShipout initializing macros
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2015/03/17 v1.2c Input encoding file
 \inpenc@prehook=\toks50
 \inpenc@posthook=\toks51
 )
-LaTeX Info: Redefining \\ on input line 164.
+LaTeX Info: Redefining \\ on input line 166.
 
-Overfull \hbox (3.91663pt too wide) in paragraph at lines 164--164
+Overfull \hbox (3.91663pt too wide) in paragraph at lines 166--166
  [] 
  []
 
 
-Overfull \hbox (3.91663pt too wide) in paragraph at lines 164--164
+Overfull \hbox (3.91663pt too wide) in paragraph at lines 166--166
  [][] 
  []
 
 
-Overfull \hbox (3.91663pt too wide) in paragraph at lines 164--164
+Overfull \hbox (3.91663pt too wide) in paragraph at lines 166--166
  [][] 
  []
 
 
-Overfull \hbox (3.91663pt too wide) in paragraph at lines 164--164
+Overfull \hbox (3.91663pt too wide) in paragraph at lines 166--166
  [][] 
  []
 
 [1
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (3.91663pt too wide) in paragraph at lines 164--164
+Overfull \hbox (3.91663pt too wide) in paragraph at lines 166--166
  [] 
  []
 
 
-Overfull \hbox (3.91663pt too wide) in paragraph at lines 164--164
+Overfull \hbox (3.91663pt too wide) in paragraph at lines 166--166
  [][] 
  []
 
@@ -1414,7 +1466,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.164 \begin{preliminary}
+l.166 \begin{preliminary}
                           [1
 
 ]
@@ -1546,33 +1598,24 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
  (./main.lof
 
-LaTeX Warning: Citation `MIT' on page iv undefined on input line 4.
-
-
 LaTeX Warning: Citation `SLICfig' on page iv undefined on input line 6.
 
 
 LaTeX Warning: Citation `yeoh' on page iv undefined on input line 7.
 
 
-LaTeX Warning: Citation `TRYG' on page iv undefined on input line 8.
-
-
-LaTeX Warning: Citation `TRYG' on page iv undefined on input line 10.
-
-
 LaTeX Warning: Citation `Desjardins13' on page iv undefined on input line 11.
 
-)
+[4
+
+
+
+
+])
 \tf@lof=\write9
 \openout9 = `main.lof'.
 
- [4
-
-
-
-
-]
+ [5]
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: <default>
@@ -1643,7 +1686,7 @@ LaTeX Warning: Citation `Desjardins13' on page iv undefined on input line 11.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-(./nomenclature.tex) [5
+(./nomenclature.tex) [6
 
 
 
@@ -1687,11 +1730,11 @@ LaTeX Warning: Citation `Desjardins13' on page iv undefined on input line 11.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 (./abstract.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 4--192
+Underfull \hbox (badness 10000) in paragraph at lines 4--194
 
  []
 
-[6
+[7
 
 
 
@@ -1701,123 +1744,39 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--192
 
  (./introduction.tex
 *****************  Chapter 1. Introduction  *****************
-
-LaTeX Warning: Citation `1' on page 1 undefined on input line 5.
-
-
-LaTeX Warning: Citation `1' on page 1 undefined on input line 5.
-
-
-LaTeX Warning: Citation `1' on page 1 undefined on input line 5.
-
-
-LaTeX Warning: Citation `1' on page 1 undefined on input line 5.
-
-
-LaTeX Warning: Citation `1' on page 1 undefined on input line 5.
-
-
-LaTeX Warning: Citation `2' on page 1 undefined on input line 5.
-
-
-LaTeX Warning: Citation `3' on page 1 undefined on input line 5.
-
 [1
 
 
 
 
-] [2] <figs/ACESjet.png, id=217, 1360.08125pt x 752.8125pt>
+] [2] <figs/ACESjet.png, id=279, 1360.08125pt x 752.8125pt>
 File: figs/ACESjet.png Graphic file (type png)
 
 <use figs/ACESjet.png>
 Package pdftex.def Info: figs/ACESjet.png used on input line 15.
 (pdftex.def)             Requested size: 346.89732pt x 192.00485pt.
- [3 <./figs/ACESjet.png>]
-
-LaTeX Warning: Citation `desjardins_direct_2013' on page 4 undefined on input l
-ine 22.
-
-) [4]
+ [3 <./figs/ACESjet.png>]) [4]
 \openout2 = `theory.aux'.
 
  (./theory.tex
 *****************  Chapter 2. Theory  *****************
-
-LaTeX Warning: Reference `TRYG' on page 5 undefined on input line 10.
-
-
-LaTeX Warning: Citation `NGA1' on page 5 undefined on input line 17.
-
-
-LaTeX Warning: Citation `NGA2' on page 5 undefined on input line 17.
-
 [5
 
 
 
-]
-
-LaTeX Warning: Citation `choi' on page 6 undefined on input line 54.
-
-
-LaTeX Warning: Citation `Owkes2017' on page 6 undefined on input line 54.
-
-
-LaTeX Warning: Citation `Owkes2014' on page 6 undefined on input line 54.
-
-
-LaTeX Warning: Citation `OwkesAIAA' on page 6 undefined on input line 54.
-
-
-LaTeX Warning: Citation `Desjardins2013' on page 6 undefined on input line 54.
-
-
-LaTeX Warning: Citation `sheehy' on page 6 undefined on input line 54.
-
-
-LaTeX Warning: Citation `MIT' on page 6 undefined on input line 57.
-
-[6]
-
-LaTeX Warning: Citation `anderson' on page 7 undefined on input line 95.
-
-
-LaTeX Warning: Citation `MIT' on page 7 undefined on input line 95.
-
-
-LaTeX Warning: Citation `anderson' on page 7 undefined on input line 95.
-
+] [6]
 
 LaTeX Warning: Reference `fig:Simple Grid' on page 7 undefined on input line 95
 .
 
 
-LaTeX Warning: Citation `tu' on page 7 undefined on input line 95.
-
-
-LaTeX Warning: Citation `MIT' on page 7 undefined on input line 95.
-
-
 LaTeX Warning: Citation `magoules' on page 7 undefined on input line 95.
 
-
-LaTeX Warning: Citation `Hirt1981' on page 7 undefined on input line 95.
-
-[7] <figs/unstruc.png, id=259, 283.0575pt x 176.66pt>
+[7] <figs/unstruc.png, id=347, 283.0575pt x 176.66pt>
 File: figs/unstruc.png Graphic file (type png)
  <use figs/unstruc.png>
 Package pdftex.def Info: figs/unstruc.png used on input line 99.
-(pdftex.def)             Requested size: 180.67499pt x 112.76549pt.
-
-
-LaTeX Warning: Citation `MIT' on page 8 undefined on input line 100.
-
-
-LaTeX Warning: Citation `MIT' on page 8 undefined on input line 100.
-
-
-LaTeX Warning: Citation `Hirt1981' on page 8 undefined on input line 105.
+(pdftex.def)             Requested size: 216.81pt x 135.31697pt.
 
 
 LaTeX Warning: Citation `1' on page 8 undefined on input line 105.
@@ -1831,24 +1790,15 @@ LaTeX Warning: Citation `3' on page 8 undefined on input line 105.
 
 LaTeX Warning: Citation `4' on page 8 undefined on input line 105.
 
-
-LaTeX Warning: Citation `Hirt1981' on page 8 undefined on input line 105.
-
-
-LaTeX Warning: Citation `TRYG' on page 8 undefined on input line 105.
-
 [8 <./figs/unstruc.png>]
-
-LaTeX Warning: Citation `TRYG' on page 9 undefined on input line 124.
-
 
 LaTeX Warning: Citation `NohWoodward' on page 9 undefined on input line 124.
 
-<figs/SLIC.png, id=267, 555.07375pt x 220.825pt>
+<figs/SLIC.png, id=363, 555.07375pt x 220.825pt>
 File: figs/SLIC.png Graphic file (type png)
  <use figs/SLIC.png>
 Package pdftex.def Info: figs/SLIC.png used on input line 128.
-(pdftex.def)             Requested size: 303.53267pt x 120.75325pt.
+(pdftex.def)             Requested size: 433.62001pt x 172.50899pt.
 
 
 LaTeX Warning: Citation `SLICfig' on page 9 undefined on input line 129.
@@ -1862,11 +1812,11 @@ LaTeX Warning: Citation `youngs' on page 9 undefined on input line 133.
 
 LaTeX Warning: Citation `yeoh' on page 9 undefined on input line 133.
 
-[9] <figs/PLIC.png, id=274, 555.07375pt x 257.96375pt>
+[9] <figs/PLIC.png, id=370, 555.07375pt x 257.96375pt>
 File: figs/PLIC.png Graphic file (type png)
  <use figs/PLIC.png>
 Package pdftex.def Info: figs/PLIC.png used on input line 137.
-(pdftex.def)             Requested size: 216.81pt x 100.75896pt.
+(pdftex.def)             Requested size: 433.62001pt x 201.52187pt.
 
 
 LaTeX Warning: Citation `yeoh' on page 10 undefined on input line 138.
@@ -1874,76 +1824,58 @@ LaTeX Warning: Citation `yeoh' on page 10 undefined on input line 138.
 
 LaTeX Warning: Citation `yeoh' on page 10 undefined on input line 138.
 
-
-LaTeX Warning: Citation `TRYG' on page 10 undefined on input line 143.
-
-<figs/StaggeredGrid.png, id=277, 1038.88126pt x 997.7275pt>
+[10 <./figs/SLIC.png> <./figs/PLIC.png>]
+<figs/StaggeredGrid.png, id=380, 1038.88126pt x 997.7275pt>
 File: figs/StaggeredGrid.png Graphic file (type png)
 
 <use figs/StaggeredGrid.png>
 Package pdftex.def Info: figs/StaggeredGrid.png used on input line 147.
-(pdftex.def)             Requested size: 180.67499pt x 173.50879pt.
+(pdftex.def)             Requested size: 216.81pt x 208.21968pt.
 
 
-LaTeX Warning: Citation `TRYG' on page 10 undefined on input line 148.
+LaTeX Warning: Citation `HARLOW1965' on page 11 undefined on input line 152.
 
 
-LaTeX Warning: Citation `TRYG' on page 10 undefined on input line 148.
+LaTeX Warning: Citation `rudman' on page 11 undefined on input line 152.
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+LaTeX Warning: Citation `Rudman' on page 11 undefined on input line 152.
 
+[11 <./figs/StaggeredGrid.png>]
 
-LaTeX Warning: Citation `HARLOW1965' on page 10 undefined on input line 152.
+LaTeX Warning: Citation `MARK2013' on page 12 undefined on input line 233.
 
-
-LaTeX Warning: Citation `rudman' on page 10 undefined on input line 152.
-
-
-LaTeX Warning: Citation `Rudman' on page 10 undefined on input line 152.
-
-[10 <./figs/SLIC.png> <./figs/PLIC.png>]
-
-LaTeX Warning: Citation `MARK2013' on page 11 undefined on input line 233.
-
-<figs/curv.png, id=286, 472.76625pt x 317.185pt>
+<figs/curv.png, id=391, 472.76625pt x 317.185pt>
 File: figs/curv.png Graphic file (type png)
  <use figs/curv.png>
 Package pdftex.def Info: figs/curv.png used on input line 237.
-(pdftex.def)             Requested size: 180.67499pt x 121.2188pt.
-
-
-LaTeX Warning: Citation `TRYG' on page 11 undefined on input line 238.
-
-
-LaTeX Warning: Citation `TRYG' on page 11 undefined on input line 238.
-
-[11 <./figs/StaggeredGrid.png>]
-<figs/surf.png, id=295, 747.79375pt x 888.31876pt>
+(pdftex.def)             Requested size: 216.81pt x 145.4616pt.
+ [12 <./figs/curv.png>] <figs/surf.png, id=402, 747.79375pt x 888.31876pt>
 File: figs/surf.png Graphic file (type png)
- <use figs/surf.png>
+
+<use figs/surf.png>
 Package pdftex.def Info: figs/surf.png used on input line 246.
-(pdftex.def)             Requested size: 361.34999pt x 429.24818pt.
+(pdftex.def)             Requested size: 216.81pt x 257.55162pt.
 
 
-LaTeX Warning: Citation `Desjardins13' on page 12 undefined on input line 247.
+LaTeX Warning: Citation `Desjardins13' on page 13 undefined on input line 247.
 
 
-LaTeX Warning: Citation `Desjardins13' on page 12 undefined on input line 247.
+LaTeX Warning: Citation `Desjardins13' on page 13 undefined on input line 247.
 
 
-LaTeX Warning: Citation `1' on page 12 undefined on input line 251.
+LaTeX Warning: Citation `1' on page 13 undefined on input line 251.
 
 
-LaTeX Warning: Citation `2' on page 12 undefined on input line 251.
+LaTeX Warning: Citation `2' on page 13 undefined on input line 251.
 
 
-LaTeX Warning: Citation `3' on page 12 undefined on input line 251.
+LaTeX Warning: Citation `3' on page 13 undefined on input line 251.
 
 
-LaTeX Warning: Citation `4' on page 12 undefined on input line 251.
+LaTeX Warning: Citation `4' on page 13 undefined on input line 251.
 
-[12 <./figs/curv.png>] [13 <./figs/surf.png>] [14]
+[13 <./figs/surf.png>] [14]
 
 LaTeX Warning: Citation `1' on page 15 undefined on input line 305.
 
@@ -1956,11 +1888,11 @@ LaTeX Warning: Citation `2' on page 15 undefined on input line 305.
 
 LaTeX Warning: Citation `2' on page 15 undefined on input line 305.
 
-<figs/bad.png, id=323, 750.805pt x 1021.8175pt>
+<figs/bad.png, id=423, 750.805pt x 1021.8175pt>
 File: figs/bad.png Graphic file (type png)
  <use figs/bad.png>
 Package pdftex.def Info: figs/bad.png used on input line 311.
-(pdftex.def)             Requested size: 187.70079pt x 255.45375pt.
+(pdftex.def)             Requested size: 216.81pt x 295.07216pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1968,45 +1900,171 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: Citation `Salih2002' on page 15 undefined on input line 317.
 
-
-LaTeX Warning: Citation `Rayleigh' on page 15 undefined on input line 317.
-
-[15] <figs/KEvT.png, id=329, 2983.145pt x 2378.8875pt>
+[15] <figs/KEvT.png, id=430, 2983.145pt x 2378.8875pt>
 File: figs/KEvT.png Graphic file (type png)
  <use figs/KEvT.png>
 Package pdftex.def Info: figs/KEvT.png used on input line 326.
-(pdftex.def)             Requested size: 361.34999pt x 288.1403pt.
+(pdftex.def)             Requested size: 216.81pt x 172.89143pt.
 
 [16 <./figs/bad.png>]
 File: figs/KEvT.png Graphic file (type png)
  <use figs/KEvT.png>
 Package pdftex.def Info: figs/KEvT.png used on input line 334.
-(pdftex.def)             Requested size: 361.34999pt x 288.1403pt.
-) [17 <./figs/KEvT.png (PNG copy)>]
-[18]
+(pdftex.def)             Requested size: 216.81pt x 172.89143pt.
+)
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[17 <./figs/KEvT.png (PNG copy)>] [18]
 \openout2 = `methodology.aux'.
 
  (./methodology.tex
 *****************  Chapter 3. Methodology  *****************
+<figs/5thorder.png, id=449, 508.90125pt x 184.69pt>
+File: figs/5thorder.png Graphic file (type png)
+ <use figs/5thorder.png>
+Package pdftex.def Info: figs/5thorder.png used on input line 105.
+(pdftex.def)             Requested size: 216.81pt x 78.68524pt.
+
 [19
 
 
 
 ]
 
-LaTeX Warning: Citation `moin' on page 20 undefined on input line 117.
+LaTeX Warning: Citation `moin' on page 20 undefined on input line 119.
 
-[20]) [21]
+[20 <./figs/5thorder.png>]
+
+Package caption Warning: \label without proper reference on input line 170.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:1stDer' on page 21 undefined on input line 163.
+
+
+LaTeX Warning: Reference `fig:1stErr' on page 21 undefined on input line 163.
+
+
+Package caption Warning: \label without proper reference on input line 178.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:2ndDer' on page 21 undefined on input line 163.
+
+
+Package caption Warning: \label without proper reference on input line 180.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:2ndErr' on page 21 undefined on input line 163.
+
+[21] <figs/1stDer.png, id=482, 562.2606pt x 421.575pt>
+File: figs/1stDer.png Graphic file (type png)
+ <use figs/1stDer.png>
+Package pdftex.def Info: figs/1stDer.png used on input line 167.
+(pdftex.def)             Requested size: 232.99228pt x 174.69305pt.
+
+<figs/1stErr.png, id=483, 562.2606pt x 421.575pt>
+File: figs/1stErr.png Graphic file (type png)
+ <use figs/1stErr.png>
+Package pdftex.def Info: figs/1stErr.png used on input line 169.
+(pdftex.def)             Requested size: 232.99228pt x 174.69305pt.
+
+Overfull \hbox (21.18228pt too wide) in paragraph at lines 167--171
+[][]
+ []
+
+
+Overfull \hbox (21.18228pt too wide) in paragraph at lines 167--171
+[][]
+ []
+
+<figs/2ndDer.png, id=484, 562.2606pt x 421.575pt>
+File: figs/2ndDer.png Graphic file (type png)
+ <use figs/2ndDer.png>
+Package pdftex.def Info: figs/2ndDer.png used on input line 177.
+(pdftex.def)             Requested size: 232.99228pt x 174.69305pt.
+
+<figs/2ndErr.png, id=485, 562.2606pt x 421.575pt>
+File: figs/2ndErr.png Graphic file (type png)
+ <use figs/2ndErr.png>
+Package pdftex.def Info: figs/2ndErr.png used on input line 179.
+(pdftex.def)             Requested size: 232.99228pt x 174.69305pt.
+
+Overfull \hbox (21.18228pt too wide) in paragraph at lines 177--181
+[][]
+ []
+
+
+Overfull \hbox (21.18228pt too wide) in paragraph at lines 177--181
+[][]
+ []
+
+<figs/curvCalc.png, id=489, 821.0675pt x 619.31375pt>
+File: figs/curvCalc.png Graphic file (type png)
+ <use figs/curvCalc.png>
+Package pdftex.def Info: figs/curvCalc.png used on input line 189.
+(pdftex.def)             Requested size: 216.81pt x 163.53146pt.
+File: figs/KEvT.png Graphic file (type png)
+
+<use figs/KEvT.png>
+Package pdftex.def Info: figs/KEvT.png used on input line 196.
+(pdftex.def)             Requested size: 216.81pt x 172.89143pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[22 <./figs/1stDer.png (PNG copy)> <./figs/1stErr.png (PNG copy)>] [23 <./figs/
+2ndDer.png (PNG copy)> <./figs/2ndErr.png (PNG copy)> <./figs/curvCalc.png>]
+<figs/draw.jpeg, id=504, 1473.505pt x 1285.80376pt>
+File: figs/draw.jpeg Graphic file (type jpg)
+ <use figs/draw.jpeg>
+Package pdftex.def Info: figs/draw.jpeg used on input line 206.
+(pdftex.def)             Requested size: 216.81pt x 189.17372pt.
+
+
+LaTeX Warning: Reference `fig:2ndCurv.png' on page 24 undefined on input line 2
+12.
+
+[24]
+File: figs/curvCalc.png Graphic file (type png)
+ <use figs/curvCalc.png>
+Package pdftex.def Info: figs/curvCalc.png used on input line 216.
+(pdftex.def)             Requested size: 216.81pt x 163.53146pt.
+File: figs/KEvT.png Graphic file (type png)
+ <use figs/KEvT.png>
+Package pdftex.def Info: figs/KEvT.png used on input line 240.
+(pdftex.def)             Requested size: 216.81pt x 172.89143pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: Reference `fig:GPlot' on page 25 undefined on input line 248.
+
+[25 <./figs/draw.jpeg>] [26] [27] [28]pdfTeX warning (ext4): destination with t
+he same identifier (name{equation.3.0.11}) has been already used, duplicate ign
+ored
+<to be read again> 
+                   \relax 
+l.307 \begin{equation}
+                      pdfTeX warning (ext4): destination with the same identifi
+er (name{equation.3.0.11}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.316 \begin{equation}
+                       [29]) [30]
 \openout2 = `results.aux'.
 
  (./results.tex
 *****************  Chapter 4. Results  *****************
 )
-Underfull \hbox (badness 10000) in paragraph at lines 4--199
+Underfull \hbox (badness 10000) in paragraph at lines 4--201
 
  []
 
-[22
+[31
 
 
 
@@ -2015,7 +2073,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--199
 
  (./conclusion.tex
 *****************  Chapter 5. Conclusion  *****************
-) [23
+) [32
 
 
 
@@ -2024,47 +2082,179 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--199
 
  (./future.tex
 *****************  Chapter 6. Future Work  *****************
-) [24
+) [33
 
 
+
+] (./main.bbl [34
 
 ]
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no “ in font cmr12!
+ [35]
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ” in font cmr12!
+) [36]
 \openout2 = `appendixa.aux'.
 
  (./appendixa.tex
 LaTeX Info: Redefining \\ on input line 1.
-)
-Overfull \hbox (0.3634pt too wide) in paragraph at lines 2--221
+
+Overfull \hbox (0.3634pt too wide) in paragraph at lines 2--3
 [] \OT1/cmr/bx/n/12 In-clude rel-e-vant codes $\OMS/cmsy/m/n/12 !$ \OT1/cmr/bx/
 n/12 mul-ti-phase fine-grid.f90, mul-ti-phase curv.f90,
  []
 
-[25
 
+Overfull \hbox (282.68034pt too wide) in paragraph at lines 12--12
+[]\OT1/cmtt/m/n/12 eqn1= a_3                +a_2               +a_1            
+ +a1            +a2              +a3              ==  0;[] 
+ []
+
+
+Overfull \hbox (282.68034pt too wide) in paragraph at lines 13--13
+[]\OT1/cmtt/m/n/12 eqn2= a_3*(-5*h/2)       +a_2*(-3*h/2)      +a_1*(-h/2)     
+ +a1*(h/2)      +a2*(3*h/2)      +a3*(5*h/2)      == -1;[] 
+ []
+
+
+Overfull \hbox (282.68034pt too wide) in paragraph at lines 14--14
+[]\OT1/cmtt/m/n/12 eqn3= a_3*(-5*h/2)^2/2   +a_2*(-3*h/2)^2/2  +a_1*(-h/2)^2/2 
+ +a1*(h/2)^2/2  +a2*(3*h/2)^2/2  +a3*(5*h/2)^2/2  ==  0;[] 
+ []
+
+
+Overfull \hbox (282.68034pt too wide) in paragraph at lines 15--15
+[]\OT1/cmtt/m/n/12 eqn4= a_3*(-5*h/2)^3/6   +a_2*(-3*h/2)^3/6  +a_1*(-h/2)^3/6 
+ +a1*(h/2)^3/6  +a2*(3*h/2)^3/6  +a3*(5*h/2)^3/6  ==  0;[] 
+ []
+
+
+Overfull \hbox (282.68034pt too wide) in paragraph at lines 16--16
+[]\OT1/cmtt/m/n/12 eqn5= a_3*(-5*h/2)^4/24  +a_2*(-3*h/2)^4/24 +a_1*(-h/2)^4/24
+ +a1*(h/2)^4/24 +a2*(3*h/2)^4/24 +a3*(5*h/2)^4/24 ==  0;[] 
+ []
+
+
+Overfull \hbox (282.68034pt too wide) in paragraph at lines 17--17
+[]\OT1/cmtt/m/n/12 eqn6= a_3*(-5*h/2)^5/120 +a_2*(-3*h/2)^5/120+a_1*(-h/2)^5/12
+0+a1*(h/2)^5/120+a2*(3*h/2)^5/120+a3*(5*h/2)^5/120==  0;[] 
+ []
+
+
+Overfull \hbox (41.85522pt too wide) in paragraph at lines 19--19
+[]\OT1/cmtt/m/n/12 sol = solve( [eqn1, eqn2, eqn3, eqn4, eqn5, eqn6] , [a1, a2,
+a3,a_1,a_2,a_3]);[] 
+ []
+
+[37
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 224.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 224.
+Overfull \hbox (282.68034pt too wide) in paragraph at lines 36--36
+[]\OT1/cmtt/m/n/12 eqn1= a_3                +a_2               +a_1            
+ +a1            +a2              +a3              ==  0;[] 
+ []
+
+
+Overfull \hbox (282.68034pt too wide) in paragraph at lines 37--37
+[]\OT1/cmtt/m/n/12 eqn2= a_3*(-5*h/2)       +a_2*(-3*h/2)      +a_1*(-h/2)     
+ +a1*(h/2)      +a2*(3*h/2)      +a3*(5*h/2)      ==  0;[] 
+ []
+
+
+Overfull \hbox (282.68034pt too wide) in paragraph at lines 38--38
+[]\OT1/cmtt/m/n/12 eqn3= a_3*(+5*h/2)^2/2   +a_2*(+3*h/2)^2/2  +a_1*(+h/2)^2/2 
+ +a1*(h/2)^2/2  +a2*(3*h/2)^2/2  +a3*(5*h/2)^2/2  == -1;[] 
+ []
+
+
+Overfull \hbox (282.68034pt too wide) in paragraph at lines 39--39
+[]\OT1/cmtt/m/n/12 eqn4= a_3*(-5*h/2)^3/6   +a_2*(-3*h/2)^3/6  +a_1*(-h/2)^3/6 
+ +a1*(h/2)^3/6  +a2*(3*h/2)^3/6  +a3*(5*h/2)^3/6  ==  0;[] 
+ []
+
+
+Overfull \hbox (282.68034pt too wide) in paragraph at lines 40--40
+[]\OT1/cmtt/m/n/12 eqn5= a_3*(+5*h/2)^4/24  +a_2*(+3*h/2)^4/24 +a_1*(+h/2)^4/24
+ +a1*(h/2)^4/24 +a2*(3*h/2)^4/24 +a3*(5*h/2)^4/24 ==  0;[] 
+ []
+
+
+Overfull \hbox (282.68034pt too wide) in paragraph at lines 41--41
+[]\OT1/cmtt/m/n/12 eqn6= a_3*(-5*h/2)^5/120 +a_2*(-3*h/2)^5/120+a_1*(-h/2)^5/12
+0+a1*(h/2)^5/120+a2*(3*h/2)^5/120+a3*(5*h/2)^5/120==  0;[] 
+ []
+
+
+Overfull \hbox (23.33022pt too wide) in paragraph at lines 43--43
+[]\OT1/cmtt/m/n/12 sol = solve([eqn1, eqn2, eqn3,eqn4, eqn5, eqn6], [a1, a2,a3,
+a_1,a_2,a_3]);[] 
+ []
+
+[38] [39]
+Overfull \hbox (190.0553pt too wide) in paragraph at lines 84--84
+[]\OT1/cmtt/m/n/12 %title('Calculation of $\frac{d^2h}{dx^2}$ vs Analytic Solut
+ion','interpreter','latex','fontsize',18)[] 
+ []
+
+
+Overfull \hbox (165.35529pt too wide) in paragraph at lines 98--98
+[]\OT1/cmtt/m/n/12 %title('Calculation of $\frac{dh}{dx}$ vs Analytic Solution'
+,'interpreter','latex','fontsize',18)[] 
+ []
+
+[40]
+Overfull \hbox (208.5803pt too wide) in paragraph at lines 114--114
+[]\OT1/cmtt/m/n/12 %title('Convergence of $\frac{dh}{dx}$ Error With Mesh Refin
+ement','interpreter','latex','fontsize',18);[] 
+ []
+
+
+Overfull \hbox (177.70529pt too wide) in paragraph at lines 115--115
+[]\OT1/cmtt/m/n/12 legend('5th Order Method','2nd Order','3rd Order','4th Order
+','5th Order', 'Location', 'NorthWest')[] 
+ []
+
+[41]
+Overfull \hbox (233.28032pt too wide) in paragraph at lines 132--132
+[]\OT1/cmtt/m/n/12 %title('Convergence of $\frac{d^2h}{dx^2}$ Error With Mesh R
+efinement','interpreter','latex','fontsize',18);[] 
+ []
+
+
+Overfull \hbox (177.70529pt too wide) in paragraph at lines 133--133
+[]\OT1/cmtt/m/n/12 legend('5th Order Method','2nd Order','3rd Order','4th Order
+','5th Order', 'Location', 'NorthWest')[] 
+ []
+
+) [42]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 218.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 218.
  (./main.aux (./introduction.aux) (./theory.aux) (./methodology.aux)
 (./results.aux) (./conclusion.aux) (./future.aux) (./appendixa.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 224.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 224.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 218.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 218.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 27AA904E637233A6F98782DF13D0B92D;830.
 
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 37199 strings out of 492995
- 772538 string characters out of 6132704
- 1025769 words of memory out of 5000000
- 39964 multiletter control sequences out of 15000+600000
- 23074 words of font info for 86 fonts, out of 8000000 for 9000
+ 37442 strings out of 492995
+ 775885 string characters out of 6132704
+ 1034362 words of memory out of 5000000
+ 40129 multiletter control sequences out of 15000+600000
+ 23243 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 63i,14n,101p,10375b,773s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 63i,14n,101p,10375b,758s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 }</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
@@ -2082,11 +2272,12 @@ ve/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive
 2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/20
 17/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2017
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2017/
-texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on main.pdf (32 pages, 1580561 bytes).
+texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2017/t
+exmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on main.pdf (50 pages, 2284000 bytes).
 PDF statistics:
- 466 PDF objects out of 1000 (max. 8388607)
- 370 compressed objects within 4 object streams
- 100 named destinations out of 1000 (max. 500000)
- 322 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 703 PDF objects out of 1000 (max. 8388607)
+ 574 compressed objects within 6 object streams
+ 162 named destinations out of 1000 (max. 500000)
+ 357 words of extra memory for PDF output out of 10000 (max. 10000000)
 
