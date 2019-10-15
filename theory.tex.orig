@@ -7,7 +7,11 @@
 %Why do we choose to use a HFM?\\
 %Shortcomings of HFM's?\\
 %On this dual grid, why do we need a fine velocity?}\\
+<<<<<<< HEAD
+Computational solutions for fluid flow rely on several fundamental ideas surrounding how fluids are simulated. The following section is an attempt to summarize several of these methods and lay the necessary framework for understanding the subsequent method, which is the primary focus of this work. Each of the methods discussed are present within NGA, the computational platform used in this research. Additionally, while these methods are prevalent in the CFD community, they are not the only options available. The interested reader is directed to \cite{TRYG} for a more comprehensive assessment.   
+=======
 \hl{Computational solutions for fluid flow rely on several fundamental ideas surrounding how fluids are simulated.}\todo{Not sure what this says} The following section is an attempt to summarize several of these methods and lay the necessary framework for understanding the subsequent method, which is the primary focus of this work. Each of the methods discussed are present within NGA, the computational platform used in this research. Additionally, while these methods are prevalent in the CFD community, they are not the only options available. The interested reader is directed to \ref{TRYG} for a more comprehensive assessment.   
+>>>>>>> 30c86d427141d26f37c24c77e2a4bc029f804f3b
 
 \subsection{The Navier-Stokes Equations}
 They exist, here they are....
@@ -35,10 +39,9 @@ For example, the jumps in density and viscosity at the interface
 $\Gamma$ are written as 
 \begin{align}
 [\rho]_\Gamma&%
-=\rho_l-\rho_g \label{eqn:rho}\mbox{\quad and}\\
+=\rho_l-\rho_g\mbox{\quad and}\\
 [\mu]_\Gamma&%
 =\mu_l-\mu_g.
-\label{eqn:mu}
 \end{align}
 In the absence of a phase change, the velocity field is continuous, \ie,
 \begin{equation}
@@ -236,14 +239,6 @@ Solution of the incompressible Navier-Stokes equations traditionally occurs on w
 		\caption{\hl{FIX THIS FIGURE}}
 	\label{fig:rudmesh}
 \end{figure}
-
-Within NGA there is a specific convention for moving within a cell to various subcells. This convention is illustrated in Figure~\ref{fig:fg}
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.5\textwidth]{figs/finegrid.png}
-	\caption{finegrid representation}
-	\label{fig:fg} 
-\end{figure} 
 
 \subsection{Curvature Estimation - Height Function Methods}
 
