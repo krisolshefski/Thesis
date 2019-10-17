@@ -19,11 +19,11 @@
 \contentsline {subsection}{Gaussian Filtering Second Order Method}{25}{subsection*.72}
 \contentsline {subsection}{Implementation of Fine Grid Velocities}{26}{subsection*.75}
 \setcounter {tocdepth}{3}
-\contentsline {chapter}{\numberline {4.}\MakeUppercase {Results}}{31}{chapter.4}
+\contentsline {chapter}{\numberline {4.}\MakeUppercase {Discussion}}{34}{chapter.4}
+\contentsline {subsection}{Simplified Test Cases}{34}{subsection*.80}
+\contentsline {subsubsection}{Sine Wave Test Case}{34}{subsubsection*.81}
+\contentsline {subsubsection}{Interfacial Protrusion Test Case}{35}{subsubsection*.83}
+\contentsline {section}{Outline}{37}{section*.86}
 \setcounter {tocdepth}{3}
-\contentsline {chapter}{\numberline {5.}\MakeUppercase {Conclusion}}{32}{chapter.5}
 \setcounter {tocdepth}{3}
-\contentsline {chapter}{\numberline {6.}\MakeUppercase {Future Work}}{33}{chapter.6}
-\setcounter {tocdepth}{3}
-\setcounter {tocdepth}{3}
-\contentsline {chapter}{\MakeUppercase {\MakeUppercase {Appendix}}: Example Code}{37}{appendix.A}
+\contentsline {chapter}{\MakeUppercase {\MakeUppercase {Appendix}}: Example Code}{41}{appendix.A}

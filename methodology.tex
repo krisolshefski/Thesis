@@ -298,7 +298,7 @@ G(\zeta) = \frac{1}{\sqrt{2 \pi \sigma^2}}e^\frac{- \zeta^2}{2\sigma^2}
 		\centering
 		\includegraphics[width=1.0\linewidth]{figs/KEvT}
 		\caption{fix figure}
-		\label{fig:fig:GPlot}
+		\label{fig:GPlot}
 	\end{minipage}
 \end{figure}
 
@@ -378,7 +378,31 @@ The generalized update algorithm can be summarized as
 	\item Iterate through time
 \end{enumerate}
 
-Close inspection of Eq.~\ref{HermEq} reveals that the equation is not well-poised when the coarse-grid curvature, $\bar{\kappa}$, is zero as the entire spring force goes to zero even if fine-grid interface perturbations exist.  An alternative is to base the source term on the difference between coarse and fine-grid curvatures and add a delta function that restricts the source term to only be non-zero at the interface.  The approximation of the Dirac delta function is calculated as the absolute difference in liquid volume fractions between cells divided by the mesh size. Additionally, a pressure term is added to ensure fine grid velocity remains divergence free, further enforcing momentum conservation. With these modifications, the proposed equation to create the fine-grid velocity can be written as
+\subsection*{Correction Incorporation} 
+Away from the phase interface, NGA uses high-order finite difference operators that conservatively transport mass, momentum, and any other scalars~\cite{NGA2}.  Near the phase interface however, the finite difference operators are inappropriate due to the discontinuous interface region.  To accurately and conservatively transport near the interface, an unsplit geometric semi-Lagrangian flux method is used~\cite{Owkes2017,Owkes2014}. This method relies on streaktubes, which contain the region of the domain that moves through a computational cell face during the timestep~\cite{Owkes2017}.  The streaktube is represented with a collection of tetrahedra as shown in Figures~\ref{fig:streak} \&~\ref{fig:simp} and computational geometry is used to compute the flux of liquid, mass, momentum, and any scalars~\cite{Owkes2017}. A correction is incorporated which forces a solenoidal condition for the cell. Adding the fine-grid velocity correction is done by modifying the additional flux due to the fine-grid velocities. For the finite difference scheme this entails adding the fine-grid velocities associated with a cell face onto the convection velocity at that face. Including the fine-grid velocity requires modifying the streaktubes and in this work two additional tetrahedra are added to each subface such that the volume of the additional tetrahedra is equal to $V_\text{tets}=\Delta t \mathcal{A}_\text{face} \bm{u}_\text{fg}\cdot\bm{n}$. This addition provides an explicit numerical representation of the fine grid velocity correction and maintains conservation laws. 
+
+ \begin{figure}[htbp]
+	\centering
+	\begin{minipage}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{figs/streaktube.png}
+		\caption{fix figure}
+		\label{fig:streak}
+	\end{minipage}%
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{figs/simplicies}
+		\caption{fix figure}
+		\label{fig:simp}
+	\end{minipage}
+\end{figure}
+
+Initial results of the fine grid velocity method coupled with height function calculation of curvature suggested a fundamental problem. While explicit curvature calculation remained consistent with previous methods, the oscillating droplet test case again proved difficult as seen by Figures~\ref{fig:OGfgVelKE}~\&~\ref{fig:OGfgVelCurv}. Close inspection of Eq.~\ref{eqn:HermEq} reveals that the equation is not well-poised when the coarse-grid curvature, $\bar{\kappa}$, is zero as the entire spring force goes to zero even if fine-grid interface perturbations exist.  An alternative is to base the source term on the difference between coarse and fine-grid curvatures and add a delta function that restricts the source term to only be non-zero at the interface.  The approximation of the Dirac delta function is calculated as the absolute difference in liquid volume fractions between cells divided by the mesh size as in equation~\ref{eqn:delta}.
+\begin{equation}
+\delta = \frac{|\alpha(\text{s,i,j,k}) - \alpha(\text{s,i-sc,j,k}) | }{0.5 \Delta x}
+\label{eqn:delta}
+\end{equation}
+ Additionally, a pressure term is added to ensure fine grid velocity remains divergence free, further enforcing momentum conservation. With these modifications, the proposed equation to create the fine-grid velocity can be written as
 
 \begin{equation}
 \frac{\partial \bm{u}_{\text{fg}}}{\partial t} +
@@ -386,35 +410,52 @@ Close inspection of Eq.~\ref{HermEq} reveals that the equation is not well-poise
 c_{\sigma}\frac{\sigma}{\rho}\delta(\kappa_{\text{fg}}-\bar{\kappa})- 
 c_{\mu}\frac{\mu}{\rho L^2}\bm{u}_{\text{fg}} -
 \nabla P_{\text{fg}}\nonumber
-\label{MyEq}
+\label{eqn:MyEq}
 \end{equation}
 along with the continuity equation
 \begin{equation}
 \nabla\cdot\bm{u}_\text{fg}=0.
 \end{equation}
 
-\subsection*{Correction Incorporation} 
-\hl{talk more about fluxes and streaktubes... have room to go into detail}
+ \begin{figure}[htbp]
+	\centering
+	\begin{minipage}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{figs/curvCalc.png}
+		\caption{fix figure}
+		\label{fig:OGfgVelCurv}
+	\end{minipage}%
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{figs/KEvT}
+		\caption{fix figure}
+		\label{fig:OGfgVelKE}
+	\end{minipage}
+\end{figure}
 
-Away from the phase interface, NGA uses arbitrarily high-order finite difference operators that conservatively transport mass, momentum, and any other scalars~\cite{NGA2}.  These operators are well suited for simulations of turbulent flows.  Near the phase interface the finite difference operators are inappropriate due to discontinuities.  Alternatively, an unsplit geometric semi-Lagrangian VoF method is leveraged~\cite{Owkes2017,Owkes2014}.
-
-Adding the fine-grid velocity correction is done by modifying the additional flux due to the fine-grid velocities.  For the finite difference scheme this entails adding the fine-grid velocities associated with a cell face onto the convection velocity at that face.  The semi-Lagrangian fluxes are modified as described below.
-
-In the semi-Lagrangian scheme, a streaktube is constructed that contains the region of the domain that moves through a computational cell face during the timestep~\cite{Owkes2017}.  The streaktube is represented with a collection of tetrahedra and computational geometry is used to compute the flux of liquid, mass, momentum, and any scalars~\cite{Owkes2017}. Including the fine-grid velocity requires modifying the streaktubes and in this work two additional tetrahedra are added to each subface such that the volume of the additional tetrahedra is equal to $V_\text{tets}=\Delta t \mathcal{A}_\text{face} \bm{u}_\text{fg}\cdot\bm{n}$. This addition provides an explicit numerical representation of the fine grid velocity correction and maintains conservation laws. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Equation~\ref{eqn:MyEq} is representative of the scheme implemented at the time of this publication. As before, the same explicit curvature calculation and oscillating droplet test cases were conducted. Results are shown in Figures~\ref{fig:fgVelCurv}~\&~\ref{fig:fgVelKE} and show considerable improvement from the standard height function method. However, test cases still resulted in nonphysical dynamics when moving to more complex geometries. All test cases examined which include three dimensional geometry resulted in errors which eventually caused simulation failure. 
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{figs/curvCalc.png}
+		\caption{fix figure}
+		\label{fig:fgVelCurv}
+	\end{minipage}%
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{figs/KEvT}
+		\caption{fix figure}
+		\label{fig:fgVelKE}
+	\end{minipage}
+\end{figure}
+Additional efforts were taken to  find an optimal parameterization strategy with little success. Figure~\ref{fig:para} shows a parameterization study where $C_{\sigma}$ and $C_{\mu}$ varied from $1e^-6$ to $1e^6$ and an oscillating droplet test case was ran. While a portion of the runs seem initially successful, tuned parameter values were not found to be consistent across various mesh sizes and no conclusive optimal configuration was found. Because of this, it seemed appropriate to take a deeper look into determining the mechanisms within the method which are the cause of these failures. 
+\begin{figure}
+	\centering
+	\includegraphics[width=1.0\textwidth]{figs/para}
+	\caption{fix figure}
+	\label{fig:para}
+\end{figure}
 
 
 

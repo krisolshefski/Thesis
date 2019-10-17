@@ -1,0 +1,61 @@
+\chapter{Discussion}  
+\subsection{Simplified Test Cases}
+With each of the schemes previously discussed, the method of evaluation consisted of an explicit curvature calculation of an exact VOF field followed by an oscillating droplet test case. Consistently, the exact curvature estimation was successful and the oscillating droplet problematic. The transition between the test cases began to seem like too great of a jump in complexity to have an intimate understanding of the progression of errors occurring. To gain a deeper understanding of the source of failure, it seemed necessary to have more simplified test cases with which to study the method. To this end, four simplified test cases were developed which we hoped would expose the limitations of the schemes.
+
+\subsubsection{Sine Wave Test Case}
+A sinusoidal interface was constructed as seen in Figure~\ref{fig:sine}. The test case was created specifically to test several key aspects of the method. First, by modifying the geometry of the sinusoid its possible to test internal and external face fluxes independently or jointly. Secondly, because the interface is highly symmetric, variation in velocity and curvature values across the domain helps to highlight deficiencies in boundary conditions as well as inter-cell transport schemes. The goal of this test case is for the fine grid scheme to force a collapse of the interface so that a final curvature of zero is achieved.  
+ \begin{figure}
+ 	\centering
+ 	\includegraphics[width=0.5\textwidth]{figs/sine}
+ 	\caption{fix figure}
+ 	\label{fig:sine}
+ \end{figure}
+
+\subsubsection{Interfacial Protrusion Test Case}
+The test cases shown in Figures~\ref{fig:0},~\ref{fig:90}, \&~\ref{fig:45} are all of a simple linear interface at various orientations. At the center of each domain, a protrusion was placed on the interface. The aim of this test case was to recreate specific, isolated, scenarios to see if the fine grid method could accomplish collapsing the interface to a line and obtain a zero curvature across the domain. The protrusion on each interface was built to be approximately one cell width in both height and width. 
+
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}{0.3\textwidth}
+		\fbox{\includegraphics[width=0.95\linewidth]{figs/0}}
+		\caption{fix figure}
+		\label{fig:0}
+	\end{minipage}%
+	\begin{minipage}{0.3\textwidth}
+		\fbox{\includegraphics[width=0.95\linewidth]{figs/90}}
+		\caption{fix figure}
+		\label{fig:90}
+	\end{minipage}
+	\begin{minipage}{0.3\textwidth}
+		\fbox{\includegraphics[width=0.95\linewidth]{figs/45}}
+		\caption{fix figure}
+		\label{fig:45}
+	\end{minipage}
+\end{figure}
+
+
+For each of the above test cases, with the exception of the $45^{\circ}$ test case, the method was successful in collapsing the interface to a line. This was an interesting discovery and seemed to coincide with results seen in failing oscillating droplet test cases. During the oscillating droplet test, often nonphysical geometries would begin to appear at each of the quadrant regions of the droplet as shown in Figure~\ref{fig:45s}. This finding exposed a key limitation of the model. Well defined heights are not present in this case and cause problems for the height function method. When heights are not well defined, the approximation of derivatives is not accurate and results in nonphysical geometries.  
+
+ \begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figs/bad.png}
+	\caption{fix figure}
+	\label{fig:45s}
+\end{figure}
+
+\section{Outline}
+\begin{Verbatim}[tabsize=4]
+	-We currently have a method that "kind of" works
+		*2D has been majority of testing
+	-We've learned that well defined heights are essential at all scales
+	-Drawbacks of this method:
+		*Well definied hts req mesh sizes that may be unrealistic for 
+		 multphase DNS sims
+		*Additional pressure eqn makes this method incredibly expensive 
+			-this is counter to our original motivation of cheap and easy
+			-To be fair, we're using Gauss Sidel and this leaves room 
+			 for improvement
+		*Moving to 3D becomes more complex as hts are now built with
+		 planes instead of PLIC's
+			-Further investigation needed to determine limitations
+\end{Verbatim}
