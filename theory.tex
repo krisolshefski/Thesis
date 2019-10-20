@@ -9,9 +9,9 @@
 %On this dual grid, why do we need a fine velocity?}\\
 \hl{Computational solutions for fluid flow rely on several fundamental ideas surrounding how fluids are simulated.}\todo{Not sure what this says} The following section is an attempt to summarize several of these methods and lay the necessary framework for understanding the subsequent method, which is the primary focus of this work. Each of the methods discussed are present within NGA, the computational platform used in this research. Additionally, while these methods are prevalent in the CFD community, they are not the only options available. The interested reader is directed to \ref{TRYG} for a more comprehensive assessment.   
 
-\subsection{The Navier-Stokes Equations}
-They exist, here they are....
-\hl{consider discussion}
+%\subsection{The Navier-Stokes Equations}
+%They exist, here they are....
+%\hl{consider discussion}
 
 \subsection{Computational Platform}
 \todo{This section sounds ``very'' familiar, should probably paraphrase into your own words (read it, take notes, and then write it.} The proposed curvature estimation method exists as a module within a larger computational framework. While this scheme can be incorporated into any number of solvers, the platform used for this work was NGA~\cite{NGA1,NGA2}.  NGA solves low-Mach number, variable density formulations of mass and momentum conservation laws
@@ -116,7 +116,7 @@ In order to accurately predict the behavior of a multiphase system, the location
 	\centering
 	\begin{tikzpicture}[scale=3.0]
 	% Mesh
-	\draw [lightblue,fill=lightblue] (0.0,0.0) -- (1.25,0.0) -- (1.25,1.0) -- (0.0,1.0) -- cycle;
+	\draw [black,fill=cyan!20] (0.0,0.0) -- (1.25,0.0) -- (1.25,1.0) -- (0.0,1.0) -- cycle;
 	\draw [black,thick,step=1.0] (0.0 , 0.0) grid (3.0,1.0); 
 	%Velocity
 	\draw [arrows=->, thick] (1.25,0.5) -- node[pos=1,right] {$u$} (1.5,0.5);
@@ -273,8 +273,8 @@ Many techniques exist for calculating values of curvature, some of these include
 		% Mesh
 		\draw [step=1.0, help lines] (0.5,0.5) grid (7.5,5.5);
 		% Liquid
-		\draw [line width=0,fill=lightblue] (0.5,3.5) to[out=20,in=170] (4,4.5) to[out=-10,in=100] (7.0,0.5);
-		\draw [lightblue,fill=lightblue] (0.5,3.5) -- (7.0,0.5) -- (0.5,0.5) -- cycle;
+		\draw [line width=0,fill=cyan!20] (0.5,3.5) to[out=20,in=170] (4,4.5) to[out=-10,in=100] (7.0,0.5);
+		\draw [cyan!20,fill=cyan!20] (0.5,3.5) -- (7.0,0.5) -- (0.5,0.5) -- cycle;
 		\draw [step=1.0, help lines] (0.5,0.5) grid (7.5,5.5);
 		% kappa 1
 		\draw [fill] (3.5,4.55) circle [radius=0.1];
@@ -340,15 +340,15 @@ T_{e} = 2 \pi \sqrt{\frac{(\rho_{l}+\rho_{g})R^3}{6\sigma}}.
 To establish successful algorithm performance of NGA, an alternate curvature scheme was selected and an oscillating droplet test case ran. Simulation parameters include a density ratio of 1000, viscosity in both the liquid and gas phases are 0, and no walls are present in the computational domain. For the initial baseline, a mesh of 64x64 grid cells make up the domain. A semi-major radius of 0.24 and a semi-minor axes radius of 0.20 define the initial displacement of the droplet. The total domain length is set to 1.0. These parameters are chosen as they align with the analytic solution assumptions made. Figure \ref{fig:acesKE} shows kinetic energy conservation through the progression of the simulation. Simulation success is quantified by normal periods of oscillation and diminishing kinetic energy with time. Close adherence to this model can be used as a measure of success with cases from here forward and this case will be plotted with all further test cases. 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.5\textwidth]{figs/KEvT}
-	\caption{Kinetic Energy with Time \hl{THIS IS NOT THE CORRECT FIGURE}}
+	\includegraphics[width=0.5\textwidth]{figs/ACES_KEplot.png}
+	\caption{Kinetic Energy with Time - ACES Method~\ref{Owkes2018}}
 	\label{fig:acesKE}
 \end{figure}
 
 Alternatively, Figure \ref{fig:stdKE} shows the result of the same test case ran with a standard, coarse grid, curvature estimation scheme. The uncontrolled growth seen in the kinetic energy of the standard method is a result of the aformentioned interfacial perturbations. The curvature estimation error and resulting non-physical dynamics are the basis for this research. 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.5\textwidth]{figs/KEvT}
-	\caption{Kinetic Energy with Time \hl{THIS IS NOT THE CORRECT FIGURE}}
+	\includegraphics[width=0.5\textwidth]{figs/stdHt_KEplot.png}
+	\caption{Kinetic Energy with Time - Standard Height Function Method}
 	\label{fig:stdKE}
 \end{figure}

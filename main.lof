@@ -1,41 +1,44 @@
 \setcounter {tocdepth}{1}
 \contentsline {figure}{\numberline {1.1}{\ignorespaces DNS Simulation of Atomizing Jet\relax }}{3}{figure.caption.14}
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Typical notation of structured grid cells. \relax }}{7}{figure.caption.26}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Simple Unstructured Grid \cite {MIT}\relax }}{8}{figure.caption.30}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Advection of a one-dimensional fluid interface\relax }}{9}{figure.caption.35}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Simple Line Interface Calculation of Noh and Woodward adapted from \cite {SLICfig}\relax }}{10}{figure.caption.36}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Piecewise Linear Interface Calculation of Youngs adapted from \cite {yeoh}\relax }}{10}{figure.caption.37}
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Typical staggered grid, adopted from \cite {TRYG}.\relax }}{11}{figure.caption.40}
-\contentsline {figure}{\numberline {2.7}{\ignorespaces \texthl {FIX THIS FIGURE}\relax }}{12}{figure.caption.43}
-\contentsline {figure}{\numberline {2.8}{\ignorespaces finegrid representation\relax }}{13}{figure.caption.44}
-\contentsline {figure}{\numberline {2.9}{\ignorespaces Typical staggered grid, adopted from \cite {TRYG}.\relax }}{13}{figure.caption.46}
-\contentsline {figure}{\numberline {2.10}{\ignorespaces Atomization simulations with varying Weber number, adopted from \cite {Desjardins13}.\texthl {figure this spacing out}\relax }}{14}{figure.caption.48}
-\contentsline {figure}{\numberline {2.11}{\ignorespaces Traditional height function\relax }}{15}{figure.caption.50}
-\contentsline {figure}{\numberline {2.12}{\ignorespaces Standard method interface breakup.\relax }}{16}{figure.caption.57}
-\contentsline {figure}{\numberline {2.13}{\ignorespaces Kinetic Energy with Time \texthl {THIS IS NOT THE CORRECT FIGURE}\relax }}{18}{figure.caption.59}
-\contentsline {figure}{\numberline {2.14}{\ignorespaces Kinetic Energy with Time \texthl {THIS IS NOT THE CORRECT FIGURE}\relax }}{18}{figure.caption.60}
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Fine grid height function\relax }}{19}{figure.caption.61}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces $5^{th}$ order scheme.\relax }}{20}{figure.caption.63}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces fix figure\relax }}{22}{figure.caption.65}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces fix figure\relax }}{22}{figure.caption.65}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces fix figure\relax }}{22}{figure.caption.66}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces fix figure\relax }}{22}{figure.caption.66}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces fix figure\relax }}{23}{figure.caption.67}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces fix figure\relax }}{23}{figure.caption.67}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces $2^{nd}$ Order Fit\relax }}{24}{figure.caption.69}
-\contentsline {figure}{\numberline {3.10}{\ignorespaces fix figure\relax }}{25}{figure.caption.71}
-\contentsline {figure}{\numberline {3.11}{\ignorespaces fix figure\relax }}{25}{figure.caption.71}
-\contentsline {figure}{\numberline {3.12}{\ignorespaces fix figure\relax }}{26}{figure.caption.74}
-\contentsline {figure}{\numberline {3.13}{\ignorespaces fix figure\relax }}{26}{figure.caption.74}
-\contentsline {figure}{\numberline {3.14}{\ignorespaces fix figure\relax }}{30}{figure.caption.76}
-\contentsline {figure}{\numberline {3.15}{\ignorespaces fix figure\relax }}{30}{figure.caption.76}
-\contentsline {figure}{\numberline {3.16}{\ignorespaces fix figure\relax }}{31}{figure.caption.77}
-\contentsline {figure}{\numberline {3.17}{\ignorespaces fix figure\relax }}{31}{figure.caption.77}
-\contentsline {figure}{\numberline {3.18}{\ignorespaces fix figure\relax }}{32}{figure.caption.78}
-\contentsline {figure}{\numberline {3.19}{\ignorespaces fix figure\relax }}{32}{figure.caption.78}
-\contentsline {figure}{\numberline {3.20}{\ignorespaces fix figure\relax }}{33}{figure.caption.79}
-\contentsline {figure}{\numberline {4.1}{\ignorespaces fix figure\relax }}{34}{figure.caption.82}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces fix figure\relax }}{35}{figure.caption.84}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces fix figure\relax }}{35}{figure.caption.84}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces fix figure\relax }}{35}{figure.caption.84}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces fix figure\relax }}{36}{figure.caption.85}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Typical notation of structured grid cells. \relax }}{7}{figure.caption.25}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Simple Unstructured Grid \cite {MIT}\relax }}{8}{figure.caption.29}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Advection of a one-dimensional fluid interface\relax }}{9}{figure.caption.34}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Simple Line Interface Calculation of Noh and Woodward adapted from \cite {SLICfig}\relax }}{10}{figure.caption.35}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Piecewise Linear Interface Calculation of Youngs adapted from \cite {yeoh}\relax }}{10}{figure.caption.36}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Typical staggered grid, adopted from \cite {TRYG}.\relax }}{11}{figure.caption.39}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces \texthl {FIX THIS FIGURE}\relax }}{12}{figure.caption.42}
+\contentsline {figure}{\numberline {2.8}{\ignorespaces finegrid representation\relax }}{12}{figure.caption.43}
+\contentsline {figure}{\numberline {2.9}{\ignorespaces Typical staggered grid, adopted from \cite {TRYG}.\relax }}{13}{figure.caption.45}
+\contentsline {figure}{\numberline {2.10}{\ignorespaces Atomization simulations with varying Weber number, adopted from \cite {Desjardins13}.\texthl {figure this spacing out}\relax }}{14}{figure.caption.47}
+\contentsline {figure}{\numberline {2.11}{\ignorespaces Traditional height function\relax }}{14}{figure.caption.49}
+\contentsline {figure}{\numberline {2.12}{\ignorespaces Standard method interface breakup.\relax }}{16}{figure.caption.56}
+\contentsline {figure}{\numberline {2.13}{\ignorespaces Kinetic Energy with Time - ACES Method\nobreakspace {}\ref {Owkes2018}\relax }}{18}{figure.caption.58}
+\contentsline {figure}{\numberline {2.14}{\ignorespaces Kinetic Energy with Time - Standard Height Function Method\relax }}{18}{figure.caption.59}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Fine grid height function\relax }}{19}{figure.caption.60}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces $5^{th}$ Order Fit\relax }}{20}{figure.caption.62}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Fine grid height function\relax }}{22}{figure.caption.64}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces fix figure\relax }}{23}{figure.caption.65}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces fix figure\relax }}{23}{figure.caption.65}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces fix figure\relax }}{23}{figure.caption.66}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces fix figure\relax }}{23}{figure.caption.66}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces fix figure\relax }}{24}{figure.caption.67}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces fix figure\relax }}{24}{figure.caption.67}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces $2^{nd}$ Order Fit\relax }}{25}{figure.caption.69}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces fix figure\relax }}{26}{figure.caption.71}
+\contentsline {figure}{\numberline {3.12}{\ignorespaces fix figure\relax }}{26}{figure.caption.71}
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Gaussian Fit\relax }}{26}{figure.caption.73}
+\contentsline {figure}{\numberline {3.14}{\ignorespaces fix figure\relax }}{27}{figure.caption.74}
+\contentsline {figure}{\numberline {3.15}{\ignorespaces fix figure\relax }}{27}{figure.caption.74}
+\contentsline {figure}{\numberline {3.16}{\ignorespaces Fine grid orientation\relax }}{30}{figure.caption.76}
+\contentsline {figure}{\numberline {3.17}{\ignorespaces fix figure\relax }}{32}{figure.caption.77}
+\contentsline {figure}{\numberline {3.18}{\ignorespaces fix figure\relax }}{32}{figure.caption.77}
+\contentsline {figure}{\numberline {3.19}{\ignorespaces fix figure\relax }}{37}{figure.caption.81}
+\contentsline {figure}{\numberline {3.20}{\ignorespaces fix figure\relax }}{37}{figure.caption.81}
+\contentsline {figure}{\numberline {3.21}{\ignorespaces fix figure\relax }}{38}{figure.caption.82}
+\contentsline {figure}{\numberline {3.22}{\ignorespaces fix figure\relax }}{38}{figure.caption.82}
+\contentsline {figure}{\numberline {3.23}{\ignorespaces fix figure\relax }}{39}{figure.caption.83}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces fix figure\relax }}{40}{figure.caption.86}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces fix figure\relax }}{41}{figure.caption.88}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces fix figure\relax }}{41}{figure.caption.88}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces fix figure\relax }}{41}{figure.caption.88}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces fix figure\relax }}{42}{figure.caption.89}

@@ -2,28 +2,28 @@
 \contentsline {chapter}{\numberline {1.}\MakeUppercase {Introduction}}{1}{chapter.1}
 \setcounter {tocdepth}{3}
 \contentsline {chapter}{\numberline {2.}\MakeUppercase {Theory}}{5}{chapter.2}
-\contentsline {subsection}{The Navier-Stokes Equations}{5}{subsection*.22}
-\contentsline {subsection}{Computational Platform}{5}{subsection*.23}
-\contentsline {subsection}{Mesh Generation}{7}{subsection*.25}
-\contentsline {paragraph}{}{7}{paragraph*.28}
-\contentsline {subsection}{Volume of Fluid Formulation}{8}{subsection*.31}
-\contentsline {subsection}{Rudman Dual Grid Formulation}{11}{subsection*.39}
-\contentsline {subsection}{Curvature Estimation - Height Function Methods}{12}{subsection*.45}
-\contentsline {subsection}{Using Height Functions in Conjunction with Rudman Dual Mesh }{16}{subsection*.56}
-\contentsline {subsection}{Oscillating Droplet Test Case}{17}{subsection*.58}
+\contentsline {subsection}{Computational Platform}{5}{subsection*.22}
+\contentsline {subsection}{Mesh Generation}{6}{subsection*.24}
+\contentsline {paragraph}{}{7}{paragraph*.27}
+\contentsline {subsection}{Volume of Fluid Formulation}{8}{subsection*.30}
+\contentsline {subsection}{Rudman Dual Grid Formulation}{10}{subsection*.38}
+\contentsline {subsection}{Curvature Estimation - Height Function Methods}{13}{subsection*.44}
+\contentsline {subsection}{Using Height Functions in Conjunction with Rudman Dual Mesh }{16}{subsection*.55}
+\contentsline {subsection}{Oscillating Droplet Test Case}{17}{subsection*.57}
 \setcounter {tocdepth}{3}
 \contentsline {chapter}{\numberline {3.}\MakeUppercase {Methodology}}{19}{chapter.3}
-\contentsline {subsection}{Fifth Order Height Function Method}{20}{subsection*.62}
-\contentsline {subsection}{Importance of Scale}{23}{subsection*.68}
-\contentsline {subsection}{Second Order Fine Grid Height Function Method}{24}{subsection*.70}
+\contentsline {subsection}{Fifth Order Height Function Method}{20}{subsection*.61}
+\contentsline {subsection}{Importance of Scale}{24}{subsection*.68}
+\contentsline {subsection}{Second Order Fine Grid Height Function Method}{25}{subsection*.70}
 \contentsline {subsection}{Gaussian Filtering Second Order Method}{25}{subsection*.72}
-\contentsline {subsection}{Implementation of Fine Grid Velocities}{26}{subsection*.75}
+\contentsline {subsection}{Implementation of Fine Grid Velocities}{28}{subsection*.75}
+\contentsline {subsubsection}{Streaktube Mathematical Formulation}{31}{subsubsection*.78}
+\contentsline {subsubsection}{Derivation}{33}{subsubsection*.79}
+\contentsline {subsection}{Modification of Fine Grid Velocity}{35}{subsection*.80}
 \setcounter {tocdepth}{3}
-\contentsline {chapter}{\numberline {4.}\MakeUppercase {Discussion}}{34}{chapter.4}
-\contentsline {subsection}{Simplified Test Cases}{34}{subsection*.80}
-\contentsline {subsubsection}{Sine Wave Test Case}{34}{subsubsection*.81}
-\contentsline {subsubsection}{Interfacial Protrusion Test Case}{35}{subsubsection*.83}
-\contentsline {section}{Outline}{37}{section*.86}
+\contentsline {chapter}{\numberline {4.}\MakeUppercase {Discussion}}{40}{chapter.4}
+\contentsline {subsection}{Simplified Test Cases}{40}{subsection*.84}
+\contentsline {subsubsection}{Sine Wave Test Case}{40}{subsubsection*.85}
+\contentsline {subsubsection}{Interfacial Protrusion Test Case}{41}{subsubsection*.87}
+\contentsline {subsection}{Future Work}{44}{subsection*.90}
 \setcounter {tocdepth}{3}
-\setcounter {tocdepth}{3}
-\contentsline {chapter}{\MakeUppercase {\MakeUppercase {Appendix}}: Example Code}{41}{appendix.A}
