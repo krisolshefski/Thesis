@@ -1,19 +1,40 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
+\citation{TRYG}
 \citation{NGA1,NGA2}
 \@writefile{toc}{\setcounter {tocdepth}{3}}
 \@writefile{toc}{\contentsline {chapter}{\numberline {2.}\MakeUppercase  {Theory}}{5}{chapter.2}}
 \newlabel{CH:theory}{{2}{5}{Theory}{chapter.2}{}}
-\@writefile{tdo}{\contentsline {todo}{Not sure what this says}{5}{section*.21}}
-\@writefile{toc}{\contentsline {subsection}{Computational Platform}{5}{subsection*.22}}
-\@writefile{tdo}{\contentsline {todo}{This section sounds ``very'' familiar, should probably paraphrase into your own words (read it, take notes, and then write it.}{5}{section*.23}}
+\@writefile{toc}{\contentsline {subsection}{Computational Platform}{5}{subsection*.10}}
 \citation{choi}
 \citation{Owkes2017,Owkes2014}
 \citation{OwkesAIAA,Desjardins2013,sheehy}
-\citation{MIT}
+\citation{Owkes2017}
+\citation{Owkes2014}
+\citation{Owkes2014}
+\citation{Owkes2014}
+\citation{Owkes2014}
 \newlabel{eqn:rho}{{2.3}{6}{Computational Platform}{equation.2.0.3}{}}
 \newlabel{eqn:mu}{{2.4}{6}{Computational Platform}{equation.2.0.4}{}}
-\@writefile{toc}{\contentsline {subsection}{Mesh Generation}{6}{subsection*.24}}
+\@writefile{toc}{\contentsline {subsection}{Streaktube Introduction}{6}{subsection*.11}}
+\citation{Owkes2014}
+\citation{Owkes2017}
+\@writefile{toc}{\contentsline {subsection}{Streaktube Derivation}{7}{subsection*.13}}
+\newlabel{eqn:der1}{{2.7}{7}{Streaktube Derivation}{equation.2.0.7}{}}
+\newlabel{eqn:der2}{{2.8}{7}{Streaktube Derivation}{equation.2.0.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces The scalar quantity to be advected is approximated and projected out of the control volume for integration over time\nobreakspace  {}\cite  {Owkes2014}. \relax }}{8}{figure.caption.12}}
+\newlabel{fig:streak}{{2.1}{8}{The scalar quantity to be advected is approximated and projected out of the control volume for integration over time~\cite {Owkes2014}. \relax }{figure.caption.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces The representative volume is partitioned into simplicies (tetrahedra in 3D) until they are sufficiently small such that the simplicies contain only one phase of fluid\nobreakspace  {}\cite  {Owkes2014}.\relax }}{8}{figure.caption.12}}
+\newlabel{fig:simp}{{2.2}{8}{The representative volume is partitioned into simplicies (tetrahedra in 3D) until they are sufficiently small such that the simplicies contain only one phase of fluid~\cite {Owkes2014}.\relax }{figure.caption.12}{}}
+\citation{Owkes2017}
+\newlabel{eqn:der4}{{2.9}{9}{Streaktube Derivation}{equation.2.0.9}{}}
+\newlabel{eqn:der5}{{2.10}{9}{Streaktube Derivation}{equation.2.0.10}{}}
+\newlabel{eqn:der6}{{2.11}{9}{Streaktube Derivation}{equation.2.0.11}{}}
+\newlabel{eqn:der7}{{2.12}{9}{Streaktube Derivation}{equation.2.0.12}{}}
+\citation{MIT}
+\newlabel{eqn:der8}{{2.13}{10}{Streaktube Derivation}{equation.2.0.13}{}}
+\newlabel{eqn:derFinal}{{2.14}{10}{Streaktube Derivation}{equation.2.0.14}{}}
+\@writefile{toc}{\contentsline {subsection}{Mesh Generation}{10}{subsection*.14}}
 \citation{anderson}
 \citation{MIT}
 \citation{anderson}
@@ -21,94 +42,61 @@
 \citation{MIT}
 \citation{magoules}
 \citation{Hirt1981}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Typical notation of structured grid cells. \relax }}{7}{figure.caption.25}}
-\newlabel{fig:ijGrid}{{2.1}{7}{Typical notation of structured grid cells. \relax }{figure.caption.25}{}}
-\@writefile{tdo}{\contentsline {todo}{try foreach loop! this would be more informative if you showed the staggered grid with the location of $P$, $u$, $v$, $VOF=\alpha $.}{7}{section*.26}}
-\@writefile{toc}{\contentsline {paragraph}{}{7}{paragraph*.27}}
-\@writefile{tdo}{\contentsline {todo}{really?}{7}{section*.28}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Typical $(i,j)$ notation of structured grid cells. Grid cells span $\Delta x$ and $\Delta y$ in the horizontal and vertical directions respectively. \relax }}{11}{figure.caption.15}}
+\newlabel{fig:ijGrid}{{2.3}{11}{Typical $(i,j)$ notation of structured grid cells. Grid cells span $\Delta x$ and $\Delta y$ in the horizontal and vertical directions respectively. \relax }{figure.caption.15}{}}
 \citation{MIT}
 \citation{MIT}
+\citation{TRYG}
+\citation{HARLOW1965}
+\citation{rudman}
+\citation{rudman}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Simple Unstructured Grid \cite  {MIT}\relax }}{12}{figure.caption.16}}
+\newlabel{fig:Unstructured Grid}{{2.4}{12}{Simple Unstructured Grid \cite {MIT}\relax }{figure.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{Rudman Dual Grid Formulation}{12}{subsection*.17}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces Typical notation of structured grid cells. For each cell, pressure values are stored at the center of the control volume, shaded in gray here. Velocity components are stored at the center of the cell faces. \relax }}{13}{figure.caption.18}}
+\newlabel{fig:StagGrid}{{2.5}{13}{Typical notation of structured grid cells. For each cell, pressure values are stored at the center of the control volume, shaded in gray here. Velocity components are stored at the center of the cell faces. \relax }{figure.caption.18}{}}
 \citation{Hirt1981,1,2,3,4}
 \citation{Hirt1981}
 \citation{TRYG}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Simple Unstructured Grid \cite  {MIT}\relax }}{8}{figure.caption.29}}
-\newlabel{fig:Unstructured Grid}{{2.2}{8}{Simple Unstructured Grid \cite {MIT}\relax }{figure.caption.29}{}}
-\@writefile{toc}{\contentsline {subsection}{Volume of Fluid Formulation}{8}{subsection*.30}}
-\@writefile{tdo}{\contentsline {todo}{Should have a broader section on interface tracking and capturing schemes and explain why VOF is often used.}{8}{section*.31}}
-\@writefile{tdo}{\contentsline {todo}{give mathematical definition of volume of fluid}{8}{section*.32}}
 \citation{TRYG}
-\citation{NohWoodward}
+\citation{nohwoodward}
 \citation{SLICfig}
 \citation{SLICfig}
 \citation{youngs}
 \citation{yeoh}
+\@writefile{toc}{\contentsline {subsection}{Volume of Fluid Formulation}{14}{subsection*.19}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.6}{\ignorespaces Advection of a one-dimensional fluid interface\relax }}{15}{figure.caption.20}}
+\newlabel{fig:1Dadvect}{{2.6}{15}{Advection of a one-dimensional fluid interface\relax }{figure.caption.20}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.7}{\ignorespaces Simple Line Interface Calculation of Noh and Woodward adapted from\nobreakspace  {}\cite  {SLICfig}\relax }}{15}{figure.caption.21}}
+\newlabel{fig:SLIC}{{2.7}{15}{Simple Line Interface Calculation of Noh and Woodward adapted from~\cite {SLICfig}\relax }{figure.caption.21}{}}
 \citation{yeoh}
 \citation{yeoh}
-\@writefile{tdo}{\contentsline {todo}{this is true for 1D problems but not in general}{9}{section*.33}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Advection of a one-dimensional fluid interface\relax }}{9}{figure.caption.34}}
-\newlabel{fig:1Dadvect}{{2.3}{9}{Advection of a one-dimensional fluid interface\relax }{figure.caption.34}{}}
-\citation{TRYG}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Simple Line Interface Calculation of Noh and Woodward adapted from \cite  {SLICfig}\relax }}{10}{figure.caption.35}}
-\newlabel{fig:SLIC}{{2.4}{10}{Simple Line Interface Calculation of Noh and Woodward adapted from \cite {SLICfig}\relax }{figure.caption.35}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces Piecewise Linear Interface Calculation of Youngs adapted from \cite  {yeoh}\relax }}{10}{figure.caption.36}}
-\newlabel{fig:PLIC}{{2.5}{10}{Piecewise Linear Interface Calculation of Youngs adapted from \cite {yeoh}\relax }{figure.caption.36}{}}
-\@writefile{tdo}{\contentsline {todo}{should mention other options such as PROST}{10}{section*.37}}
-\@writefile{toc}{\contentsline {subsection}{Rudman Dual Grid Formulation}{10}{subsection*.38}}
-\citation{TRYG}
-\citation{TRYG}
-\citation{HARLOW1965}
-\citation{rudman}
-\citation{Rudman}
-\citation{MARK2013}
-\citation{TRYG}
-\citation{TRYG}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.6}{\ignorespaces Typical staggered grid, adopted from \cite  {TRYG}.\relax }}{11}{figure.caption.39}}
-\newlabel{fig:StagGrid}{{2.6}{11}{Typical staggered grid, adopted from \cite {TRYG}.\relax }{figure.caption.39}{}}
-\@writefile{tdo}{\contentsline {todo}{why no indent? if you want to put a figure call inside a paragraph, that is fine, just don't put empty lines before or after the figure.}{11}{section*.40}}
-\@writefile{tdo}{\contentsline {todo}{Need more here. how does a dual grid provide conservation. do other options exist?}{11}{section*.41}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.7}{\ignorespaces \texthl  {FIX THIS FIGURE}\relax }}{12}{figure.caption.42}}
-\newlabel{fig:rudmesh}{{2.7}{12}{\hl {FIX THIS FIGURE}\relax }{figure.caption.42}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.8}{\ignorespaces finegrid representation\relax }}{12}{figure.caption.43}}
-\newlabel{fig:fg}{{2.8}{12}{finegrid representation\relax }{figure.caption.43}{}}
+\citation{Owkes2018}
+\citation{Owkes2018}
+\citation{Owkes2018}
 \citation{Desjardins13}
 \citation{Desjardins13}
-\citation{1,2,3,4}
-\@writefile{toc}{\contentsline {subsection}{Curvature Estimation - Height Function Methods}{13}{subsection*.44}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.9}{\ignorespaces Typical staggered grid, adopted from \cite  {TRYG}.\relax }}{13}{figure.caption.45}}
-\newlabel{fig:curv}{{2.9}{13}{Typical staggered grid, adopted from \cite {TRYG}.\relax }{figure.caption.45}{}}
-\@writefile{tdo}{\contentsline {todo}{noindent}{13}{section*.46}}
-\@writefile{tdo}{\contentsline {todo}{not sure about this list, these seem like mostly interface capturing methods and not ways to compute the curvature}{13}{section*.48}}
-\@writefile{tdo}{\contentsline {todo}{choose a consistent way to reference equations and have a tilde}{13}{section*.50}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.10}{\ignorespaces Atomization simulations with varying Weber number, adopted from \cite  {Desjardins13}.\texthl  {figure this spacing out}\relax }}{14}{figure.caption.47}}
-\newlabel{fig:surf}{{2.10}{14}{Atomization simulations with varying Weber number, adopted from \cite {Desjardins13}.\hl {figure this spacing out}\relax }{figure.caption.47}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.11}{\ignorespaces Traditional height function\relax }}{14}{figure.caption.49}}
-\newlabel{fig:hts}{{2.11}{14}{Traditional height function\relax }{figure.caption.49}{}}
-\citation{1}
-\citation{2}
-\citation{2}
-\citation{2}
-\@writefile{tdo}{\contentsline {todo}{add text so the equations flow with the reading.}{15}{section*.51}}
-\newlabel{eqn:hts}{{2.7}{15}{Curvature Estimation - Height Function Methods}{equation.2.0.7}{}}
-\@writefile{tdo}{\contentsline {todo}{Write the equations so they flow}{15}{section*.52}}
-\newlabel{eqn:1st}{{2.8}{15}{Curvature Estimation - Height Function Methods}{equation.2.0.8}{}}
-\newlabel{eqn:2nd}{{2.9}{15}{Curvature Estimation - Height Function Methods}{equation.2.0.9}{}}
-\newlabel{eqn:kap}{{2.10}{15}{Curvature Estimation - Height Function Methods}{equation.2.0.10}{}}
-\@writefile{tdo}{\contentsline {todo}{What's Eq. 2.10 in 3D?}{15}{section*.53}}
-\@writefile{tdo}{\contentsline {todo}{and their 2nd order convergence}{15}{section*.54}}
-\citation{Salih2002}
-\citation{Rayleigh}
-\@writefile{toc}{\contentsline {subsection}{Using Height Functions in Conjunction with Rudman Dual Mesh }{16}{subsection*.55}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.12}{\ignorespaces Standard method interface breakup.\relax }}{16}{figure.caption.56}}
-\newlabel{bad2}{{2.12}{16}{Standard method interface breakup.\relax }{figure.caption.56}{}}
-\@writefile{toc}{\contentsline {subsection}{Oscillating Droplet Test Case}{17}{subsection*.57}}
-\newlabel{period}{{2.11}{17}{Oscillating Droplet Test Case}{equation.2.0.11}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.13}{\ignorespaces Kinetic Energy with Time - ACES Method\nobreakspace  {}\ref  {Owkes2018}\relax }}{18}{figure.caption.58}}
-\newlabel{fig:acesKE}{{2.13}{18}{Kinetic Energy with Time - ACES Method~\ref {Owkes2018}\relax }{figure.caption.58}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.14}{\ignorespaces Kinetic Energy with Time - Standard Height Function Method\relax }}{18}{figure.caption.59}}
-\newlabel{fig:stdKE}{{2.14}{18}{Kinetic Energy with Time - Standard Height Function Method\relax }{figure.caption.59}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.8}{\ignorespaces Piecewise Linear Interface Calculation of Youngs adapted from\nobreakspace  {}\cite  {yeoh}\relax }}{16}{figure.caption.22}}
+\newlabel{fig:PLIC}{{2.8}{16}{Piecewise Linear Interface Calculation of Youngs adapted from~\cite {yeoh}\relax }{figure.caption.22}{}}
+\@writefile{toc}{\contentsline {subsection}{Curvature Estimation - Height Function Methods}{16}{subsection*.23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.9}{\ignorespaces Curvature calculations for varying radii. Curvature can be calculated as the reciprocal of the radius of a curve\nobreakspace  {}\cite  {Owkes2018}.\relax }}{16}{figure.caption.24}}
+\newlabel{fig:curv}{{2.9}{16}{Curvature calculations for varying radii. Curvature can be calculated as the reciprocal of the radius of a curve~\cite {Owkes2018}.\relax }{figure.caption.24}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.10}{\ignorespaces Atomization simulations with varying Weber number, adopted from \cite  {Desjardins13}.\relax }}{17}{figure.caption.25}}
+\newlabel{fig:surf}{{2.10}{17}{Atomization simulations with varying Weber number, adopted from \cite {Desjardins13}.\relax }{figure.caption.25}{}}
+\newlabel{eqn:hts}{{2.15}{17}{Curvature Estimation - Height Function Methods}{equation.2.0.15}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.11}{\ignorespaces Traditional height function with a three cell stencil.\relax }}{18}{figure.caption.26}}
+\newlabel{fig:hts}{{2.11}{18}{Traditional height function with a three cell stencil.\relax }{figure.caption.26}{}}
+\newlabel{eqn:1st}{{2.16}{18}{Curvature Estimation - Height Function Methods}{equation.2.0.16}{}}
+\newlabel{eqn:2nd}{{2.17}{18}{Curvature Estimation - Height Function Methods}{equation.2.0.17}{}}
+\newlabel{eqn:kap}{{2.18}{18}{Curvature Estimation - Height Function Methods}{equation.2.0.18}{}}
+\citation{Sussman2007,Sussman2003}
+\citation{Owkes2015}
+\citation{Popinet2009}
+\citation{Owkes2013}
+\newlabel{eqn:kap3D}{{2.19}{19}{Curvature Estimation - Height Function Methods}{equation.2.0.19}{}}
 \@setckpt{theory}{
-\setcounter{page}{19}
-\setcounter{equation}{11}
+\setcounter{page}{20}
+\setcounter{equation}{19}
 \setcounter{enumi}{0}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
@@ -128,7 +116,7 @@
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{14}
+\setcounter{figure}{11}
 \setcounter{table}{0}
 \setcounter{ContinuedFloat}{0}
 \setcounter{subfigure}{0}
@@ -145,7 +133,7 @@
 \setcounter{tcbrasterrow}{0}
 \setcounter{tcbraster}{0}
 \setcounter{tcblisting}{0}
-\setcounter{@todonotes@numberoftodonotes}{28}
+\setcounter{@todonotes@numberoftodonotes}{0}
 \setcounter{FancyVerbLine}{0}
 \setcounter{lips@count}{0}
 \setcounter{lstlisting}{0}

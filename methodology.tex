@@ -1,78 +1,18 @@
 \chapter{Methodology} \label{CH:method}
-%This section will focus on the story of how the current model came to be. \\
-%Start with the beginning: look on Box for presentations\\
-%TIMELINE:\\
-%
-%
-%Feb 2018 - PLIC reconstruction- area of discontinuity $\rightarrow$ velocity to drive back discontinuity\\
-%Apr 2018 - velocity correction based on area times some factor $\rightarrow$ gives idea fro subgrid HFM\\
-%May 2018- using matlab compute heights and curvature as 1/r \\
-%Jun 2018 - Can show 5th order L2 error with mesh refinement (5th order finite difference scheme)\\
-%Jul 2018 - ICLASS 2018 Poster - here we've tried several different discretization techniques\\
-%Aug 2018 - Reintroduce SG velocity but allow to be influence by curvature rather than area\\
-%Oct 2018 - Implement FG HFM but find parasitic wiggles $\rightarrow$ this is start of Herrmann correction and we add in 2nd pressure equation to ensure fine grid divergence free condition (12Oct18 presentation - late october is basically final APS presentation... same with november... thats the state at that point in time )\\
-%Jan 2019 - Found discrepancy in Herrmann Eqn \\
-%Mar 2019 - delta approximation big parametric study \\
-%Apr 2019 - still doing para study \\
 
-%Method development which would include information from the fine grid to reduce interface reconstruction discontinuities. 
-%
-%Introducing a fine grid velocity 
+Throughout the course of this research various schemes were attempted, often as a reaction to the problems arising in simulation dynamics. Because the code has undergone so many modifications, it is not reasonable to provide results from every attempt. Instead, this chapter aims to provide the reader with a generalized overview of the various methods that were attempted and provide insight into the logic behind the decisions that were made. It is be helpful to be aware that there are three main components to the method presented in this work: fine grid height functions, fine grid velocity establishment, and fine grid flux integration. Each of these constituent pieces are complex and affect the overall effectiveness of the method. While this reporting addresses these as separate pieces, it is important to recognize that development occurred concurrently and modification to these different approaches may have occurred out of the order that is presented. For ease of explanation, separate sections will be devoted to the three portions and will attempt to provide a thorough discussion of the strengths and shortcomings of each.
 
-%With the standard implementation of NGA, VOF is calculated on the fine grid and curvature is computed on the coarse grid. 
-%
-%
-%
-%\begin{figure}[htbp]
-%	\centering
-%	\begin{tikzpicture}[scale=1.5]
-%	% PLIC
-%	\draw [lightblue,fill=lightblue] (0,0) -- (0,0.7) -- (1,0.7) -- (1,1.3) -- (2,1.3) -- (2,0) -- cycle;	
-%	% VOF
-%	\node at (0.5,0.5) {0.7};
-%	\node at (1.5,0.5) {1};
-%	\node at (0.5,1.5) {0};
-%	\node at (1.5,1.5) {0.3};
-%	%Cell
-%	\draw [black, very thick] (0,0) -- (2,0) -- (2,2) -- (0,2) -- (0,0);
-%	% Grid
-%	\draw [blue, thick, dashed] (1,0) -- (1,2);
-%	\draw [blue, thick, dashed] (0,1) -- (2,1);
-%	\draw [arrows=->,line width=1.0] (0.5,0.7) -- (0.5,1.3);\node [left] at (0.49,1.1) {\scriptsize $v$};
-%	\draw [arrows=->,line width=1.0] (1.7,1.7) -- (1.7,1.3);\node [right] at (1.705,1.5) {\scriptsize $v$};
-%	\end{tikzpicture}
-%	\caption{Advection of a one-dimensional fluid interface}
-%	\label{fig:1Dadvect}
-%\end{figure}
+\subsection{Problem Statement}
+When a dual grid is used, the standard height function method fails to capture the dynamics occurring on the fine grid. Left unmitigated, these dynamics can lead to fine grid interfacial perturbations, small discontinuities in interface structures. These perturbations can grow uncontrollably and result in non-physical dynamics materializing in simulations. An example of this uncontrolled growth resulting in non-physical dynamics can be seen in Figure~\ref{bad2}. The focus of this research is to develop an extension of the standard height function to include information from the Rudman dual mesh. The proposed  fine grid method retains the benefit of consistent mass and momentum transport while also providing accurate interface transport that avoids non-physical dynamics. 
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.3\textwidth]{figs/bad.png}
+	\caption{Standard height function method interface breakup.}
+	\label{bad2} 
+\end{figure} 
 
-%\subsection{Oscillating Droplet Test Case}
-%To further quantify the problem that is occurring, a baseline test case which highlights the shortcomings of current methods is necessary. To this end, an oscillating two-dimensional droplet is used to assess the height function method and the proposed solution methods. This test case was chosen as it is considered a standard benchmark problem for testing the accurate prediction of multiphase flow behavior\cite{Salih2002}. Additionally, for the height function method, the oscillating droplet offers an extensive testing of interface orientations which is important for measuring the robustness of the method. The interface is initialized with an ellipsoid. Surface tension drives the droplet's semi-major axis to fluctuate between alignment with the $x$ and $y$ axes. The period of oscillation $T_{e}$, is a function of surface tension coefficient ($\sigma$), density ($\rho_l$ and $\rho_g$), and equivalent circular radius($R$), and can be computed analytically as~\cite{Rayleigh}
-%\begin{equation}
-%T_{e} = 2 \pi \sqrt{\frac{(\rho_{l}+\rho_{g})R^3}{6\sigma}}.
-%\label{period}
-%\end{equation}
-%
-%To establish successful algorithm performance of NGA, an alternate curvature scheme was selected and an oscillating droplet test case ran. Simulation parameters include a density ratio of 1000, viscosity in both the liquid and gas phases are 0, and no walls are present in the computational domain. For the initial baseline, a mesh of 64x64 grid cells make up the domain. A semi-major radius of 0.24 and a semi-minor axes radius of 0.20 define the initial displacement of the droplet. The total domain length is set to 1.0. These parameters are chosen as they align with the analytic solution assumptions made. Figure \ref{fig:acesKE} shows kinetic energy conservation through the progression of the simulation. Simulation success is quantified by normal periods of oscillation and diminishing kinetic energy with time. Close adherence to this model can be used as a measure of success with cases from here forward and this case will be plotted with all further test cases. 
-%
-%\begin{figure}[h]
-%	\centering
-%	\includegraphics[width=5.0in]{figs/KEvT}
-%	\caption{Kinetic Energy with Time \hl{THIS IS NOT THE CORRECT FIGURE}}
-%	\label{fig:acesKE}
-%\end{figure}
-%
-% Alternatively, Figure \ref{fig:stdKE} shows the result of the same test case ran with a standard, coarse grid, curvature estimation scheme. The uncontrolled growth seen in the kinetic energy of the standard method is a result of the aformentioned interfacial perturbations. The curvature estimation error and resulting non-physical dynamics are the basis for this research. 
-
-%\begin{figure}[h]
-%	\centering
-%	\includegraphics[width=5.0in]{figs/KEvT}
-%	\caption{Kinetic Energy with Time \hl{THIS IS NOT THE CORRECT FIGURE}}
-%	\label{fig:stdKE}
-%\end{figure}
-
-The aim of this research is to allow the coarse grid to be aware of information from the fine grid. The following section will describe several methods which have been proposed and discuss the strengths and shortcomings of each.
-
-When considering how to inform the coarse grid from the finer mesh, a natural direction is to adopt a height function method directly onto the fine grid. Implementing a height function is straightforward as previously described and, the same curvature stencil should result in a more accurate curvature estimation as there is more information available. Figure \ref{fig:fgHFM} gives an example of what this could look like. Notice that while the stencil the curvature is computed over remains the same as in Figure~\ref{fig:hts}, there are now twice as many heights since information is pulled from columns built from fine grid cells. 
+\subsection{Problem Approach}
+When considering how to inform the coarse grid from the finer mesh, a natural direction is to adopt a height function method directly onto the fine grid. Implementing a height function is straightforward as previously described and, the same curvature stencil should result in a more accurate curvature estimation as there is more information available. Figure \ref{fig:fgHFM} gives an example of what this could look like. Notice that while the stencil that the curvature is computed over remains the same as in Figure~\ref{fig:hts}, there are now twice as many heights since information is pulled from columns built from fine grid cells. 
 \begin{figure}[h]
 	\centering
 	\begin{tikzpicture}[scale=1.5]
@@ -93,12 +33,62 @@ When considering how to inform the coarse grid from the finer mesh, a natural di
 	\draw [arrows=->,line width=1.0] (4.25,2) -- (4.25,4.44);\node [below] at (4.25,2.0) {\scriptsize $h_{2}$};
 	\draw [arrows=->,line width=1.0] (4.75,2) -- (4.75,4.27);\node [below] at (4.75,2.0) {\scriptsize $h_{3}$};	    
 	\end{tikzpicture}
-	\caption{Fine grid height function}
+	\caption{Fine grid height function with the same three cell stencil as in Fig.~\ref{fig:hts}.}
 	\label{fig:fgHFM}
 \end{figure}
+
+\subsection{Method Evaluation - Test Cases}
+To further quantify the problem that is occurring, baseline test cases which highlight the shortcomings of current methods are necessary. To this end, the height function method functionality is evaluated by calculating the curvature of an exactly defined VOF field. The curvature of a circle for example, is exactly equal to the reciprocal of the radius as seen in Figure~\ref{fig:curv}. A static circle is placed in a VOF field and the method computes the curvature. Results are compared against an analytic solution. Additionally, an oscillating two-dimensional droplet is used to assess the height function method and the proposed solution methods in a dynamic environment. This test case was chosen as it is considered a standard benchmark problem for testing the accurate prediction of multiphase flow behavior~\cite{Salih2002}. Additionally, for the height function method, the oscillating droplet offers an extensive testing of interface orientations which is important for measuring the robustness of the method. The interface is initialized with an ellipse. Surface tension drives the droplet's semi-major axis to fluctuate between alignment with the $x$ and $y$ axes as seen in Figures~\ref{fig:Odrop1}~-~\ref{fig:Odrop3}. 
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}{.3\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{figs/Odrop1}
+		\caption{Initially, an ellipse is initialized in the domain.}
+		\label{fig:Odrop1}
+	\end{minipage}%
+\hfill
+	\begin{minipage}{0.3\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{figs/Odrop2}
+		\caption{Surface tension begins driving motion of the ellipse.}
+		\label{fig:Odrop2}
+	\end{minipage}
+\hfill
+\begin{minipage}{0.3\textwidth}
+	\centering
+	\includegraphics[width=1.0\linewidth]{figs/Odrop3}
+	\caption{Droplet extends and oscillation continues.}
+	\label{fig:Odrop3}
+\end{minipage}
+\end{figure}
+The period of oscillation $T_{e}$, is a function of surface tension coefficient ($\sigma$), density ($\rho_l$ and $\rho_g$), and equivalent circular radius($R$), and can be computed analytically as~\cite{Rayleigh}
+\begin{equation}
+T_{e} = 2 \pi \sqrt{\frac{(\rho_{l}+\rho_{g})R^3}{6\sigma}}.
+\label{period}
+\end{equation}
+
+To establish successful algorithm performance of NGA, an alternate curvature scheme was selected and an oscillating droplet test case ran. Simulation parameters include a density ratio of 1000, viscosity in both the liquid and gas phases are zero, and no walls are present in the computational domain. An ellipse with a center at the origin and a major axis parallel to the x-axis can be described as 
+\begin{equation}
+\frac{x^2}{a^2} + \frac{y^2}{b^2} =1.
+\end{equation}  
+Within the test case, $a$ and $b$ are explicitly defined. A semi-major radius of $a=0.24$ and a semi-minor axes radius of $b=0.20$ define the initial displacement of the droplet. The total domain length is set to 1.0. These parameters are chosen as they align with the analytic solution assumptions made. For the initial baseline, a mesh of 64x64 grid cells make up the domain. The mesh size was chosen specifically to address a concern for having a sufficient number of grid cells across the diameter of the droplet. A sufficient number of grid cells across a diameter can be considered as any minimum number of cells which provide well defined heights to the height function. Well defined heights require that cells containing only one phase of fluid are present above and below the cell of interest. Figure~\ref{fig:probhts} gives a good depiction of ill-defined heights. Figure~\ref{fig:acesKE} shows kinetic energy conservation through the progression of the simulation. Simulation success is quantified by normal periods of oscillation and diminishing kinetic energy with time. In an ideal case, no diminishment of kinetic energy would occur as the case is set up such that no energy can be lost to viscosity or boundary conditions. However, due to numerical dissipation, this loss is often observed. Close adherence to this model in Figure~\ref{fig:acesKE} can be used as a measure of success with methods from here forward.
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=0.5\textwidth]{figs/ACES_KEplot.png}
+	\caption{For the oscillating droplet test case, capturing kinetic energy over time is a way to discern whether the model is progressing as desired. Regular periods and linearly decreasing kinetic energy represent a favorable result. Simulation using ACES Method~\cite{Owkes2018}}
+	\label{fig:acesKE}
+\end{figure}
+Alternatively, Figure \ref{fig:stdKE} shows the result of the same test case ran with a standard, coarse grid, curvature estimation scheme. The uncontrolled growth in kinetic energy seen in the standard method is a result of the aforementioned interfacial perturbations. The curvature estimation error and resulting non-physical dynamics are the motivation for this research. 
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=0.5\textwidth]{figs/stdHt_KEplot.png}
+	\caption{Kinetic Energy with Time - Standard Height Function Method(-) vs ACES method(.-)}
+	\label{fig:stdKE}
+\end{figure}
  
- 
- \subsection{Fifth Order Height Function Method}
+ \section{Fine Grid Height Function Methods}
+ \subsection{Fifth Order Method}
 \begin{figure}[htbp]
 	\centering
 	\begin{tikzpicture}[scale=3.5]
@@ -113,21 +103,19 @@ When considering how to inform the coarse grid from the finer mesh, a natural di
 	\draw [arrows=->,line width=1.0] (2.25,0) -- (2.25,0.3);\node [below] at (2.25,0) {\scriptsize $h_{2}$};
 	\draw [arrows=->,line width=1.0] (2.75,0) -- (2.75,0.7);\node [below] at (2.75,0) {\scriptsize $h_{3}$};
 	\end{tikzpicture}
-	\caption{$5^{th}$ Order Fit}
+	\caption{$Proposed 5^{th}$ order fit of heights using columns built from fine grid cells. }
 	\label{fig:5hts}
 \end{figure}
-As seen in Figure \ref{fig:fgHFM}, there are now six columns over which information is being provided. With this information, it is possible to derive fifth order approximations for the first and second derivatives needed for the curvature calculation. Figure~\ref{fig:5hts} gives an approximate representation of what a fit might look like for a given point. A general formula for deriving a finite difference approximation given a set of points is given by equations~\ref{eqn:gen}  \& \ref{eqn:poly}. 
+As seen in Figure \ref{fig:fgHFM}, there are now six columns over which information is being provided. With this information, it is possible to derive fifth order approximations for the first and second derivatives needed for the curvature calculation. Figure~\ref{fig:5hts} gives an approximate representation of what a fit might look like for a given point. A general formula for deriving a finite difference approximation given a set of points is given as 
 \begin{equation}
 f'_j + \sum_{k=0}^{2} a_k f_{j+k} = O(?)
 \label{eqn:gen}
 \end{equation}
 \begin{equation}
-\frac{dh}{dx} = a_{-3}h_{-3} +a_{-2}h_{-2} + a_{-1}h_{-1} + a_{+1}h_{+1} + a_{+2}h_{+2} + a_{+3}h_{+3} 
+\frac{dh}{dx} = a_{-3}h_{-3} +a_{-2}h_{-2} + a_{-1}h_{-1} + a_{+1}h_{+1} + a_{+2}h_{+2} + a_{+3}h_{+3} .
 \label{eqn:poly}
 \end{equation}
-\noindent Here, $a_k$ are the coefficients associated with the linear Taylor series which need to be solved for~\cite{moin}. For the six heights given by our fine grid stencil Table \ref{tab:findiff} shows how the linear equations can be formed to find the first derivative.
-
-
+Here, $a_k$ are the coefficients associated with the linear Taylor series which need to be solved for~\cite{moin}. For the six heights given by our fine grid stencil, Table \ref{tab:findiff} shows how the linear equations can be formed to find the first derivative.
 \begin{table}[htbp]
 	\centering
 	\caption{Taylor Series Table}
@@ -144,16 +132,47 @@ f'_j + \sum_{k=0}^{2} a_k f_{j+k} = O(?)
 		\end{tabular}
 		\label{tab:findiff}
 \end{table}
-Traditionally, from the columns in Table~\ref{tab:findiff}, six equations can be used to solve for the six unknown variables. With these coefficients, approximations can be derived for a fitting function. However, this method is not sufficient for application of the height function. While the above method provides the Taylor series approximation needed for a point-wise fitting function, column heights used in the height function method require integral quantities of the Taylor series. This is because VOF values are also integral quantities, not linear quantities. For this adjustment, the same basic principal applies. A Taylor series expansion is performed to find function values over which to integrate ($h_x$). Heights ($H_i$) are determined by integrating values of $h_x$ over the are of the subcell as seen in equation~\ref{eqn:int}. With heights determined, coefficients needed for derivative approximation are found using a constrained least squares approach which enforces second order accuracy. Derivatives are approximated using the heights and coefficients. Figure~\ref{fig:int} provides an approximate visualization of the scheme as it differs from the representation in Figures~\ref{fig:fgHFM}~\&~\ref{fig:5th}.
-
+Traditionally, from the columns in Table~\ref{tab:findiff}, six equations can be used to solve for the six unknown variables. With these coefficients, approximations can be derived for a fitting function. The first iteration of the $5^{th}$ order height function used the above method to determine a polynomial with which to pass our heights through. Figure~\ref{fig:1stDer} shows the solution of the resulting fifth order finite difference first derivative used to approximate a solution of $e^x$ plotted against an analytic solution. Figure \ref{fig:1stErr} provide quantifying evidence that the method holds fifth order accuracy to machine precision.  Figures~\ref{fig:2ndDer} and~\ref{fig:2ndErr} show similar behavior and similar stability for the solution of the second derivative.
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}{.45\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{figs/1stDer.png}
+		\caption{Proposed $5^{th}$ order method calculating values of $e^x$ plotted against analytic solution.}
+		\label{fig:1stDer}
+	\end{minipage}%
+\hfill
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{figs/1stErr.png}
+		\caption{Proposed $5^{th}$ order method approximating first derivative. Method holds $5^{th}$ order accuracy to machine precision.}
+		\label{fig:1stErr}
+	\end{minipage}
+\end{figure}
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}{.45\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{figs/2ndDer.png}
+		\caption{Proposed $5^{th}$ order method calculating values of $e^x$ plotted against analytic solution.}
+		\label{fig:2ndDer}
+	\end{minipage}%
+\hfill
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{figs/2ndErr.png}
+		\caption{Proposed $5^{th}$ order method approximating second derivative. Method holds $5^{th}$ order accuracy to machine precision.}
+		\label{fig:2ndErr}
+	\end{minipage}
+\end{figure}
+The simplest test case for testing a curvature scheme is to compute the curvature of an exact VOF field. We establish a simple case where a circle is given a radius of 0.2. Initial testing of this method provided accurate representation of the exact VOF field but struggled to effectively run the oscillating droplet simulation. Subsequent investigation determined that this approximation of the $5^{th}$ order method was not sufficient for application of the height function. While the above method provides the Taylor series approximation needed for a point-wise fitting function, column heights used in the height function method require integral quantities of the Taylor series. This is because VOF values are also integral quantities, not linear quantities. For this adjustment, the same basic principal applies. A Taylor series expansion is performed to find function values over which to integrate ($h_x$). Heights ($H_i$) are determined by integrating values of $h_x$ over the area of the subcell as seen in Eqn.~\ref{eqn:int}. With heights determined, coefficients needed for derivative approximation are found using a constrained least squares approach which enforces second order accuracy. Derivatives are approximated using the heights and coefficients. Figure~\ref{fig:int} provides an approximate visualization of the scheme as it differs from the representation in Figures~\ref{fig:fgHFM}~\&~\ref{fig:5hts}.
 \begin{equation}
 H_i = \int_{x_i}^{x_{i+1}} h(x) dx
 \label{eqn:int}
 \end{equation}
-
 \begin{figure}[htbp]
 	\centering
-	\begin{tikzpicture}[scale=2.5]
+	\begin{tikzpicture}[scale=1.5]
 	% Liquid
 	\draw [line width=0,fill=cyan!20] (0,3) to[out=-15,in=160] (2.5,2.5) to[out=-20,in=100] (5.0,0);
 	\draw [cyan!20,fill=cyan!20] (0,3) -- (5.0,0) -- (0,0) -- cycle;
@@ -176,18 +195,32 @@ H_i = \int_{x_i}^{x_{i+1}} h(x) dx
 	\draw[red,pattern=north west lines, pattern color=red] (2,0) rectangle (2.5,2.58);
 	\draw[red,pattern=north east lines, pattern color=red] (2.5,0) rectangle (3,2.4);
 	\draw[red,pattern=north west lines, pattern color=red] (3,0) rectangle (3.5,2.2);
-	\draw[red,pattern=north east lines, pattern color=red] (3.5,0) rectangle (4,1.9);
-	
+	\draw[red,pattern=north east lines, pattern color=red] (3.5,0) rectangle (4,1.9);	
 	% Height labels
 	\node [below] at (1.75,0) {\scriptsize $H_{i-1}$};
 	\node [below] at (2.25,0) {\scriptsize $H_{i}$};
 	\node [below] at (2.75,0) {\scriptsize $H_{i+1}$};
-	
 	\end{tikzpicture}
-	\caption{Fine grid height function}
+	\caption{An appropriate fine grid height function requires integral values of heights as opposed to point-wise values.}
 	\label{fig:int}
 \end{figure}
-%
+Figures~\ref{fig:wts1}~\&~\ref{fig:wts2} again show the method solution for a first and second derivative evaluated against a fifth order error and provide evidence that the method provides fifth order accuracy.
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}{.45\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{figs/WeightsDer2.png}
+		\caption{Improved $5^{th}$ order method approximating a first derivative. The method still holds approximately $5^{th}$ order accuracy.}
+		\label{fig:wts1}
+	\end{minipage}%
+\hfill
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{figs/WeightsDer3.png}
+		\caption{Improved $5^{th}$ order method approximating a second derivative. The method still holds approximately $5^{th}$ order accuracy.}
+		\label{fig:wts2}
+	\end{minipage}
+\end{figure}
 %\noindent To force a symmetric solution, we assume 
 %\begin{equation}
 %a_{-1} = -a_1
@@ -208,65 +241,12 @@ H_i = \int_{x_i}^{x_{i+1}} h(x) dx
 %\begin{equation}
 %a_1 \frac{(h)^5}{60}     +a_2  \frac{(2h)^5}{60}    +a_3 \frac{(3h)^5}{60}     = 0.
 %\end{equation}
-%
-%\noindent We now have as many equations as unknown variables and can solve for the coefficient values. A similar process is used for the approximation of a second derivative and curvature is calculated as in equation~\ref{eqn:kap}.
-
-
-Figure~\ref{fig:1stDer} shows the solution of the resulting fifth order finite difference first derivative used to approximate a solution of $e^x$ plotted against an analytic solution.  Figure \ref{fig:1stErr} provide quantifying evidence that the method holds fifth order accuracy to machine precision.  Figures~\ref{fig:2ndDer} and~\ref{fig:2ndErr} show similar behavior and similar stability for the solution of the second derivative. 
-
-\begin{figure}[htbp]
-	\centering
-	\begin{minipage}{.5\textwidth}
-		\centering
-		\includegraphics[width=1.0\linewidth]{figs/1stDer.png}
-		\caption{fix figure}
-		\label{fig:1stDer}
-	\end{minipage}%
-	\begin{minipage}{0.5\textwidth}
-		\centering
-		\includegraphics[width=1.0\linewidth]{figs/1stErr.png}
-		\caption{fix figure}
-		\label{fig:1stErr}
-	\end{minipage}
-\end{figure}
-
-\begin{figure}[htbp]
-	\centering
-	\begin{minipage}{.5\textwidth}
-		\centering
-		\includegraphics[width=1.0\linewidth]{figs/2ndDer.png}
-		\caption{fix figure}
-		\label{fig:2ndDer}
-	\end{minipage}%
-	\begin{minipage}{0.5\textwidth}
-		\centering
-		\includegraphics[width=1.0\linewidth]{figs/2ndErr.png}
-		\caption{fix figure}
-		\label{fig:2ndErr}
-	\end{minipage}
-\end{figure}
- The simplest test case for testing a curvature scheme is to compute the curvature of an exact VOF field. The curvature of a circle for example, is exactly equal to the reciprocal of the radius as seen in Figure~\ref{fig:curv}. We establish a simple case where a circle is given a radius of 0.2. Figure~\ref{fig:5thcurv} shows the resulting curvature field for this geometry. Results indicating that the method is performing as anticipated and accuracy increases with mesh refinement. With the successful implementation and initial calculation, the method was again tested using the oscillating droplet test case. Figure~\ref{fig:5thKE} shows the total kinetic energy with time throughout the course of the simulation. Here, instead of the dissipation of kinetic energy we see behavior similar to that of the standard height function method. The scheme is stable initially and then kinetic energy grows uncontrollably until eventual simulation failure.
- \begin{figure}[htbp]
- 	\centering
- 	\begin{minipage}{.5\textwidth}
- 		\centering
- 		\includegraphics[width=1.0\linewidth]{figs/curvCalc.png}
- 		\caption{fix figure}
- 		\label{fig:5thcurv}
- 	\end{minipage}%
- 	\begin{minipage}{0.5\textwidth}
- 		\centering
- 		\includegraphics[width=1.0\linewidth]{figs/KEvT}
- 		\caption{fix figure}
- 		\label{fig:5thKE}
- 	\end{minipage}
- \end{figure}
+Results from the exact VOF feild approximation indicated that the method performed as anticipated and accuracy increased with mesh refinement. With the successful implementation and initial calculation, the method was again tested using the oscillating droplet test case. Here, instead of the dissipation of kinetic energy we saw behavior similar to that of the standard height function method. The scheme was stable initially and then kinetic energy grew uncontrollably until eventual simulation failure.
 
 \subsection{Importance of Scale}
- Fifth order polynomials as used here, can have large oscillations in the curvature calculation leading to the observed errors in figure \ref{fig:5thKE}.This error is likely due to the scheme being influenced by areas of both highly positive and highly negative curvature within the fit. In a 2018 article, Owkes et al.~found that the scale with which curvature is computed on heavily influences the growth of interface perturbations~\cite{Owkes2018}.This article also suggested that at certain scales, a second order method was more agreeable with accurate interface dynamics than a fourth order method on the same scale~\cite{Owkes2018}. With this, we considered the possibility that a fifth order function on the fine grid scale may be over-fitting the points and reconstructing an interface with more perturbations than actually exist, essentially exacerbating our problem as opposed to alleviating it. 
+ Fifth order polynomials as used here, can have large oscillations in the curvature calculation leading to the errors which were observed in the droplet test case.This error is likely due to the scheme being influenced by areas of both highly positive and highly negative curvature within the fit. In a 2018 article, Owkes et al.~found that the scale with which curvature is computed on heavily influences the growth of interface perturbations~\cite{Owkes2018}.This article also suggested that at certain scales, a second order method was more agreeable with accurate interface dynamics than a fourth order method on the same scale~\cite{Owkes2018}. With this, we considered the possibility that a fifth order function on the fine grid scale may be over-fitting the points and reconstructing an interface with more perturbations than actually exist, essentially exacerbating our problem as opposed to alleviating it. 
 
-
-
+\subsection{Second Order Fine Grid Height Function Method}
 \begin{figure}[htbp]
 	\centering
 	\begin{tikzpicture}[scale=3.5]
@@ -280,30 +260,18 @@ Figure~\ref{fig:1stDer} shows the solution of the resulting fifth order finite d
 	\draw [arrows=->,line width=1.0] (2.25,0) -- (2.25,0.3);\node [below] at (2.25,0) {\scriptsize $h_{2}$};
 	\draw [arrows=->,line width=1.0] (2.75,0) -- (2.75,0.7);\node [below] at (2.75,0) {\scriptsize $h_{3}$};	
 	\end{tikzpicture}
-	\caption{$2^{nd}$ Order Fit}
+	\caption{The proposed $2^{nd}$ order fit still utilizes information from six fine grid heights but hopes to reduce the potential for over-fitting. }
 	\label{fig:2ndhts}
 \end{figure}
-
-
-
-\subsection{Second Order Fine Grid Height Function Method}
-Because the error order of a method comes second to accurately representing physical dynamics, we decided to use the same stencil but pass a 2nd order polynomial through the points. The general idea is represented in Figure~\ref{fig:2ndhts}. Calculating a 2nd order method was done using the same general finite difference technique as described previously but to 2nd order accuracy. The same symmetry assumption as made previously lead to undetermined operators that could be used as a tuning parameters. The aim of this method would be to use the same fine grid information to inform the coarse model but to smear the function to reduce unwanted perturbations. Again with mesh refinement, calculation of an exact curvature field produced encouraging results as seen in Figure~\ref{fig:2ndCurv.png}.   Parameterization of the free variables allows for an optimized solution which produces more favorable results than the fifth order method as seen in Figure~\ref{fig:2ndKE}. However, the method still allows for the uncontrolled growth of fine grid fluctuations which results in simulation failure. 
- \begin{figure}[htbp]
-	\centering
-	\begin{minipage}{.5\textwidth}
-		\centering
-		\includegraphics[width=1.0\linewidth]{figs/curvCalc.png}
-		\caption{fix figure}
-		\label{fig:2ndcurv}
-	\end{minipage}%
-	\begin{minipage}{0.5\textwidth}
-		\centering
-		\includegraphics[width=1.0\linewidth]{figs/KEvT}
-		\caption{fix figure}
-		\label{fig:fig:2ndKE}
-	\end{minipage}
-\end{figure}
-
+Because the error order of a method comes second to accurately representing physical dynamics, we decided to use the same stencil but shift to a $2^{nd}$ order polynomial. The general idea is represented in Figure~\ref{fig:2ndhts}. Calculating a $2^{nd}$ order method was done using the same general finite difference technique as described previously but to $2^{nd}$ order accuracy. To approximate the same Taylor series to $2^{nd}$ order accuracy, a symmetry assumption was made about the coefficients. Namely that
+\begin{equation}
+	\begin{split}
+		a_{-1} = -a_1 \\
+		a_{-2} = -a_2 \\
+		a_{-3} = -a_3 
+	\end{split}
+\end{equation}
+ which lead to undetermined operators that could be used as tuning parameters. The aim of this method was to use the same fine grid information to inform the coarse model but to smear the function to reduce unwanted perturbations. Again with mesh refinement, calculation of an exact curvature field produced encouraging results. Parameterization of the free variables allowed for an optimized solution which produced more favorable results than the fifth order method. However, the method still allowed for the uncontrolled growth of fine grid fluctuations which resulted in eventual simulation failure. 
 
 \subsection{Gaussian Filtering Second Order Method}
 \begin{figure}[htbp]
@@ -323,12 +291,10 @@ Because the error order of a method comes second to accurately representing phys
 	\draw [arrows=->,line width=1.0] (2.25,0) -- (2.25,0.3);\node [below] at (2.25,0) {\scriptsize $h_{2}$};
 	\draw [arrows=->,line width=1.0] (2.75,0) -- (2.75,0.7);\node [below] at (2.75,0) {\scriptsize $h_{3}$};
 	\end{tikzpicture}
-	\caption{Gaussian Fit}
+	\caption{Applying a Gaussian filtering kernal to the previous $2^{nd}$ order method allows for an adjustment of scale of the fit.}
 	\label{fig:Ghts} 
 \end{figure}
-In the 5th order method, curvature is evaluated at the center of the stencil. However, a more reasonable curvature can be obtained by computing an average curvature over the stencil. This is done by filtering equation \ref{eqn:poly} with a Gaussian distribution as in equation \ref{eqn:filt}. This smooths the polynomial and allows for a more realistic estimation of the curvature. Averaging is achieved using a convolution with a weighting kernel. Transition to $\zeta$ space simplifies this scheme and is defined as $\zeta = \frac{2}{\Delta x}(x-x_i)$. This scheme requires only one floating variable ($\sigma$) as seen in equation \ref{eqn:G}. Varying this parameter modifies the scale and filtering kernel of the scheme, allowing optimal operating parameters to be determined. Here, scale refers to the size of the computational stencil with which the curvature is computed as previously described by Owkes et al. \cite{Owkes2018}. As seen in figure \ref{fig:GPlot}, the result is better than previous iterations and is significantly more accurate than the standard height function method. However, this model also provides undesirable results at later time steps.     
-
-\vspace{-0.2in}
+In the $5^{th}$ order method, curvature is evaluated at the center of the stencil. However, a more reasonable curvature can be obtained by computing an average curvature over the stencil. This is done by filtering Eqn.~\ref{eqn:poly} with a Gaussian distribution as in Eqn.~\ref{eqn:filt}. This smooths the polynomial and allows for a more realistic estimation of the curvature. Averaging is achieved using a convolution with a weighting kernel. Transition to $\zeta$ space simplifies this scheme and is defined as $\zeta = \frac{2}{\Delta x}(x-x_i)$. This scheme requires only one floating variable ($\sigma$) as seen in Eqn.~\ref{eqn:G}. Varying this parameter modifies the scale and filtering kernel of the scheme, allowing optimal operating parameters to be determined. Here, scale refers to the size of the computational stencil with which the curvature is computed as previously described by Owkes et al.~\cite{Owkes2018}. This scheme provided results which were better than previous iterations and significantly more accurate than the standard height function method. However, this model also provided undesirable results at later time steps when simulating an oscillating droplet.     
 \begin{equation}
 \kappa = \int_{-3}^{3} G(\zeta) \kappa(\zeta) d\zeta
 \label{eqn:filt}
@@ -338,34 +304,59 @@ G(\zeta) = \frac{1}{\sqrt{2 \pi \sigma^2}}e^\frac{- \zeta^2}{2\sigma^2}
 \label{eqn:G}
 \end{equation} 
 
- \begin{figure}[htbp]
-	\centering
-	\begin{minipage}{.5\textwidth}
-		\centering
-		\includegraphics[width=1.0\linewidth]{figs/curvCalc.png}
-		\caption{fix figure}
-		\label{fig:Gcurv}
-	\end{minipage}%
-	\begin{minipage}{0.5\textwidth}
-		\centering
-		\includegraphics[width=1.0\linewidth]{figs/KEvT}
-		\caption{fix figure}
-		\label{fig:GPlot}
-	\end{minipage}
-\end{figure}
-
+\section{Fine Grid Velocities}
+With all  implementations of the fine grid height function we found the remaining existence of interfacial perturbations. While the fine grid height function method does provide a more rigorous representation of curvature, it does not reduce or remove these perturbations which are nonphysical and lead to the eventual failure of the simulation. It became clear that actively reducing these discontinuities could provide the interface smoothness necessary for a successful fine grid height function incorporation. To reduce the influence of these perturbations we chose to implement an additional velocity which existed only on the fine grid. 
 
 \subsection{Implementation of Fine Grid Velocities}
-With all three of the previous implementations we found the remaining existence of fine grid interfacial perturbations. While the fine grid height function method does provide a more rigorous representation of curvature, it does not reduce or remove these perturbations which are nonphysical and lead to the eventual failure of the simulation. To actively reduce the influence of these perturbations a fine grid velocity is implemented based on the work of Herrmann~\cite{Herrmann2013}. This method utilizes a spring-damper analogy to approximate interface motion and is derived  originally from the Taylor analogy breakup model (TAB) of O'Rouke and Amsden~\cite{TAB}. The update equation proposed by Herrmann  is 
+Initial attempts to include a fine grid velocity started by considering a coarse grid cell. Because of the use of a Rudman dual grid, the VOF calculation occurs on the fine grid. The PLIC which constructs the interface is also calculated on the fine grid. The discontinuities between PLIC's are what create the parasitic interfacial perturbations which have been discussed. An example of this can be seen in Figure~\ref{fig:PLICS}.
+\begin{figure}[htbp]
+	\begin{minipage}{0.45\textwidth}
+		\centering
+%		\includegraphics[width=0.5\linewidth]{figs/PLICS.png}
+		\begin{tikzpicture}[scale=2.5]
+		% Mesh
+			\draw [cyan!20 ,fill=cyan!20] (0.0,0.0) rectangle (1.0,0.7) ;
+			\draw [cyan!20 ,fill=cyan!20] (1.0,0.0) rectangle (2.0,1.3) ;
+			\draw [dashed,step=1.0, help lines] (0 ,0) grid (2,2);
+			\draw [thick,step=1.0] (0.0 , 0.0) rectangle (2.0,2.0); 
+			
+			\node at (0.5,0.5) {\scriptsize $\alpha = 0.7$};
+			\node at (1.5,0.5) {\scriptsize $\alpha = 1.0$};
+			\node at (1.5,1.5) {\scriptsize $\alpha = 0.3$};
+			
+		\end{tikzpicture}
+		\caption{Discontinuities at regions where PLICS join are the source of interface perturbations.}
+		\label{fig:PLICS}
+	\end{minipage}%
+	\hfill
+	\begin{minipage}{0.45\textwidth}
+	\centering
+	\begin{tikzpicture}[scale=2.5]
+	% Mesh
+	\draw [cyan!20 ,fill=cyan!20] (0.0,0.0) rectangle (1.0,0.7) ;
+	\draw [cyan!20 ,fill=cyan!20] (1.0,0.0) rectangle (2.0,1.3) ;
+	\draw [dashed,step=1.0, help lines] (0 ,0) grid (2,2);
+	\draw [thick,step=1.0] (0.0 , 0.0) rectangle (2.0,2.0); 
+	\draw [thick, decorate,decoration={brace,amplitude=6pt,mirror},xshift=0pt,yshift=0pt](1,0.7) -- (1,1.3) node [black,midway,xshift=0.75cm, yshift=0.25cm] {\footnotesize $FG_{area}$};
+	\draw [arrows=->,line width=2.0] (0.5,0.7) -- (0.5,1.2); \node [below ] at (0.5,0.7) {\scriptsize $\bm{v}_{\text{fg}}(FG_{area})$};
+	\draw [arrows=->,line width=2.0] (1.5,1.8) -- (1.5,1.3); \node [above ] at (1.5,1.8) {\scriptsize $\bm{v}_{\text{fg}}(FG_{area})$};
+	\end{tikzpicture}
+	\caption{Discontinuities provide an area with which to scale a fine grid velocity.}
+	\label{fig:cor}
+	\end{minipage}
+\end{figure}
+Using a correction velocity which is based on the area of this discontinuity as in Figure~\ref{fig:cor} allows for a proportional correction that is only present where discontinuities exist. This method seemed promising initially by collapsing very simple geometric discontinuities such as those seen in Figure~\ref{fig:cor} but, could not provide adequate solutions for more complex fields such as an oscillating droplet simulation. 
+
+In trying to develop a more robust approach to the area based velocity method, an approach developed by Herrmann was discovered and seemed as though it may provide a  solution~\cite{Herrmann2013}. This method utilizes a spring-damper analogy to approximate interface motion and is derived  originally from the Taylor analogy breakup model (TAB) of O'Rouke and Amsden~\cite{TAB}. The update equation proposed by Herrmann  is 
+
 \begin{equation}
 \frac{\partial \bm{u}_{\text{fg}}}{\partial t} +
-(\bar{\bm{u}}+\bm{u}_{\text{fg}}) \cdot \nabla \bm{u}_{\text{fg}} = \\
+(\bar{\bm{u}}+\bm{u}_{\text{fg}}) \cdot \nabla \bm{u}_{\text{fg}} =
 c_{\sigma}\frac{\sigma}{\rho}\bar{\kappa}(\kappa_{\text{fg}}-\bar{\kappa})- 
-c_{\mu}\frac{\mu}{\rho L^2}\bm{u}_{\text{fg}}\nonumber
+c_{\mu}\frac{\mu}{\rho L^2}\bm{u}_{\text{fg}}
 \label{eqn:HermEq}
 \end{equation}
-
-\noindent where, $\bar{\bm{u}}$ is the resolved velocity,
+where, $\bar{\bm{u}}$ is the resolved velocity,
 $\bm{u}_{\text{fg}}$ is the fine grid velocity,
 $\sigma$ is the surface tension coefficient,
 $\rho$ is density, 
@@ -375,66 +366,49 @@ $\mu$ is the dynamic viscosity,
 $L$ is a modeling length scale and
 $C_\sigma$ and
 $C_\mu$ are surface tension and viscous scaling coefficients, respectively~\cite{Herrmann2013}. 
-The left side of the equation includes a velocity time rate of change as well as a convective term, while the right side includes the surface tension term which acts as a spring force and the viscous term which is analogous to a damping force. By this analogy, system behavior can be moderated by scaling the value on the surface tension or viscous coefficients. One important feature of this method is that it incorporates a difference of coarse grid curvature ($\bar{\kappa}$) and fine grid curvature ($\kappa_{\text{fg}}$). While there are several ways to approximate this difference, assume the coarse grid curvature is computed using a standard height function method and the fine grid curvature is computed using a second order height function approximation. Other options will be detailed in later sections.
-The generalized update algorithm can be summarized as 
+The left side of the equation includes a velocity time rate of change as well as a convective term, while the right side includes the surface tension term which acts as a spring force and the viscous term which is analogous to a damping force. By this analogy, system behavior can be moderated by scaling the value on the surface tension or viscous coefficients. One important feature of this method is that it incorporates a difference of coarse grid curvature ($\bar{\kappa}$) and fine grid curvature ($\kappa_{\text{fg}}$). This relation draws a link between the two scales and allows for a coupling of the fine grid and coarse grid methods. While there are several ways to approximate the difference in curvature, we chose to begin with a simple approximation of the coarse grid curvature and used a standard height function method. The fine grid curvature was computed using a second order height function approximation. The generalized update algorithm for Herrmann's equation can be summarized as 
 \begin{enumerate}
-	\item Solve for coarse grid curvature, $\kappa$
-	\item Solve for fine grid curvature , $\kappa_{\text{fg}}$
-	\item Interpolate coarse grid velocity components to subcell center
-	\item Compute the gradient of velocity
+	\item Solve for coarse grid curvature, $\kappa$, using Eqn.~\ref{eqn:kap}.
+	\item Solve for fine grid curvature , $\kappa_{\text{fg}}$, again using Eqn.~\ref{eqn:kap} but with the $2^{nd}$ order method as outlined previously.
+	\item Interpolate coarse grid velocity components to subcell center using a linear averaging scheme.
+	\item Compute the gradient of velocity as in Eqn.~\ref{eqn:grad}.
 	\item Compute normal vector 
-	\item Compute viscous term 
-	\item Compute density term
-	\item Determine accompanying fine grid velocity terms (for $\bm{x}$ direction, $\bm{v}$ \& $\bm{w}$ terms are needed) 
-	\item Update fine grid velocity value at cell face
-	\item Iterate through time
+	\item Compute viscous term as a linear average, $\mu =\frac{ \mu_{\text{liq}} + \mu_{\text{gas}}}{2}$.
+	\item Compute density term as a linear average, $\rho =\frac{ \rho_{\text{liq}} + \rho_{\text{gas}}}{2}$.
+	\item Interpolate accompanying fine grid velocity terms (for $\bm{x}$ direction, $\bm{v}$ \& $\bm{w}$ terms are needed) to the fine grid face to use in the convective term of the update equation.
+	\item Update fine grid velocity value at cell face using Eqn.~\ref{eqn:update}
+	\item Iterate through time as $\bm{u}_{\text{fg}}^{\text{n+1}}  = \bm{u}_{\text{fg}}^{\text{n}}+ \Delta t \bm{u}_{\text{fg, update}}$
 \end{enumerate}
-
- The update equation using equation~\ref{eqn:HermEq}, simplified to one-dimension can be written as 
-
+The update equation using equation~\ref{eqn:HermEq}, simplified to one-dimension can be written as 
 \begin{equation}
- \bm{u_{fg,update}}= 
+\bm{u_{\text{fg,update}}}= 
 -(\bar{\bm{u}}+\bm{u}_{\text{fg}}) \cdot \nabla \bm{u}_{\text{fg}} 
 -c_{\sigma}\frac{\sigma}{\rho}\bar{\kappa}(\kappa_{\text{fg}}-\bar{\kappa})- 
-c_{\mu}\frac{\mu}{\rho L^2}\bm{u}_{\text{fg}}\nonumber
+c_{\mu}\frac{\mu}{\rho L^2}\bm{u}_{\text{fg}}
 \label{eqn:update}
 \end{equation}
 which discretizes as 
 \begin{multline}
- \bm{u_{\text{fg,update}}}=\\
- - ( \bm{u_{\text{cg}}}(x) + \bm{u_{\text{fg}}}(\text{s,i,j,k}) ) \cdot \nabla \bm{u_{\text{fg,x}}} \\
- - ( \bm{u_{\text{cg}}}(y) + \bm{v_{\text{fg}}}     ) \cdot \nabla \bm{u_{\text{fg,y}}} \\
- - ( \bm{u_{\text{cg}}}(z) + \bm{w_{\text{fg}}}    ) \cdot \nabla \bm{u_{\text{fg,z}}} \\
- - C_{\sigma}\frac{\sigma}{\rho}\kappa(\kappa_{\text{fg}}-\kappa)\bm{n_{\text{x}}} \\
- - C_{\mu} \frac{\mu \bm{u_{\text{fg}}}}{\rho L^2}  \bm{u_{\text{fg}}}(\text{s,i,j,k})
+\bm{u_{\text{fg,update}}}=
+- ( \bar{\bm{u}} + \bm{u_{\text{fg}}}(\text{s,i,j,k}) ) \frac{d\bm{u_{\text{fg}}}   } { dx} 
+- ( \bar{\bm{v}} + \bm{v_{\text{fg}}}     ) \frac{d\bm{u_{\text{fg}}}   } { dy}
+- ( \bar{\bm{w}} + \bm{w_{\text{fg}}}    ) \frac{d\bm{u_{\text{fg}}}   } { dz}  \\
+- C_{\sigma}\frac{\sigma}{\rho}\kappa(\kappa_{\text{fg}}-\kappa)\bm{n_{\text{x}}} 
+- C_{\mu} \frac{\mu \bm{u_{\text{fg}}}}{\rho L^2}  \bm{u_{\text{fg}}}(\text{s,i,j,k})
 \end{multline}
-
-
-%RHS_U(s,i,j,k) = &
-%- ( VelU(1) + Uf(s,i,j,k) ) * gradUfx &
-%- ( VelU(2) + Vfhere      ) * gradUfy &
-%- ( VelU(3) + Wfhere      ) * gradUfz &
-%- C_sig*sigma/rhoUf*delta*(curvUf-CurvUc)*normUf(1) &
-%- C_mu *muUf/rhoUf*L**2*Uf(s,i,j,k)
-\noindent and the gradient is discretized using a central finite difference as  
-
-\begin{minipage}{0.25\textwidth}
-	\begin{equation*}
-	\nabla \bm{u}_{\text{fg,x}}  \rightarrow 
-	\end{equation*}\\
-\end{minipage}
-\begin{minipage}{0.6\textwidth}
-	\begin{equation}		
-			\frac{\bm{u_{\text{fg}  }(\text{s$^+$,i$^+$,j,k}) - \bm{u_{\text{fg}  }(\text{s$^-$,i$^-$,j,k})} }}  {  \Delta x_{\text{fg}  }}.
-	\end{equation}\\
-\end{minipage}
-
+and the gradient is discretized using a central finite difference as  
+	\begin{equation}
+	\nabla \bm{u}_{\text{fg,x}}  =
+	\frac{\bm{u_{\text{fg}  }(\text{s$^+$,i$^+$,j,k}) - \bm{u_{\text{fg}  }(\text{s$^-$,i$^-$,j,k})} }}  {  \Delta x_{\text{fg}  }}.
+	\label{eqn:grad}
+	\end{equation}
+Density and viscous terms are linear averages of the respective phase components, and $\bm{u}_{\text{cg}}$ are interpolated coarse grid velocity components from each respective direction. Note that the $s$ index in Eqn.~\ref{eqn:grad} refers to the fine grid cell currently being accessed and the operator $\text{s$^+$}$ refers to the direction of the adjoining subcell. The same notation is true for the $i$ index. Illustration of subcell placement can be seen in Figure~\ref{fig:fgOrient}. Because movement within the fine grid can become tedious, NGA incorporates lookup tables which help to minimize confusion. These lookup tables take advantage of the repetitive sequencing of subcell identifiers to ensure correct referencing of neighboring cells and subcells. If subcell index $1$ is being accessed, the left and right neighbor are both subcell index $2$, what changes is the coarse grid index. These quick reference routines make finite differencing operations less confusing by allowing for directional referencing. 
 \begin{figure}[htbp]
 	\centering
 	\begin{tikzpicture}[scale=2.0]
 	% Mesh
-	\draw [step=1.0, help lines] (0 , 0) grid (2,2);
 	\draw [dashed,step=0.5, help lines] (0 ,0) grid (2,2);   
+	\draw [black, thick, step=1.0] (0 , 0) grid (2,2);
 	% subcell identifiers
 	\node at (0.25,0.25) {\scriptsize $1$};
 	\node at (1.25,0.25) {\scriptsize $1$};
@@ -463,162 +437,182 @@ which discretizes as
 	\node at (-0.25,1.5) {\scriptsize $j+1$};
 	
 	\end{tikzpicture}
-	\caption{Fine grid orientation}
+	\caption{Fine grid orientation of subcell indicies. }
 	\label{fig:fgOrient}
 \end{figure}
-\noindent Density and viscous terms are linear averages of the respective phase components, and $\bm{u}_{\text{cg}}$ are interpolated coarse grid velocity components from each respective direction. Note that the $s$ index refers to the fine grid cell and the operator $\text{s$^+$}$ refers to the direction of the adjoining subcell. Illustration of subcell placement can be seen in Figure~\ref{fig:fgOrient}. Because movement within the fine grid can become tedious, NGA incorporates lookup tables which help to minimize confusion. These lookup tables take advantage of the repetitive sequencing of subcell identifiers to ensure accurate referencing of neighboring cells and subcells. \hl{go deeper} 
-
-
-\subsection*{Correction Incorporation} 
-Away from the phase interface, NGA uses high-order finite difference operators that conservatively transport mass, momentum, and any other scalars~\cite{NGA2}.  Near the phase interface however, the finite difference operators are inappropriate due to the discontinuous interface region.  To accurately and conservatively transport near the interface, an unsplit geometric semi-Lagrangian flux method is used~\cite{Owkes2017,Owkes2014}. This method relies on signed streaktubes, which contain the region of the domain that moves through a computational cell face during the timestep~\cite{Owkes2017}.  The streaktube is represented with a collection of tetrahedra as shown in Figures~\ref{fig:streak} \&~\ref{fig:simp} and computational geometry is used to compute the flux of liquid, mass, momentum, and any scalars~\cite{Owkes2017}. A correction is incorporated which forces a solenoidal condition for the cell. Adding the fine-grid velocity correction is done by modifying the additional flux due to the fine-grid velocities. For the finite difference scheme this entails adding the fine-grid velocities associated with a cell face onto the convection velocity at that face. Including the fine-grid velocity requires modifying the streaktubes and in this work two additional tetrahedra are added to each subface such that the volume of the additional tetrahedra is equal to $V_\text{tets}=\Delta t \mathcal{A}_\text{face} \bm{u}_\text{fg}\cdot\bm{n}$. This addition provides an explicit numerical representation of the fine grid velocity correction and maintains conservation laws. 
-
- \begin{figure}[htbp]
-	\centering
-	\begin{minipage}{.5\textwidth}
-		\centering
-		\includegraphics[width=1.0\linewidth]{figs/streaktube.png}
-		\caption{fix figure}
-		\label{fig:streak}
-	\end{minipage}%
-	\begin{minipage}{0.5\textwidth}
-		\centering
-		\includegraphics[width=1.0\linewidth]{figs/simplicies}
-		\caption{fix figure}
-		\label{fig:simp}
-	\end{minipage}
-\end{figure}
-
-\subsubsection{Streaktube Mathematical Formulation}
-Streaktube development relies on conservation laws applied to a fixed control volume. The following derivation presents advection of a scalar partial differential equation (PDE) into a scalar quantity as it progresses with time due to geometric flux. While the interested reader can be directed to~\ref{1,2,3,4,5,6}  for similar derivations of equation~\ref{eqn:finalStreak}, this derivation is valuable in that it shows exact relations between equation~\ref{eqn:alpha} for a liquid volume fraction ($\alpha$), and equation~\ref{eqn:adv} for a general advected function, $f(x,t)$~\ref{Owkes2017}. This derivation shows that fluxes used within NGA to advect a function through time can be calculated by formulating streaktubes at each cell face of a control volume and evaluating that function at the current timestep. More simply, the derivation provides rigorous validation that any conserved scalar quantity that fluxes through a control volume face at a given timestep can be calculated in the previous timestep as a volumetric quantity and represented geometrically as such as displayed by Figure~\ref{fig:streak}.  
-
-\subsubsection{Derivation}
-A conserved scalar $f(\bm{x},t)$ evolves in a solenoidal velocity field as 
-\begin{equation}
-	\frac{\partial f}{\partial t} + \nabla \cdot (\bm{u} f) = 0
-	\label{eqn:der1}
-\end{equation}
-where \bm{x} is the spatial coordinate value, $t$ is time, and \bm{u} is the velocity field which is known~\ref{Owkes2014}. Integrating this equation over a timestep and the area of a computational cell while using Gauss' theorem on the advection term, we find 
-\begin{equation}
-\int_{CV} (  f(\bm{x}, t^{n+1})  - f(\bm{x}, t^{n})  ) dV  + \int_{t^n}^{t^{n+1}} \oint_{CV} f \bm{u} \cdot \bm{n}_{CV} dS dt = 0.
-	\label{eqn:der2}
-\end{equation}
-The right term is the surface flux through the control volume and is dependent on $f( \bm{x}, t^{n})$, which is not normally a known quantity. However, a discrete representation of $f( \bm{x}, t^{n})$ is typically known and and update equation can be used to determine $f( \bm{x}, t^{n+1})$. So, the flux is reformulated so that it is solely dependent on $f( \bm{x}, t^{n})$. This is achieved by subdividing the surface of the control volume $CS$ into sub-surfaces $\partial{CS_i}$ such that 
-\begin{equation}
-	CS = \bigcup_{i=1}^{N_S} \partial CS_i \text{  and  } \\
-	\partial CS_i \cap \partial CS_j = 0 \text{ for } i \text{ and } j \in \{1,.....,N_S \} \text{ and } i \not = j
-		\label{eqn:der3}
-\end{equation}
-On each sub-surface $\partial CS_i$ we can link the flux volume $\Omega_i(t)$ to the bounding surface $\omega_i(t)$. $\Omega_i(t)$ is just the signed volume which flows through the sub-surface $\partial CS_i$ over a given timestep $\Delta t$.  The sign of the volume is dependent on the orientation into or out of the control volume and is positive if flowing out of, and negative if flowing into, the control volume~\ref{Owkes2017}. 
-
-Integrating Equation~\ref{eqn:der1} over the flux volume $\Omega_i$ and again using Gauss' theorem on the second term we find 
-\begin{equation}
-	\int_{\Omega_i(t)} \frac{\partial f}{\partial t} dV  + \oint_{\omega_i(t)} f \bm{u} \cdot \bm{n}_{\Omega_i} dS = 0.
-	\label{eqn:der4}
-\end{equation}
-Here, $\bm{n}_{\Omega_i}$ is the outward facing normal to the flux volume $\Omega_i(t)$. The bounding surface $\omega_i$ is partitioned as $\omega_{i,F} = \omega_i \cap \partial CS_i = \partial CS_i$, which is fixed and $\omega_{i,M} = \omega_i \backslash \partial CS_i $ which is a material surface~\ref{Owkes2017}. This is valid by defining part of $\omega_i$ as having zero flux of $f$ and therefore must move with the flow. The other portion of $\omega_i$ is defined such that it coincides with $\partial CS_i$, which is fixed in time. Intergrating Eq.~\ref{eqn:der4} over time and using the previous partition we find that 
-\begin{equation}
-	\int_{t^n}^{t^{n+1}} \int_{\Omega_i(t)} \frac{\partial f}{\partial t} dV dt + \int_{t^n}^{t^{n+1}} \int_{\omega_{i,M}(t)} f \bm{u} \cdot \bm{n}_{\Omega_i} dS dt + 	\int_{t^n}^{t^{n+1}} \int_{\partial CS_i} f \bm{u} \cdot \bm{n}_{\Omega_i} dS dt = 0.
-	\label{eqn:der5}
-\end{equation}
-Because of its similarity to the flux term in Eq.~\ref{eqn:der2}, the right term of the above equation will provide a bridge between the two equations. The remaining terms can be made more clear using Leibniz's method which states 
-\begin{equation}
-	\frac{d}{dt} \int_{\Omega_i(t)} f dV = \int_{\Omega_i(t)} \frac{\partial f}{\partial t} dV + \int_{\omega_{i,M}(t)} f \bm{u} \cdot \bm{n}_{\Omega_i} dS.
-	\label{eqn:der6}
-\end{equation}
-With this, we can see that a $\Omega_i(t)$ is a streaktube projected backward in time from the surface $\partial CS_i$ over the timestep $\Delta t$. Integrating Eq.~\ref{eqn:der6} with time results in 
-\begin{equation}
-	\int_{\Omega_i(t^{n+1})} f (\bm{x} , t^{n+1}) dV - \int_{\Omega_i(t^{n})} f (\bm{x} , t^{n}) dV  = \int_{t^n}^{t^{n+1}}\int_{\Omega_i(t)} \frac{\partial f}{\partial t} dV dt+ \int_{t^n}^{t^{n+1}} \int_{\omega_{i,M}(t)} f \bm{u} \cdot \bm{n}_{\Omega_i} dS dt.
-	\label{eqn:der7}
-\end{equation}
-By definition, $\Omega_i(t^{n+1})$ is zero, making the first term equal to zero. We can adopt the notation that $\Omega_i=\Omega_i(t^{n})$ and call this term the flux volume. Subtracting Eq.~\ref{eqn:der7} from Eq.~\ref{eqn:der5} we find that 
-\begin{equation}
-	\int_{t^n}^{t^{n+1}}\int_{\partial CS_i}  f \bm{u} \cdot \bm{n}_{\Omega_i} dS dt = \int_{\Omega_i} f (\bm{x} , t^{n}) dV, 
-	\label{eqn:der8}
-\end{equation}
-which gives us a simple relation between the flux through the sub-surface $\partial CS_i$ and the volume integral over $\Omega_i$.
-
-To obtain a useful time advancement equation we would like to combine Eq.~\ref{eqn:der2} and Eq.~\ref{eq,:der8}. However, doing so requires a relation between the normal terms, $\bm{n}_{CV}$ and $\bm{\Omega}$ as these normals are both defined using the same surface. This means that either, the two normals are identical or face opposite directions. We assume a signed notation for portions of the control surface and associate them with the flux volumes similarly. With this relationship we can finally obtain 
- \begin{equation}
-	 \int_{CV} (f (\bm{x} , t^{n+1}) - f (\bm{x} , t^{n}) )dV + \sum_{i=1}^{N_S}\int_{\Omega_S} f (\bm{x} , t^{n}) )dV =0
-	 \label{eqn:derFinal}
- \end{equation}
-where $\Omega_S$ is now the signed streaktube. The final form provides that the change in the scalar $f$  within the control volume $CV$ over the timestep $\Delta t$ must be equal to the volume integral of the signed flux volumes.
 
 \subsection{Modification of Fine Grid Velocity}
-Initial results of the fine grid velocity method coupled with height function calculation of curvature suggested a fundamental problem. While explicit curvature calculation remained consistent with previous methods, the oscillating droplet test case again proved difficult as seen by Figures~\ref{fig:OGfgVelKE}~\&~\ref{fig:OGfgVelCurv}. Close inspection of Eq.~\ref{eqn:HermEq} reveals that the equation is not well-poised when the coarse-grid curvature, $\bar{\kappa}$, is zero as the entire spring force goes to zero even if fine-grid interface perturbations exist.  An alternative is to base the source term on the difference between coarse and fine-grid curvatures and add a delta function that restricts the source term to only be non-zero at the interface.  The approximation of the Dirac delta function is calculated as the absolute difference in liquid volume fractions between cells divided by the mesh size as in equation~\ref{eqn:delta}.
+Initial results of the fine grid velocity method coupled with height function calculation of curvature suggested a fundamental problem. While explicit curvature calculation remained consistent with previous methods, the oscillating droplet test case again proved difficult. Close inspection of Eq.~\ref{eqn:HermEq} reveals that the equation is not well-poised when the coarse-grid curvature, $\bar{\kappa}$, is zero as the entire spring force goes to zero even if fine-grid interface perturbations exist and $\kappa_{\text{fg}} \neq 0$.  An alternative is to base the source term on the difference between coarse and fine-grid curvatures and add a delta function that restricts the source term to only be non-zero at the interface.  The approximation of the Dirac delta function is calculated as the absolute difference in liquid volume fractions between cells divided by the mesh size as
 \begin{equation}
-\delta = \frac{|\alpha(\text{s,i,j,k}) - \alpha(\text{s,i-sc,j,k}) | }{0.5 \Delta x}
+\delta = \frac{|\alpha(\text{s,i,j,k}) - \alpha(\text{s$^-$,i$^-$,j,k}) | }{0.5 \Delta x}.
 \label{eqn:delta}
 \end{equation}
- Additionally, a pressure term is added to ensure fine grid velocity remains divergence free, further enforcing momentum conservation. With these modifications, the proposed equation to create the fine-grid velocity can be written as
-
+Additionally, a pressure term is added to ensure fine grid velocity remains divergence free, further enforcing momentum conservation. With these modifications, the proposed equation to create the fine-grid velocity can be written as
 \begin{equation}
 \frac{\partial \bm{u}_{\text{fg}}}{\partial t} +
 (\bar{\bm{u}}+\bm{u}_{\text{fg}}) \cdot \nabla \bm{u}_{\text{fg}} = 
 c_{\sigma}\frac{\sigma}{\rho}\delta(\kappa_{\text{fg}}-\bar{\kappa})- 
 c_{\mu}\frac{\mu}{\rho L^2}\bm{u}_{\text{fg}} -
-\nabla P_{\text{fg}}\nonumber
+\nabla P_{\text{fg}}
 \label{eqn:MyEq}
 \end{equation}
 along with the continuity equation
 \begin{equation}
 \nabla\cdot\bm{u}_\text{fg}=0.
 \end{equation}
-The modified update algorithm is 
+The modified update algorithm is now
 \begin{enumerate}
-	\item Solve for coarse grid curvature, $\kappa$
-	\item Solve for fine grid curvature , $\kappa_{\text{fg}}$
-	\item Interpolate coarse grid velocity components to subcell center
-	\item Compute the gradient of velocity
+	\item Solve for coarse grid curvature, $\kappa$, using Eqn.~\ref{eqn:kap}.
+	\item Solve for fine grid curvature , $\kappa_{\text{fg}}$, again using Eqn.~\ref{eqn:kap} but with the $2^{nd}$ order method as outlined previously.
+	\item Interpolate coarse grid velocity components to subcell center using a linear averaging scheme.
+	\item Compute the gradient of velocity as in Eqn.~\ref{eqn:grad}.
 	\item Compute normal vector 
-	\item Compute viscous term 
-	\item Compute density term
-	\item Determine accompanying fine grid velocity terms (for $\bm{x}$ direction, $\bm{v}$ \& $\bm{w}$ terms are needed) 
+	\item Compute viscous term as a linear average, $\mu =\frac{ \mu_{\text{liq}} + \mu_{\text{gas}}}{2}$.
+	\item Compute density term as a linear average, $\rho =\frac{ \rho_{\text{liq}} + \rho_{\text{gas}}}{2}$.
+	\item Interpolate accompanying fine grid velocity terms (for $\bm{x}$ direction, $\bm{v}$ \& $\bm{w}$ terms are needed) to the fine grid face to use in the convective term of the update equation.
 	\item Calculate delta function using equation~\ref{eqn:delta}
-	\item Update fine grid velocity value at cell face
+	\item Predict fine grid velocity value at cell face using Eqn.~\ref{eqn:update}
 	\item Solve pressure Poisson equation 
 	\item Correct velocity value using updated pressure field 
-	\item Iterate through time
+	\item Iterate through time as $\bm{u}_{\text{fg}}^{\text{n+1}}  = \bm{u}_{\text{fg}}^{\text{n}}+ \Delta t \bm{u}_{\text{fg, update}}$
 \end{enumerate}
- \begin{figure}[htbp]
-	\centering
-	\begin{minipage}{.5\textwidth}
-		\centering
-		\includegraphics[width=1.0\linewidth]{figs/curvCalc.png}
-		\caption{fix figure}
-		\label{fig:OGfgVelCurv}
-	\end{minipage}%
-	\begin{minipage}{0.5\textwidth}
-		\centering
-		\includegraphics[width=1.0\linewidth]{figs/KEvT}
-		\caption{fix figure}
-		\label{fig:OGfgVelKE}
-	\end{minipage}
-\end{figure}
 
-Equation~\ref{eqn:MyEq} is representative of the scheme implemented at the time of this publication. As before, the same explicit curvature calculation and oscillating droplet test cases were conducted. Results are shown in Figures~\ref{fig:fgVelCurv}~\&~\ref{fig:fgVelKE} and show considerable improvement from the standard height function method. However, test cases still resulted in nonphysical dynamics when moving to more complex geometries. All test cases examined which include three dimensional geometry resulted in errors which eventually caused simulation failure. 
+Test case results from this iteration again did not represent successful implementation. We began considering the relationship of the difference in curvatures. It seemed that there were various ways to approximate the coarse grid curvature $\bar{\kappa}$ but, that our goal was to influence this value with information from the fine grid. One approximation for $\bar{\kappa}$ is that it is made up as an average of the fine grid curvatures. That is, for a given coarse grid cell, the average of the fine grid curvatures should produce a value close to the coarse grid curvature. We changed the calculation of the coarse grid curvature such that it was an average value of the fine grid curvatures using a simple linear averaging technique. An advantage of this method was that it tied the fine grid velocity to one curvature, the fine grid curvature. This provided us with more freedom over how to calculate the fine grid curvature value and removed a second dependency (the value of $\bar{\kappa}$) for calculating fine grid velocity in our update equation. This method also allowed for a variation in the scale of the smearing acting over the coarse grid curvature.
+
+ Initially, the curvature was calculated as the average of the fine grid curvatures within the cell. An advantageous extension of this method  allows for further smearing to include information of surrounding cells. While this method is convenient in that it's fairly straightforward and provides the previously mentioned advantages, it relies on the assumption that the coarse grid and fine grid curvatures are correlated. This may not be true as the scale at which each is calculated can greatly affect the overall calculation. However, results seem the most promising thus far using this method. Equation~\ref{eqn:MyEq} is representative of the scheme implemented at the time of this publication.  Additional efforts were taken to  find an optimal parameterization strategy with little success. Figure~\ref{fig:para} shows a parameterization study where $C_{\sigma}$ and $C_{\mu}$ varied from $1e^{-6}$ to $1e^6$ and an oscillating droplet test case was ran. While a portion of the runs seem initially successful, tuned parameter values were not found to be consistent across various mesh sizes and no conclusive optimal configuration was found. 
 \begin{figure}[htbp]
 	\centering
-	\begin{minipage}{.5\textwidth}
+	\begin{tikzpicture}
+		\node[anchor=south west,inner sep=0] at (0,0) {\includegraphics[width=1.0\linewidth]{figs/para}};
+		\node at  (2.3,0.5) {\scriptsize $1e^{-6}$};
+		\node at  (13.4,0.5) {\scriptsize $1e^{6}$};
+		\node at  (8.0,-0.25) {$\bm{C_{\sigma}}$};
+		\node at  (1.5,1.0) {\scriptsize $1e^{6}$};
+		\node at  (1.5,7.0) {\scriptsize $1e^{-6}$};
+		\node at  (0.5,4.25) {$\bm{C_{\mu}}$};
+	\end{tikzpicture}
+	\caption{Parameterization study of an oscillating droplet test case. Plots show kinetic energy over time as seen in previous studies. The varying parameters are $C_{\sigma}$ and $C_{\mu}$ which vary from $1e^{-6}$ to $1e^6$.}
+	\label{fig:para}
+\end{figure}
+
+
+\section*{Fine Grid Velocity Flux  Incorporation} 
+Away from the phase interface, NGA uses high-order finite difference operators that conservatively transport mass, momentum, and any other scalars~\cite{NGA2}.  Near the phase interface however, the finite difference operators are inappropriate due to the discontinuous interface region.  To accurately and conservatively transport near the interface, an unsplit geometric semi-Lagrangian flux method is used~\cite{Owkes2017,Owkes2014}. This method relies on signed streaktubes, which contain the region of the domain that moves through a computational cell face during the time step~\cite{Owkes2017}.  The streaktube is represented with a collection of tetrahedra as shown in Figures~\ref{fig:streak} \&~\ref{fig:simp} and computational geometry is used to compute the flux of liquid, mass, momentum, and any scalars~\cite{Owkes2017}. A correction is incorporated which forces a solenoidal condition for the cell. The scheme contains two primary steps. First, a project function approximates an amount of a scalar quantity to project back in time as a volumetric quantity as seen in Figure~\ref{fig:streak}. Then, the volume that was projected is broken up into simplicies until all simplicies contain only one phase as described in the previous section and shown in Figure~\ref{fig:simp}. These simplicies (tetrahedra in 3D) ensure consistent mass and momentum transport.
+
+The addition of a fine grid velocity requires that the additional velocity be incorporated into the flux, this is achieved by adjusting the streaktube scheme. However, several different options exist for doing so. Initially, we incorporated the fine grid velocity directly into the project function. The project function approximates the amount of a scalar value which will need to be advected and projects the quantity back in time. This is done so that the quantity can then be integrated over the time step as described previously. While this method works well across coarse cell faces, it does not always work between subcell faces. As illustrated by Figure~\ref{fig:net0}, when the net velocity being fluxed over subcells within a coarse cell is zero, the project function would assume there was no additional flux to be accounted for. This does not provide a consistent scheme as the fine grid divergence would not be equal to zero globally as required. 
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}[scale=2.5]
+	% Mesh
+	\draw [cyan!20 ,fill=cyan!20] (0.0,0.0) rectangle (1.0,0.5) ;
+	\draw [cyan!20 ,fill=cyan!20] (1.0,0.0) rectangle (2.0,1.5) ;
+	\draw [dashed,step=1.0, help lines] (0 ,0) grid (2,2);
+	\draw [thick,step=1.0] (0.0 , 0.0) rectangle (2.0,2.0); 
+	\draw [arrows=->,line width=2.0] (0.5,0.5) -- (0.5,0.9); \node [below ] at (0.5,0.5) {\scriptsize $\bm{v}_{\text{fg}} =  5$};
+	\draw [arrows=->,line width=2.0] (1.5,1.9) -- (1.5,1.5); \node [below ] at (1.5,1.5) {\scriptsize $\bm{v}_{\text{fg}} = -5$};
+	\end{tikzpicture}
+	\caption{Where net velocity fluxing within a coarse cell is zero, the project function does not incorporate the necessary flux values.}
+	\label{fig:net0}
+\end{figure}
+Seeing this error, we moved to manually adjusting the streaktubes. So, after the project function projects values back in time, the volume is broken into simplicies. We adjusted the simplicies such that the total volume of the streaktube included the additional velocity values. Originally the total streaktube volume could be calculated as 
+\begin{equation}
+	V_{st} = \bm{u} A_{CS}\Delta t .
+\end{equation}
+Adding the fine-grid velocity correction is done by modifying the additional flux due to the fine-grid velocities so that the volume becomes
+\begin{equation}
+V_{st} = (\bm{u}_{\text{cg}}  + \bm{u}_{\text{fg}} )A_{CS}\Delta t .
+\end{equation} For the finite difference scheme this entails adding the fine-grid velocities associated with a cell face onto the convection velocity at that face. This addition provides an explicit numerical representation of the fine grid velocity correction and maintains conservation laws. 
+
+As previously stated, the incorporation of the fine grid height function, fine grid velocity, and flux incorporation all happened simultaneously. However, a description of all methodologies have now been provided. With the most recent iteration of all three schemes integrated into the fine grid method, the baseline test cases were once again evaluated. Results are shown in Figures~\ref{fig:fgVelCurv}~\&~\ref{fig:fgVelKE} and show considerable improvement from the standard height function method. However, test cases still resulted in nonphysical dynamics when moving to more complex geometries such as 3D flow fields. All test cases examined which include three dimensional geometry resulted in errors which eventually caused simulation failure. Because of this continued failure, it seemed appropriate to reevaluate the validity of the original methodology and take a deeper look into the mechanisms which were the cause of these deficiencies.
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}{.45\textwidth}
 		\centering
 		\includegraphics[width=1.0\linewidth]{figs/curvCalc.png}
-		\caption{fix figure}
+		\caption{Calculation of an exact VOF field by the current implementation of the fine grid curvature scheme.}
 		\label{fig:fgVelCurv}
 	\end{minipage}%
-	\begin{minipage}{0.5\textwidth}
+	\hfill
+	\begin{minipage}{0.45\textwidth}
 		\centering
 		\includegraphics[width=1.0\linewidth]{figs/current_KEplot.png}
-		\caption{fix figure}
+		\caption{Kinetic energy plotted over time for an oscillating droplet test case. (-)~Current implementation (.-)~ACES method}
 		\label{fig:fgVelKE}
 	\end{minipage}
 \end{figure}
-Additional efforts were taken to  find an optimal parameterization strategy with little success. Figure~\ref{fig:para} shows a parameterization study where $C_{\sigma}$ and $C_{\mu}$ varied from $1e^-6$ to $1e^6$ and an oscillating droplet test case was ran. While a portion of the runs seem initially successful, tuned parameter values were not found to be consistent across various mesh sizes and no conclusive optimal configuration was found. Because of this, it seemed appropriate to take a deeper look into determining the mechanisms within the method which are the cause of these failures. 
+
+\section{Simplified Test Cases}
+With each of the schemes previously discussed, the method of evaluation consisted of an explicit curvature calculation of an exact VOF field followed by an oscillating droplet test case. Consistently, the exact curvature estimation was successful and the oscillating droplet problematic. The transition between the test cases began to seem like too great of a jump in complexity to have an intimate understanding of the progression of errors occurring. To gain a deeper understanding of the source of failure, it seemed necessary to have more simplified test cases with which to study the method. To this end, four simplified test cases were developed which we hoped would expose the limitations of the schemes.
+
+\subsection{Sine Wave Test Case}
+A sinusoidal interface was constructed as seen in Figure~\ref{fig:sine}. The test case was created specifically to test several key aspects of the method. First, by modifying the geometry of the sinusoid its possible to test internal and external face fluxes independently or jointly. Secondly, because the interface is highly symmetric, variation in velocity and curvature values across the domain helps to highlight deficiencies in boundary conditions as well as inter-cell transport schemes. The goal of this test case is for the fine grid scheme to force a collapse of the interface so that a final curvature of zero is achieved.  
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.5\textwidth]{figs/sine}
+	\caption{A simplified geometry test case is presented with a sinusoidal interface.}
+	\label{fig:sine}
+\end{figure}
+
+\subsection{Interfacial Protrusion Test Case}
+The test cases shown in Figures~\ref{fig:0},~\ref{fig:90},~\&~\ref{fig:45} are all of a simple linear interface at various orientations. At the center of each domain, a protrusion was placed on the interface. The aim of this test case was to recreate specific, isolated, scenarios to see if the fine grid method could accomplish collapsing the interface to a line and obtain a zero curvature across the domain. The protrusion on each interface was built to be approximately one cell width in both height and width.  
+
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}{0.3\textwidth}
+		\fbox{\includegraphics[width=0.95\linewidth]{figs/0}}
+		\caption{A simplified geometry test case is presented with a horizontal interface that includes a protrusion of approximately one cell width.}
+		\label{fig:0}
+	\end{minipage}%
+\hfill
+	\begin{minipage}{0.3\textwidth}
+		\fbox{\includegraphics[width=0.95\linewidth]{figs/90}}
+		\caption{A simplified geometry test case is presented with a vertical interface that includes a protrusion of approximately one cell width.}
+		\label{fig:90}
+	\end{minipage}
+\hfill
+	\begin{minipage}{0.3\textwidth}
+		\fbox{\includegraphics[width=0.95\linewidth]{figs/45}}
+		\caption{A simplified geometry test case is presented with a diagonal interface that includes a protrusion of approximately one cell width.}
+		\label{fig:45}
+	\end{minipage}
+\end{figure}
+
 \begin{figure}
 	\centering
-	\includegraphics[width=1.0\textwidth]{figs/para}
-	\caption{fix figure}
-	\label{fig:para}
+	\includegraphics[width=0.4\linewidth]{figs/bad.png}
+	\caption{Result displaying nonphysical structures typically found in failing oscillating droplet simulations. Often, structures would grow from the four quadrant regions where well defined heights are hardest to obtain.}
+	\label{fig:45s}
 \end{figure}
+
+\subsection{Results}
+For each of the above test cases, with the exception of the $45^{\circ}$ test case, the method was successful in collapsing the interface to a line. This was an interesting discovery and seemed to coincide with results seen in failing oscillating droplet test cases. During the oscillating droplet test, often nonphysical geometries would begin to appear at each of the quadrant regions of the droplet as shown in Figure~\ref{fig:45s}. This finding exposed a key limitation of the model. Well defined heights are not present in this case and cause problems for the height function method. When heights are not well defined, the approximation of derivatives is not accurate and results in nonphysical geometries. The problematic region is highlighted in Figure~\ref{fig:probhts}. Here, we can see that using heights or widths can result in a region of ill-defined heights. The only way to avoid this complication is with mesh refinement. However, instead of indicating an ill-defined test case, this suggests a general shortcoming of height functions.
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+	\node[anchor=south west,inner sep=0] at (0,0) {\includegraphics[width=0.4\linewidth]{figs/45}};
+	\draw[red,thick] (2.07,2.07) rectangle (3.3,5);
+	\draw[red,thick] (2.07,2.5) -- (3.3,2.5);
+	\draw[red,thick] (2.07,2.9) -- (3.3,2.9);
+	\draw[red,thick] (2.07,3.33) -- (3.3,3.33);
+	\draw[red,thick] (2.07,3.75) -- (3.3,3.75);
+	\draw[red,thick] (2.07,4.15) -- (3.3,4.15);
+	\draw[red,thick] (2.07,4.55) -- (3.3,4.55);
+	
+	\draw[red,thick] (2.48,2.07) -- (2.48,5);
+	\draw[red,thick] (2.88,2.07) -- (2.88,5);
+	
+%	\draw[red,pattern=north west lines, pattern color=red] (2.48,3.33) rectangle (2.88,2.9);  
+%	\draw[red,pattern=north west lines, pattern color=red] (2.48,3.33) rectangle (2.07,2.9);  
+	
+	\draw [fill] (2.675,3.53) circle [radius=0.075];
+	\node [above right] at (2.65,3.53) {$\bm{\kappa}$};
+	\end{tikzpicture}
+	\caption{For the diagonal protrusion test case it is evident that the height function is unable to create the necessary well defined heights that are required for an accurate curvature estimation when a protrusion is on the order of a coarse grid cell.}
+	\label{fig:probhts}
+\end{figure}
+
+
+
 
 
 

@@ -1,9 +1,19 @@
 \begin{thebibliography}{10}
 
+\bibitem{star}
+M.~Alexander.
+\newblock Simulation of binary-single star and binary-binary scattering.
+\newblock {\em Journal of Computational Physics}, 64(1):195 -- 219, 1986.
+
 \bibitem{anderson}
 {Anderson, John David.}
 \newblock {\em Computational fluid dynamics: the basics with applications}.
 \newblock McGraw-Hill, 2010.
+
+\bibitem{fish}
+M.~Bergmann and A.~Iollo.
+\newblock Modeling and simulation of fish-like swimming.
+\newblock {\em Journal of Computational Physics}, 230(2):329 -- 348, 2011.
 
 \bibitem{choi}
 H.~Choi and P.~Moin.
@@ -17,22 +27,33 @@ D.~Darmofal.
 
 \bibitem{NGA1}
 O.~Desjardins, G.~Blanquart, G.~Balarac, and H.~Pitsch.
-\newblock {High order conservative finite difference scheme for variable
-  density low Mach number turbulent flows}.
+\newblock High order conservative finite difference scheme for variable density
+  low mach number turbulent flows.
 \newblock 227:7125--7159, 2008.
 
 \bibitem{Desjardins2013}
 O.~Desjardins, J.~O. Mccaslin, and M.~Owkes.
 \newblock {Direct numerical and large-eddy simulation of primary atomization in
-  complex geometries DIRECT NUMERICAL AND LARGE-EDDY SIMULATION OF PRIMARY
-  ATOMIZATION IN COMPLEX GEOMETRIES}.
+  complex geometries }.
 \newblock (December 2016), 2013.
 
 \bibitem{NGA2}
 O.~Desjardins, V.~Moureau, and H.~Pitsch.
-\newblock {An accurate conservative level set/ghost fluid method for simulating
-  turbulent atomization}.
-\newblock {\em Journal of Computational Physics}, 227(18):8395--8416, 2008.
+\newblock An accurate conservative level set/ghost fluid method for simulating
+  turbulent atomization.
+\newblock 227(18):8395--8416, 2008.
+
+\bibitem{HARLOW1965}
+F.~H. {Harlow} and J.~E. {Welch}.
+\newblock {Numerical Calculation of Time-Dependent Viscous Incompressible Flow
+  of Fluid with Free Surface}.
+\newblock {\em Physics of Fluids}, 8:2182--2189, Dec. 1965.
+
+\bibitem{xray}
+T.~J. Heindel.
+\newblock A {Review} of {X}-{Ray} {Flow} {Visualization} {With} {Applications}
+  to {Multiphase} {Flows}.
+\newblock {\em Journal of Fluids Engineering}, 133(7), 2011.
 
 \bibitem{Herrmann2013}
 M.~Herrmann.
@@ -45,10 +66,22 @@ C.~W. Hirt and B.~D. Nichols.
 \newblock {Volume of fluid (VOF) method for the dynamics of free boundaries}.
 \newblock {\em Journal of Computational Physics}, 39(1):201--225, 1981.
 
+\bibitem{magoules}
+F.~Magoules.
+\newblock {\em Computational fluid dynamics}.
+\newblock Chapman \& Hall CRC, 2011.
+
 \bibitem{moin}
 P.~Moin.
 \newblock {\em Fundamentals of Engineering Numerical Analysis}.
 \newblock Cambridge University Press, 2 edition, 2010.
+
+\bibitem{nohwoodward}
+W.~F. {Noh} and P.~{Woodward}.
+\newblock {SLIC /simple line interface calculation/}.
+\newblock In A.~I. {van de Vooren} and P.~J. {Zandbergen}, editors, {\em Some
+  Methods of Resolution of Free Surface Problems}, volume~59 of {\em Lecture
+  Notes in Physics, Berlin Springer Verlag}, pages 330--340, 1976.
 
 \bibitem{TAB}
 P.~J. O'Rourke and A.~A. Amsden.
@@ -60,6 +93,12 @@ M.~Owkes, E.~Cauble, J.~Senecal, and R.~A. Currie.
 \newblock {Importance of curvature evaluation scale for predictive simulations
   of dynamic gas–liquid interfaces}.
 \newblock {\em Journal of Computational Physics}, 365:37--55, 2018.
+
+\bibitem{Owkes2013}
+M.~Owkes and O.~Desjardins.
+\newblock A discontinuous galerkin conservative level set scheme for interface
+  capturing in multiphase flows.
+\newblock {\em Journal of Computational Physics}, 249:275 -- 302, 2013.
 
 \bibitem{Owkes2014}
 M.~Owkes and O.~Desjardins.
@@ -74,22 +113,74 @@ M.~Owkes and O.~Desjardins.
   cross-flow and validation with experiments}.
 \newblock (December), 2014.
 
+\bibitem{Owkes2015}
+M.~Owkes and O.~Desjardins.
+\newblock A mesh-decoupled height function method for computing interface
+  curvature.
+\newblock {\em Journal of Computational Physics}, 281:285 -- 300, 2015.
+
 \bibitem{Owkes2017}
 M.~Owkes and O.~Desjardins.
 \newblock {A mass and momentum conserving unsplit semi-Lagrangian framework for
   simulating multiphase flows}.
 \newblock {\em Journal of Computational Physics}, 332:21--46, 2017.
 
+\bibitem{gasliq}
+J.~Palmore and O.~Desjardins.
+\newblock A volume of fluid framework for interface-resolved simulations of
+  vaporizing liquid-gas flows.
+\newblock {\em Journal of Computational Physics}, 399:108954, 2019.
+
+\bibitem{pope}
+S.~B. Pope.
+\newblock {\em Turbulent Flows}.
+\newblock Cambridge University Press, 2000.
+
+\bibitem{Popinet2009}
+S.~Popinet.
+\newblock An accurate adaptive solver for surface-tension-driven interfacial
+  flows.
+\newblock {\em Journal of Computational Physics}, 228(16):5838 -- 5866, 2009.
+
 \bibitem{Rayleigh}
 L.~Rayleigh.
 \newblock {On the capillary phenomena of jets}.
 \newblock {\em Proc. R. Soc. London}, 29:71--97, 1879.
+
+\bibitem{rudman}
+M.~Rudman.
+\newblock A volume-tracking method for incompressible multifluid flows with
+  large density variations.
+\newblock 1998.
+
+\bibitem{Salih2002}
+A.~Salih and S.~Ghosh~Moulic.
+\newblock Oscillation of a liquid drop in a zero-gravity environment - a
+  benchmark problem for two-phase flow computations.
+\newblock 12 2002.
+
+\bibitem{shadow}
+G.~S. Settles and M.~Hargather.
+\newblock A review of recent developments in schlieren and shadowgraph
+  techniques.
+\newblock 2017.
 
 \bibitem{sheehy}
 P.~Sheehy and M.~Owkes.
 \newblock {Numerical Study of Electric Reynolds Number on Electrohydrodynamic (
   Ehd ) Assisted ...}
 \newblock {\em Atomization and Sprays}, (December), 2016.
+
+\bibitem{Sussman2003}
+M.~Sussman.
+\newblock {A second order coupled level set and volume-of-fluid method for
+  computing growth and collapse of vapor bubbles}.
+\newblock {\em Journal of Computational Physics}, 187(1):110--136, 2003.
+
+\bibitem{Sussman2007}
+M.~Sussman, K.~Smith, M.~Hussaini, M.~Ohta, and R.~Zhi-Wei.
+\newblock A sharp interface method for incompressible two-phase flows.
+\newblock {\em Journal of Computational Physics}, 221(2):469 -- 505, 2007.
 
 \bibitem{TRYG}
 G.~Tryggvason, R.~Scardovelli, and S.~Zaleski.
@@ -100,5 +191,28 @@ G.~Tryggvason, R.~Scardovelli, and S.~Zaleski.
 {Tu, Jiyuan and Yeoh, Guan Heng and Liu, Chaoqun}.
 \newblock {\em Computational fluid dynamics: a practical approach}.
 \newblock Butterworth-Heinemann, 2013.
+
+\bibitem{ocean}
+J.~Weare.
+\newblock Particle filtering with path sampling and an application to a bimodal
+  ocean current model.
+\newblock {\em Journal of Computational Physics}, 228(12):4312 -- 4331, 2009.
+
+\bibitem{piv}
+J.~Westerweel, G.~E. Elsinga, and R.~J. Adrian.
+\newblock Particle image velocimetry for complex and turbulent flows.
+\newblock {\em Annual Review of Fluid Mechanics}, 45(1):409--436, 2013.
+
+\bibitem{freesurf}
+A.~Xuan and L.~Shen.
+\newblock A conservative scheme for simulation of free-surface turbulent and
+  wave flows.
+\newblock {\em Journal of Computational Physics}, 378:18 -- 43, 2019.
+
+\bibitem{biomed}
+T.~Yamaguchi, T.~Ishikawa, K.-i. Tsubota, Y.~Imai, M.~Nakamura, and T.~Fukui.
+\newblock Computational blood flow analysis —new trends and methods.
+\newblock {\em Journal of Biomechanical Science and Engineering}, 1:29--50, 01
+  2006.
 
 \end{thebibliography}

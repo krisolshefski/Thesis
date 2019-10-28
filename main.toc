@@ -2,28 +2,37 @@
 \contentsline {chapter}{\numberline {1.}\MakeUppercase {Introduction}}{1}{chapter.1}
 \setcounter {tocdepth}{3}
 \contentsline {chapter}{\numberline {2.}\MakeUppercase {Theory}}{5}{chapter.2}
-\contentsline {subsection}{Computational Platform}{5}{subsection*.22}
-\contentsline {subsection}{Mesh Generation}{6}{subsection*.24}
-\contentsline {paragraph}{}{7}{paragraph*.27}
-\contentsline {subsection}{Volume of Fluid Formulation}{8}{subsection*.30}
-\contentsline {subsection}{Rudman Dual Grid Formulation}{10}{subsection*.38}
-\contentsline {subsection}{Curvature Estimation - Height Function Methods}{13}{subsection*.44}
-\contentsline {subsection}{Using Height Functions in Conjunction with Rudman Dual Mesh }{16}{subsection*.55}
-\contentsline {subsection}{Oscillating Droplet Test Case}{17}{subsection*.57}
+\contentsline {subsection}{Computational Platform}{5}{subsection*.10}
+\contentsline {subsection}{Streaktube Introduction}{6}{subsection*.11}
+\contentsline {subsection}{Streaktube Derivation}{7}{subsection*.13}
+\contentsline {subsection}{Mesh Generation}{10}{subsection*.14}
+\contentsline {subsection}{Rudman Dual Grid Formulation}{12}{subsection*.17}
+\contentsline {subsection}{Volume of Fluid Formulation}{14}{subsection*.19}
+\contentsline {subsection}{Curvature Estimation - Height Function Methods}{16}{subsection*.23}
 \setcounter {tocdepth}{3}
-\contentsline {chapter}{\numberline {3.}\MakeUppercase {Methodology}}{19}{chapter.3}
-\contentsline {subsection}{Fifth Order Height Function Method}{20}{subsection*.61}
-\contentsline {subsection}{Importance of Scale}{24}{subsection*.68}
-\contentsline {subsection}{Second Order Fine Grid Height Function Method}{25}{subsection*.70}
-\contentsline {subsection}{Gaussian Filtering Second Order Method}{25}{subsection*.72}
-\contentsline {subsection}{Implementation of Fine Grid Velocities}{28}{subsection*.75}
-\contentsline {subsubsection}{Streaktube Mathematical Formulation}{31}{subsubsection*.78}
-\contentsline {subsubsection}{Derivation}{33}{subsubsection*.79}
-\contentsline {subsection}{Modification of Fine Grid Velocity}{35}{subsection*.80}
+\contentsline {chapter}{\numberline {3.}\MakeUppercase {Methodology}}{20}{chapter.3}
+\contentsline {subsection}{Problem Statement}{20}{subsection*.27}
+\contentsline {subsection}{Problem Approach}{21}{subsection*.29}
+\contentsline {subsection}{Method Evaluation - Test Cases}{21}{subsection*.31}
+\contentsline {section}{Fine Grid Height Function Methods}{25}{section*.35}
+\contentsline {subsection}{Fifth Order Method}{25}{subsection*.36}
+\contentsline {subsection}{Importance of Scale}{30}{subsection*.43}
+\contentsline {subsection}{Second Order Fine Grid Height Function Method}{30}{subsection*.44}
+\contentsline {subsection}{Gaussian Filtering Second Order Method}{31}{subsection*.46}
+\contentsline {section}{Fine Grid Velocities}{32}{section*.48}
+\contentsline {subsection}{Implementation of Fine Grid Velocities}{33}{subsection*.49}
+\contentsline {subsection}{Modification of Fine Grid Velocity}{36}{subsection*.52}
+\contentsline {section}{Simplified Test Cases}{43}{section*.56}
+\contentsline {subsection}{Sine Wave Test Case}{43}{subsection*.57}
+\contentsline {subsection}{Interfacial Protrusion Test Case}{44}{subsection*.59}
+\contentsline {subsection}{Results}{44}{subsection*.62}
 \setcounter {tocdepth}{3}
-\contentsline {chapter}{\numberline {4.}\MakeUppercase {Discussion}}{40}{chapter.4}
-\contentsline {subsection}{Simplified Test Cases}{40}{subsection*.84}
-\contentsline {subsubsection}{Sine Wave Test Case}{40}{subsubsection*.85}
-\contentsline {subsubsection}{Interfacial Protrusion Test Case}{41}{subsubsection*.87}
-\contentsline {subsection}{Future Work}{44}{subsection*.90}
+\contentsline {chapter}{\numberline {4.}\MakeUppercase {Discussion}}{47}{chapter.4}
+\contentsline {subsection}{Summary}{47}{subsection*.64}
+\contentsline {subsection}{Future Work}{48}{subsection*.65}
+\contentsline {subsection}{Conclusion}{49}{subsection*.66}
 \setcounter {tocdepth}{3}
+\setcounter {tocdepth}{3}
+\contentsline {chapter}{\MakeUppercase {\MakeUppercase {Appendix}}: Point-wise Height Function Coefficient Code}{55}{appendix.A}
+\setcounter {tocdepth}{3}
+\contentsline {chapter}{\MakeUppercase {\MakeUppercase {Appendix}}: Integral Height Function Coefficient Code}{61}{appendix.B}

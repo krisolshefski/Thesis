@@ -1,20 +1,8 @@
 \chapter{Theory} \label{CH:theory}
-%\textbf{What is your thought process in how to solve this problem??\\
-%How do you propose solving this problem?\\
-%What is a dual grid?\\
-%What is a height function?\\
-%How does it work?\\
-%Why do we choose to use a HFM?\\
-%Shortcomings of HFM's?\\
-%On this dual grid, why do we need a fine velocity?}\\
-\hl{Computational solutions for fluid flow rely on several fundamental ideas surrounding how fluids are simulated.}\todo{Not sure what this says} The following section is an attempt to summarize several of these methods and lay the necessary framework for understanding the subsequent method, which is the primary focus of this work. Each of the methods discussed are present within NGA, the computational platform used in this research. Additionally, while these methods are prevalent in the CFD community, they are not the only options available. The interested reader is directed to \ref{TRYG} for a more comprehensive assessment.   
-
-%\subsection{The Navier-Stokes Equations}
-%They exist, here they are....
-%\hl{consider discussion}
+The following section is an attempt to summarize several fundamental concepts used in simulating fluid flows and lay the necessary framework for understanding the subsequent fine grid method, which is the primary focus of this work. Each of the methods discussed are present within NGA, the computational platform used in this research. Additionally, while these methods are prevalent in the CFD community, they are not the only options available. The interested reader is directed to~\cite{TRYG} for a more comprehensive assessment.   
 
 \subsection{Computational Platform}
-\todo{This section sounds ``very'' familiar, should probably paraphrase into your own words (read it, take notes, and then write it.} The proposed curvature estimation method exists as a module within a larger computational framework. While this scheme can be incorporated into any number of solvers, the platform used for this work was NGA~\cite{NGA1,NGA2}.  NGA solves low-Mach number, variable density formulations of mass and momentum conservation laws
+The proposed curvature estimation method exists as a module within a larger computational framework. While this scheme can be incorporated into any number of solvers, the platform used for this work was NGA~\cite{NGA1,NGA2}.  NGA solves low-Mach number, variable density formulations of mass and momentum conservation laws
 \begin{align}
 \frac{\partial \rho_\phi}{\partial t} +& \nabla \cdot \left(\rho_\phi\bm{u}_\phi\right) = 0\mbox{ \quad and}\\
 \frac{\partial \rho_\phi \bm{u}_\phi}{\partial t} +& \nabla \cdot \left(\rho_\phi\bm{u}_\phi\otimes\bm{u}_\phi\right) = -\nabla p_\phi + \nabla\cdot\left(\mu_\phi\left[\nabla\bm{u}_\phi+\nabla\bm{u}_\phi^\mathsf{T}\right]\right)+\rho_\phi\bm{g}
@@ -54,9 +42,80 @@ $\kappa$ is the interface curvature. This is the curvature that is computed with
 
 These equations are discretized using a Cartesian mesh with pressure and other scalars located at cell centers and velocity components located at cell faces. Time is discretized using an iterative second order Crank-Nicolson formulation with a semi-implicit correction on each subiteration~\cite{choi}. The interface is represented with a geometric volume-of-fluid (VoF) method~\cite{Owkes2017,Owkes2014}. The NGA code is highly parallelized, allowing for scalable simulations and fast run times and has been applied to many atomization applications~\cite{OwkesAIAA,Desjardins2013,sheehy}.
 
-\subsection{Mesh Generation}
-In Numerical analysis, the grid or mesh, often refers to the manner in which a domain being simulated is subdivided into smaller sections and points. Traditionally these points are denoted using an i,j scheme and neighboring points will be referenced from an initial point as seen in Figure \ref{fig:ijGrid}. This method is extended similarly in the z-direction for 3D applications~\cite{MIT}.  
+\subsection{Streaktube Introduction}
+NGA uses structures known as streaktubes to advect scalar quantities through time. For this research, we need to move flux values of velocity through cell faces over a time step. Streaktubes work by approximating an amount of a scalar value needing to be advected with time to a volumetric quantity. Integrating this volume over time ensures that values are conservative. Streaktube development relies on conservation laws applied to a fixed control volume. The following derivation presents advection of a scalar partial differential equation (PDE) into a scalar quantity as it progresses with time due to geometric flux. While the interested reader can be directed to~\ref{1,2,3,4,5,6}  for similar derivations of equation~\ref{eqn:derFinal}, this derivation is valuable in that it shows exact relations between liquid volume fraction ($\alpha$) transport, and a generally advected function, $f(x,t)$~\cite{Owkes2017}. This derivation shows that fluxes used within NGA to advect a function through time can be calculated by formulating streaktubes at each cell face of a control volume and evaluating that function at the current time step. The derivation provides rigorous validation that any conserved scalar quantity that fluxes through a control volume face at a given time step can be calculated in the previous time step as a volumetric quantity and, represented geometrically as such, as displayed by Figure~\ref{fig:streak}.  
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}{.45\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{figs/streaktube.png}
+		\caption{The scalar quantity to be advected is approximated and projected out of the control volume for integration over time~\cite{Owkes2014}. }
+		\label{fig:streak}
+	\end{minipage}%
+\hfill
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{figs/simplicies}
+		\caption{The representative volume is partitioned into simplicies (tetrahedra in 3D) until they are sufficiently small such that the simplicies contain only one phase of fluid~\cite{Owkes2014}.}
+		\label{fig:simp}
+	\end{minipage}
+\end{figure}
 
+\subsection{Streaktube Derivation}
+Assume we have a conserved scalar $f(\bm{x},t)$ that evolves in a solenoidal velocity field as 
+\begin{equation}
+\frac{\partial f}{\partial t} + \nabla \cdot (\bm{u} f) = 0
+\label{eqn:der1}
+\end{equation}
+where \bm{x} is the spatial coordinate value, $t$ is time, and \bm{u} is the velocity field which is known~\cite{Owkes2014}. Integrating this equation over a time step ($t^n \rightarrow t^{n+1}$) and the area of the control volume while using Gauss' theorem on the advection term, we find 
+\begin{equation}
+\int_{CV} (  f(\bm{x}, t^{n+1})  - f(\bm{x}, t^{n})  ) dV  + \int_{t^n}^{t^{n+1}} \oint_{CS} f \bm{u} \cdot \bm{n}_{CS} dS dt = 0.
+\label{eqn:der2}
+\end{equation}
+The right term is the surface flux through the control volume and is dependent on $f( \bm{x}, t)$ for $t^n \leq t \leq t^{n+1}$, which is not normally a known quantity. However, a discrete representation of $f( \bm{x}, t^{n})$ is typically known and and update equation can be used to determine $f( \bm{x}, t^{n+1})$. So, the flux is reformulated so that it is solely dependent on $f( \bm{x}, t^{n})$. This is achieved by subdividing the surface of the control volume $CS$ into sub-surfaces $\partial{CS_i}$. On each sub-surface $\partial CS_i$ we can link the flux volume $\Omega_i(t)$ to the bounding surface $\omega_i(t)$. $\Omega_i(t)$ is just the signed volume which flows through the sub-surface $\partial CS_i$ over a given time step $\Delta t$.  The sign of the volume is dependent on the orientation into or out of the control volume and is positive if flowing out of, and negative if flowing into, the control volume~\cite{Owkes2017}. 
+
+Integrating Equation~\ref{eqn:der1} over the flux volume $\Omega_i$ and again using Gauss' theorem on the second term we find 
+\begin{equation}
+\int_{\Omega_i(t)} \frac{\partial f}{\partial t} dV  + \oint_{\omega_i(t)} f \bm{u} \cdot \bm{n}_{\Omega_i} dS = 0.
+\label{eqn:der4}
+\end{equation}
+Here, $\bm{n}_{\Omega_i}$ is the outward facing normal to the flux volume $\Omega_i(t)$. The bounding surface $\omega_i$ is partitioned as $\omega_{i,F} = \omega_i \cap \partial CS_i = \partial CS_i$, which is fixed and $\omega_{i,M} = \omega_i \backslash \partial CS_i $ which is a material surface~\cite{Owkes2017}. This is valid by defining part of $\omega_i$ as having zero flux of $f$ and therefore must move with the flow. The other portion of $\omega_i$ is defined such that it coincides with $\partial CS_i$, which is fixed in time. Integrating Eq.~\ref{eqn:der4} over time and using the previous partition we find that 
+\begin{equation}
+\int_{t^n}^{t^{n+1}} \int_{\Omega_i(t)} \frac{\partial f}{\partial t} dV dt + \int_{t^n}^{t^{n+1}} \int_{\omega_{i,M}(t)} f \bm{u} \cdot \bm{n}_{\Omega_i} dS dt + 	\int_{t^n}^{t^{n+1}} \int_{\partial CS_i} f \bm{u} \cdot \bm{n}_{\Omega_i} dS dt = 0.
+\label{eqn:der5}
+\end{equation}
+Because of its similarity to the flux term in Eq.~\ref{eqn:der2}, the right term of the above equation will provide a bridge between the two equations. The remaining terms can be made more clear using Leibniz's method which states 
+\begin{equation}
+\frac{d}{dt} \int_{\Omega_i(t)} f dV = \int_{\Omega_i(t)} \frac{\partial f}{\partial t} dV + \int_{\omega_{i,M}(t)} f \bm{u} \cdot \bm{n}_{\Omega_i} dS.
+\label{eqn:der6}
+\end{equation}
+With this, we can see that a $\Omega_i(t)$ is a streaktube projected backward in time from the surface $\partial CS_i$ over the time step $\Delta t$. Integrating Eq.~\ref{eqn:der6} with time results in 
+\begin{equation}
+\int_{\Omega_i(t^{n+1})} f (\bm{x} , t^{n+1}) dV - \int_{\Omega_i(t^{n})} f (\bm{x} , t^{n}) dV  = \int_{t^n}^{t^{n+1}}\int_{\Omega_i(t)} \frac{\partial f}{\partial t} dV dt+ \int_{t^n}^{t^{n+1}} \int_{\omega_{i,M}(t)} f \bm{u} \cdot \bm{n}_{\Omega_i} dS dt.
+\label{eqn:der7}
+\end{equation}
+By definition, $\Omega_i(t^{n+1})$ is zero, making the first term equal to zero. We can adopt the notation that $\Omega_i=\Omega_i(t^{n})$ and call this term the flux volume. Subtracting Eq.~\ref{eqn:der7} from Eq.~\ref{eqn:der5} we find that 
+\begin{equation}
+\int_{t^n}^{t^{n+1}}\int_{\partial CS_i}  f \bm{u} \cdot \bm{n}_{\Omega_i} dS dt = \int_{\Omega_i} f (\bm{x} , t^{n}) dV, 
+\label{eqn:der8}
+\end{equation}
+which gives us a simple relation between the flux through the sub-surface $\partial CS_i$ and the volume integral over $\Omega_i$.
+
+To obtain a useful time advancement equation we would like to combine Eqn.~\ref{eqn:der2} and Eqn.~\ref{eqn:der8}. However, doing so requires a relation between the normal terms, $\bm{n}_{CV}$ and $\bm{n}_{\Omega}$ as these normals are both defined using the same surface. This means that either, the two normals are identical or face opposite directions. We adopt a signed volume convention where the volume is positive if $\bm{n}_{CV} = \bm{n}_{\Omega}$ and negative otherwise. This convention results in positive volumetric fluxes out of the control volume and negative fluxes into the control volume. With this relationship we can finally obtain 
+\begin{equation}
+\int_{CV} (f (\bm{x} , t^{n+1}) - f (\bm{x} , t^{n}) )dV + \sum_{i=1}^{N_S}\int_{\Omega_S} f (\bm{x} , t^{n}) )dV =0
+\label{eqn:derFinal}
+\end{equation}
+where $\Omega_S$ is now the signed streaktube. The final form provides that the change in the scalar $f$  within the control volume $CV$ over the timestep $\Delta t$ must be equal to the volume integral of the signed flux volumes. 
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=1.0\textwidth]{figs/para}
+%	\caption{fix figure}
+%	\label{fig:para}
+%\end{figure}
+
+\subsection{Mesh Generation}
+In numerical analysis, the grid or mesh, often refers to the manner in which a domain being simulated is subdivided into smaller sections and points. Traditionally these points are denoted using an i,j scheme and neighboring points will be referenced from an initial point as seen in Figure \ref{fig:ijGrid}. For example, if a value is being calculated at the $(i,j)$ cell and requires information from the neighbors to the left and right, the neighbors are referenced as $(i-1,j)$ and $(i+1,j)$ respectively. If the calculation requires information from neighbors on the top and bottom however, the cells are referenced as $(i,j+1)$ and $(i,j-1)$. This method is extended similarly in the z-direction for 3D applications~\cite{MIT}. 
 	\begin{figure}[htbp]
 		\centering
 		\begin{tikzpicture}[scale=2.0]
@@ -73,22 +132,11 @@ In Numerical analysis, the grid or mesh, often refers to the manner in which a d
 			\node[below right] at (3,2) {\scriptsize{$i+1,j$}};
 			\node[below right] at (3,3) {\scriptsize{$i+1,j+1$}};
 		%Node Circles
-			% \draw [fill] (2,2) circle [radius=0.035];
-			% \draw [fill] (1,2) circle [radius=0.035];
-			% \draw [fill] (3,2) circle [radius=0.035];
-			% \draw [fill] (2,1) circle [radius=0.035];
-			% \draw [fill] (2,3) circle [radius=0.035];	
-			% \draw [fill] (1,1) circle [radius=0.035];
-			% \draw [fill] (1,3) circle [radius=0.035];
-			% \draw [fill] (3,1) circle [radius=0.035];
-			% \draw [fill] (3,3) circle [radius=0.035];
-                        \foreach \x in {1,3} {
-                          \foreach \y in {1,3} {
+                        \foreach \x in {1,...,3} {
+                          \foreach \y in {1,...,3} {
                             \draw [fill] (\x,\y) circle [radius=0.035];
                           }
-                        }
-                        
-                        
+                        }                  
 		%Axes
 			\draw [arrows=->] (0,0) -- node[pos=1,right] {$\bm{x}$} (0.5,0);
 			\draw [arrows=->] (0,0) -- node[pos=1,right] {$\bm{y}$} (0,0.5);
@@ -96,11 +144,11 @@ In Numerical analysis, the grid or mesh, often refers to the manner in which a d
 			\draw [decorate,decoration={brace,amplitude=10pt},xshift=-4pt,yshift=0pt] (1.05,2.05) -- (1.05,2.95) node [black,midway,xshift=-0.6cm] {\footnotesize $\Delta y$};
 			\draw [decorate,decoration={brace,amplitude=10pt},xshift=-4pt,yshift=0pt] (2.2,3.05) -- (3.1,3.05) node [black,midway,yshift=0.6cm] {\footnotesize $\Delta x$};
 		\end{tikzpicture}
-		\caption{Typical notation of structured grid cells. }
+		\caption{Typical $(i,j)$ notation of structured grid cells. Grid cells span $\Delta x$ and $\Delta y$ in the horizontal and vertical directions respectively. }
 		\label{fig:ijGrid}
-	\end{figure}\todo{try foreach loop! this would be more informative if you showed the staggered grid with the location of $P$, $u$, $v$, $VOF=\alpha$.}
+	\end{figure}
 
-\paragraph{} The type of grid used can be classified as being in one of two categories, structured or unstructured~\cite{anderson}. The choice of whether to use a structured or unstructured grid should be considered on a case by case basis. However, there are some important characteristics of each that are important to recognize prior to implementation. A structured grid in 2D can be thought of a series of quadrilateral elements (bricks) placed side by side in a uniform fashion~\cite{MIT}. Here, neighboring elements are referenced by adding or subtracting from the base cell indices~\cite{anderson}. Figure \ref{fig:Simple Grid} is an example of a structured grid. An unstructured grid does not retain uniformity and is \hl{normally (although, not always)}\todo{really?} comprised of triangular elements~\cite{tu}. To reference neighboring cells in an unstructured grid, storage of cell-to-cell pointers are required~\cite{MIT}. Unstructured grids normally require a greater amount of memory storage and can result in slower computation times than that of a structured grid~\cite{magoules}. A simplified example of an unstructured grid can be referenced in Figure \ref{fig:Unstructured Grid}. The NGA code, which is this focus of this research, uses a structured grid approach for simplicity and computational efficiency. However, it should be noted that unstructured grids are increasing in popularity as the accuracy obtained from modeling complex flow geometry may be higher than that of a structured grid~\cite{Hirt1981}. 
+The type of grid used can be classified as being in one of two categories, structured or unstructured~\cite{anderson}. The choice of whether to use a structured or unstructured grid should be considered on a case by case basis. However, there are some defining characteristics of each that are important to recognize prior to implementation. A structured grid in 2D can be thought of a series of quadrilateral elements (bricks) placed side by side in a uniform fashion~\cite{MIT}. Here, neighboring elements are referenced by adding or subtracting from the base cell indices as indicated above~\cite{anderson}. Figure~\ref{fig:ijGrid} is an example of a structured grid. An unstructured grid does not retain uniformity and is often comprised of triangular, rectangular, or hexagonal elements in 2D applications~\cite{tu}. To reference neighboring cells in an unstructured grid, storage of cell-to-cell pointers are required~\cite{MIT}. Unstructured grids normally require a greater amount of memory storage and can result in slower computation times than that of a structured grid~\cite{magoules}. A simplified example of an unstructured grid can be referenced in Figure~\ref{fig:Unstructured Grid}. The NGA code, which is this focus of this research, uses a structured grid approach for simplicity and computational efficiency. However, it should be noted that unstructured grids are increasing in popularity as the accuracy obtained from modeling complex flow geometry may be higher than that of a structured grid~\cite{Hirt1981}. 
 
 \begin{figure}[htbp]
 	\centering
@@ -109,9 +157,53 @@ In Numerical analysis, the grid or mesh, often refers to the manner in which a d
 	\label{fig:Unstructured Grid}
 \end{figure}
 
-\subsection{Volume of Fluid Formulation}\todo{Should have a broader section on interface tracking and capturing schemes and explain why VOF is often used.}
-In order to accurately predict the behavior of a multiphase system, the location of the interface of the two fluids must be determined. One method for completing this is known as the Volume of Fluid (VOF) method \todo{give mathematical definition of volume of fluid}. This method was first introduced by Hirt \& Nichols (1981) and has been expanded upon by several others~\cite{Hirt1981,1,2,3,4}. The defining contribution of the VOF method proposed by Hirt \& Nichols is the introduction of a scalar marker function assigned to each mesh cell which is indicative of the volume of a given fluid within that cell~\cite{Hirt1981}. This allows for interface to be tracked by the value of the marker cell in surrounding cells. For example, if $VOF = 1.0$ indicates a region of liquid and $VOF = 0.0$ indicates a region of gas, then a cell with a value $0.0 \leq VOF \leq 1.0$ indicates a cell which contains interface. It is important to recognize that volume of a fluid may only be advected into a new cell once the current cell is full~\cite{TRYG} \todo{this is true for 1D problems but not in general}. A one-dimensional example of this advection can be seen in Figure \ref{fig:1Dadvect}.
+\subsection{Rudman Dual Grid Formulation}
+Solution of the incompressible Navier-Stokes equations traditionally occurs on whats known as a staggered grid. On a staggered grid, pressure is typically stored at cell centers and velocity components are stored at cell faces~\cite{TRYG}. Building from the structured grid example given in Figure~\ref{fig:ijGrid}, this implementation is illustrated in Figure~\ref{fig:StagGrid}. 
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}[scale=5.0]
+	% Mesh
+	\draw [black, fill=gray!30] (1.5,1.5) rectangle (2.5,2.5);
+	\draw [black, line width = 2pt] (1.5,1.5) rectangle (2.5,2.5);
+	\draw [black,thick,step=1.0] (0.5 , 0.5) grid (3.5,3.5); 
+	% i's and j's
+	\node[fill=white]    at (1,1) {\scriptsize{$P_{i-1,j-1}$}};
+	\node[fill=white]    at (1,2) {\scriptsize{$P_{i-1,j}$}};
+	\node[fill=white]    at (1,3) {\scriptsize{$P_{i-1,j+1}$}};
+	\node[fill=white]    at (2,1) {\scriptsize{$P_{i,j-1}$}};
+	\node[fill=gray!30] at (2,2)  {\scriptsize{$P_{i,j}$}};
+	\node[fill=white]    at (2,3) {\scriptsize{$P_{i,j+1}$}};
+	\node[fill=white]    at (3,1) {\scriptsize{$P_{i+1,j-1}$}};
+	\node[fill=white]    at (3,2) {\scriptsize{$P_{i+1,j}$}};
+	\node[fill=white]    at (3,3) {\scriptsize{$P_{i+1,j+1}$}};
+	
+	\node[fill=white]    at (1.5,1) {\scriptsize{$u_{i-1/2,j-1}$}};
+	\node[fill=white]    at (1.5,2) {\scriptsize{$u_{i-1/2,j}$}};
+	\node[fill=white]    at (1.5,3) {\scriptsize{$u_{i-1/2,j+1}$}};
+	
+	\node[fill=white]    at (2.5,1) {\scriptsize{$u_{i+1/2,j-1}$}};
+	\node[fill=white]    at (2.5,2) {\scriptsize{$u_{i+1/2,j}$}};
+	\node[fill=white]    at (2.5,3) {\scriptsize{$u_{i+1/2,j+1}$}};
+	
+	\node[fill=white]    at (1,1.5) {\scriptsize{$v_{i-1,j-1/2}$}};
+	\node[fill=white]    at (1,2.5) {\scriptsize{$v_{i-1,j+1/2}$}};
 
+	
+	\node[fill=white]    at (2,1.5) {\scriptsize{$v_{i,j-1/2}$}};
+	\node[fill=white]    at (2,2.5) {\scriptsize{$v_{i,j+1/2}$}};
+
+	\node[fill=white]    at (3,1.5) {\scriptsize{$v_{i+1,j-1/2}$}};
+	\node[fill=white]    at (3,2.5) {\scriptsize{$v_{i+1,j+1/2}$}};
+	
+	\end{tikzpicture}
+	\caption{Typical notation of structured grid cells. For each cell, pressure values are stored at the center of the control volume, shaded in gray here. Velocity components are stored at the center of the cell faces. }
+	\label{fig:StagGrid}
+\end{figure}
+This approach was first introduced by Harlow and Welch (1965) and is now considered the standard approach in structured mesh CFD applications~\cite{HARLOW1965}. For incompressible flows, staggered grids offer the advantage of tightly coupling fluid property variables as well as eliminating pressure-velocity checkerboarding~\cite{rudman}. The Rudman dual grid approach, first presented by Rudman (1998), is a technique developed for high density ratio, multiphase flows, which accurately conserves both mass and momentum. This is achieved by calculating momentum-flux values on a twice as fine mesh near the fluid interface as illustrated in Figure~\ref{fig:StagGrid}~\cite{rudman}. The Rudman dual mesh is incorporated into NGA and is essential to the formulation of the method presented in this research.% \todo{Need more here.  how does a dual grid provide conservation. do other options exist?}
+
+
+\subsection{Volume of Fluid Formulation}%\todo{Should have a broader section on interface tracking and capturing schemes and explain why VOF is often used.}\todo{give mathematical definition of volume of fluid}
+In order to accurately predict the behavior of a multiphase system, the location of the interface of the two fluids must be determined. One method for completing this is known as the Volume of Fluid (VOF) method . This method was first introduced by Hirt \& Nichols (1981) and has been expanded upon by several others~\cite{Hirt1981,1,2,3,4}. The defining contribution of the VOF method proposed by Hirt \& Nichols is the introduction of a scalar marker function assigned to each mesh cell which is indicative of the volume of a given fluid within that cell~\cite{Hirt1981}. This allows for interface to be tracked by the value of the marker cell in surrounding cells. For example, if $VOF = 1.0$ indicates a region of liquid and $VOF = 0.0$ indicates a region of gas, then a cell with a value $0.0 \leq VOF \leq 1.0$ indicates a cell which contains interface. A one-dimensional example of this advection can be seen in Figure \ref{fig:1Dadvect}. It is important to recognize that for 1D flow, volume of a fluid may only be advected into a new cell once the current cell is full~\cite{TRYG}. However, this is not true for cases of increased dimensionality and advection criteria can become tedious for 2D and 3D flow fields. 
 \begin{figure}[htbp]
 	\centering
 	\begin{tikzpicture}[scale=3.0]
@@ -129,144 +221,41 @@ In order to accurately predict the behavior of a multiphase system, the location
 	\label{fig:1Dadvect}
 \end{figure}
 
-The advection procedure for a VOF method is completed in two primary steps. First, the interface needs to be geometrically constructed. Second, the constructed interface is advected with the current velocity field\cite{TRYG}. Figure \ref{fig:1Dadvect} depicts one-dimensional interface advection. In this case, geometric reconstruction is accomplished with a single vertical line. Adoption of this method is straightforward. As simulations increase to two or three dimensional analysis however, this problem quickly becomes non-trivial. Early attempts to resolve this difficulty include the Simple Line Interface Calculation (SLIC) method of Noh and Woodward (1976)\cite{NohWoodward}. Here, the reconstructed interface is made up of lines which align parallel to the mesh in both \textit{x} and \textit{y} directions.      
-     
+The advection procedure for a VOF method is completed in two primary steps. First, the interface needs to be geometrically constructed. Second, the constructed interface is advected with the current velocity field\cite{TRYG}. Figure \ref{fig:1Dadvect} depicts one-dimensional interface advection. In this case, geometric reconstruction is accomplished with a single vertical line. Adoption of this method is straightforward. As simulations increase to two or three dimensional analysis however, this problem quickly becomes non-trivial. Early attempts to resolve this difficulty include the Simple Line Interface Calculation (SLIC) method of Noh and Woodward (1976)\cite{nohwoodward}. Here, the reconstructed interface is made up of lines which align parallel to the mesh in both \textit{x} and \textit{y} directions.           
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=1.0\textwidth]{figs/SLIC.png}
-	\caption{Simple Line Interface Calculation of Noh and Woodward adapted from \cite{SLICfig}}
+	\caption{Simple Line Interface Calculation of Noh and Woodward adapted from~\cite{SLICfig}}
 	\label{fig:SLIC}
 \end{figure}
-
 Improvement to the SLIC method was presented by Youngs (1982)  known as the Piecewise Linear Interface Calculation (PLIC)~\cite{youngs}. In the PLIC method, instead of aligning interfacial reconstruction lines with the mesh, a line (2D) or plane (3D) is oriented with a normal vector which is evaluated from the volume fraction gradient~\cite{yeoh}. An example of PLIC can be seen in Figure \ref{fig:PLIC}. This method is a popular geometric reconstruction scheme still today and is used in NGA for this research.
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=1.0\textwidth]{figs/PLIC.png}
-	\caption{Piecewise Linear Interface Calculation of Youngs adapted from \cite{yeoh}}
+	\caption{Piecewise Linear Interface Calculation of Youngs adapted from~\cite{yeoh}}
 	\label{fig:PLIC}
 \end{figure}
 
-\todo{should mention other options such as PROST}
-\subsection{Rudman Dual Grid Formulation}
-Solution of the incompressible Navier-Stokes equations traditionally occurs on whats known as a staggered grid. On a staggered grid, pressure is typically stored at cell centers and velocity components are stored at cell faces~\cite{TRYG}. Building from the structured grid example given in Figure \ref{fig:ijGrid}, this implementation is illustrated in Figure \ref{fig:StagGrid}. 
-
- \begin{figure}[h!]
- 	\centering
- 	\includegraphics[width=0.5\textwidth]{figs/StaggeredGrid}
- 	\caption{Typical staggered grid, adopted from \cite{TRYG}.}
- 	\label{fig:StagGrid}
- \end{figure}
-
-\todo{why no indent? if you want to put a figure call inside a paragraph, that is fine, just don't put empty lines before or after the figure.}\noindent This approach was first introduced by Harlow and Welch (1965) and is now considered the standard approach in structured mesh CFD applications today \cite{HARLOW1965}. For incompressible flows, staggered grids offer the advantage of tightly coupling fluid property variables as well as eliminating pressure-velocity checkerboarding~\cite{rudman}. The Rudman Dual grid approach, first presented by Rudman (1998), is a technique developed for high density ratio, multiphase flows, which accurately conserves both mass and momentum. This is achieved by calculating momentum-flux values on a twice as fine mesh near the fluid interface as illustrated in Figure \ref{fig:rudmesh}~\cite{Rudman}. The Rudman Dual mesh is incorporated into NGA and is essential to the formulation of the method presented in this research. \todo{Need more here.  how does a dual grid provide conservation. do other options exist?}
-
-\begin{figure}[htbp]
-	\centering
-	\begin{tikzpicture}[scale=3]
-	% Mesh
-	\draw [black,thick,step=1.0] (1.5 , 1.5) grid (3.5,3.5);
-	\draw [dashed,step=0.5, help lines] (1.495 ,1.495) grid (3.5,3.5);
-	%Cell centered dots
-	\draw [fill] (2.5,2.5) circle [radius=0.035];
-		% Pressure nodes
-		\node [above right] at (2.5,2.5) {\scriptsize{$P$}};
-%	% U Velocity Arrows
-	\draw [arrows=->,line width=0.75] (2.0,2.5) -- (2.25,2.5);
-
-		\node [above] at (2.25,2.5) {\scriptsize{$u$}};
-		\draw [arrows=->,line width=0.75] (2.5,2.0) -- (2.5,2.25);
-		\node [above right] at (2.5,2.0) {\scriptsize{$v$}};
-	
-%	% Overlay density RED
-	\draw[red,line width=1.0] (2.0,2.0) rectangle (3.0,3.0);
-		\node [red,above right] at (2.65,2.1) {\Large{$\rho$}};
-		%Vertical arrows
-		\draw[red,arrows=-latex,line width=2.5] (2.5,1.85) -- (2.5,2.25);
-		\draw[red,arrows=-latex,line width=2.5] (2.5,2.85) -- (2.5,3.25);
-		%Horizontal arrows
-		\draw[red,arrows=-latex,line width=2.5] (1.85,2.5) -- (2.25,2.5);
-		\draw[red,arrows=-latex,line width=2.5] (2.85,2.5) -- (3.25,2.5);
-%	% Overlay momentum BLUE
-	\draw[blue,dashed,line width=1.0] (1.495,2.0) rectangle (2.5,3.0);
-		\node [blue,above right] at (1.55,2.1) {\Large{$\rho u$}};
-		%Vertical arrows
-		\draw[blue,arrows=-latex,line width=2.5] (2.0,1.85) -- (2.0,2.25);
-		\draw[blue,arrows=-latex,line width=2.5] (2.0,2.85) -- (2.0,3.25);
-		%Horizontal arrows
-		\draw[blue,arrows=-latex,line width=2.5] (1.35,2.5) -- (1.75,2.5);
-		\draw[blue,arrows=-latex,line width=2.5] (2.35,2.5) -- (2.75,2.5);
-		% Overlay density arrows again RED
-		%Vertical arrows
-		\draw[red,arrows=-latex,line width=2.5] (2.5,1.85) -- (2.5,2.25);
-		\draw[red,arrows=-latex,line width=2.5] (2.5,2.85) -- (2.5,3.25);
-		%Horizontal arrows
-		\draw[red,arrows=-latex,line width=2.5] (1.85,2.5) -- (2.25,2.5);
-		\draw[red,arrows=-latex,line width=2.5] (2.85,2.5) -- (3.25,2.5);
-	% Rudman's Method
-	% Overlay density RED
-	\draw[red, step= 0.5, line width=1.0] (1.99,1.99) grid (3.0,3.0);
-		\node [red,above right] at (2.6,2.1) {\small{$\rho$}};
-		\node [red,above right] at (2.6,2.6) {\small{$\rho$}};
-		\node [red,above right] at (2.1,2.1) {\small{$\rho$}};
-		\node [red,above right] at (2.1,2.6) {\small{$\rho$}};
-%		%Vertical arrows
-		\draw[red,arrows=-latex,line width=1.75] (2.25,1.85) -- (2.25,2.15);
-		\draw[red,arrows=-latex,line width=1.75] (2.25,2.35) -- (2.25,2.65);
-		\draw[red,arrows=-latex,line width=1.75] (2.25,2.85) -- (2.25,3.15);
-		\draw[red,arrows=-latex,line width=1.75] (2.75,1.85) -- (2.75,2.15);
-		\draw[red,arrows=-latex,line width=1.75] (2.75,2.35) -- (2.75,2.65);
-		\draw[red,arrows=-latex,line width=1.75] (2.75,2.85) -- (2.75,3.15);
-		%Horizontal arrows
-		\draw[red,arrows=-latex,line width=1.75] (1.85,2.25) -- (2.15,2.25);
-		\draw[red,arrows=-latex,line width=1.75] (2.35,2.25) -- (2.65,2.25);
-		\draw[red,arrows=-latex,line width=1.75] (2.85,2.25) -- (3.15,2.25);
-		\draw[red,arrows=-latex,line width=1.75] (1.85,2.75) -- (2.15,2.75);
-		\draw[red,arrows=-latex,line width=1.75] (2.35,2.75) -- (2.65,2.75);
-		\draw[red,arrows=-latex,line width=1.75] (2.85,2.75) -- (3.15,2.75);
-	% Overlay momentum BLUE
-	    \draw[blue,dashed,line width=1.0] (1.495,2.0) rectangle (2.5,3.0);
-		\node [violet,above right] at (1.53,2.1) {\large{$\rho u$}};
-		%Vertical arrows
-		\draw[violet,arrows=-latex,line width=2.5] (2.0,1.85) -- (2.0,2.25);
-		\draw[violet,arrows=-latex,line width=2.5] (2.0,2.85) -- (2.0,3.25);
-		%Horizontal arrows
-		\draw[violet,arrows=-latex,line width=2.5] (1.35,2.5) -- (1.75,2.5);
-		\draw[violet,arrows=-latex,line width=2.5] (2.35,2.5) -- (2.75,2.5);
-	\end{tikzpicture}
-		\caption{\hl{FIX THIS FIGURE}}
-	\label{fig:rudmesh}
-\end{figure}
-
-Within NGA there is a specific convention for moving within a cell to various subcells. This convention is illustrated in Figure~\ref{fig:fg}
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.5\textwidth]{figs/finegrid.png}
-	\caption{finegrid representation}
-	\label{fig:fg} 
-\end{figure} 
+%\todo{should mention other options such as PROST}
 
 \subsection{Curvature Estimation - Height Function Methods}
 
-Curvature can be discretely described as the reciprocal of radius of a given surface as illustrated in Figure \ref{fig:curv} \cite{MARK2013}. 
-
+Curvature can be discretely described as the reciprocal of radius of a given surface as illustrated in Figure \ref{fig:curv}~\cite{Owkes2018}. 
  \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{figs/curv}
-	\caption{Typical staggered grid, adopted from \cite{TRYG}.}
+	\caption{Curvature calculations for varying radii. Curvature can be calculated as the reciprocal of the radius of a curve~\cite{Owkes2018}.}
 	\label{fig:curv}
 \end{figure}
-
-\noindent \todo{noindent}Accurate simulations of multiphase flows require an accurate estimation of interface curvature. Figure \ref{fig:surf} illustrates this importance by presenting two atomizing jet simulations. These simulations vary only by their Weber number, which is directly proportional to the surface tension term, and thereby, the curvature at the interface. It is clear that the jet seen in Figure \ref{fig:surf}(b) is experiencing far greater breakup than that seen in Figure \ref{fig:surf}(a). The correct representation of reality is highly dependent on the estimation of curvature made by the numerical model. 
-
+Accurate simulations of multiphase flows require an accurate estimation of interface curvature. Figure \ref{fig:surf} illustrates this importance by presenting two atomizing jet simulations. These simulations vary only by their Weber number, which is directly proportional to the surface tension term, and thereby, the curvature at the interface. It is clear that the jet seen in Figure \ref{fig:surf}(b) is experiencing far greater breakup than that seen in Figure \ref{fig:surf}(a). The correct representation of reality is highly dependent on the estimation of curvature made by the numerical model. 
  \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.5\textwidth]{figs/surf}
-	\caption{Atomization simulations with varying Weber number, adopted from \cite{Desjardins13}.\hl{figure this spacing out}}
+	\caption{Atomization simulations with varying Weber number, adopted from \cite{Desjardins13}.}
 	\label{fig:surf}
 \end{figure}
-
-Many techniques exist for calculating values of curvature, some of these include:  \hl{level set methods,  height functions, coupled level set volume of fluid (CLSVOF) methods}\todo{not sure about this list, these seem like mostly interface capturing methods and not ways to compute the curvature}, and others~\cite{1,2,3,4}. The focus of this work specifically, is on modified height function methods.
-
+The focus of this work is on modified height function methods which are one method of curvature evaluation.
  \begin{figure}[htbp]
 	\centering
 	\begin{tikzpicture}[scale=1.15]
@@ -288,67 +277,31 @@ Many techniques exist for calculating values of curvature, some of these include
 			\draw [arrows=->] (0,0) -- node[pos=1,right] {$\bm{y}$} (0,0.5);
 		\end{scope}
 	\end{tikzpicture}
-	\caption{Traditional height function} 
+	\caption{Traditional height function with a three cell stencil.} 
 	\label{fig:hts}
 \end{figure}
-
-\noindent Height functions work by integrating volume fractions ($\alpha$) within columns of cells as in \hl{equation}\todo[inline]{choose a consistent way to reference equations and have a tilde} \ref{eqn:hts} to form heights. A similar approach is taken using widths where an interface is more vertical than horizontal.  \todo{add text so the equations flow with the reading.}
- 
-
+Height functions work by summing volume fractions ($\alpha$) within columns of cells to form heights as 
 \begin{equation}
-h_{i} = \sum_{i-1}^{i+1} \alpha_{i,j} \Delta y
+h_{i} = \sum_{j-N}^{j+N} \alpha_{i,j} \Delta y
 \label{eqn:hts}
 \end{equation}
-
-\noindent Figure \ref{fig:hts} gives an example of heights at a liquid-gas interface. In the simplest execution of a height function, approximation of the curvature ($\kappa$) at the point on the grid is achieved by using a simple finite difference of the heights to approximate first and second derivatives as seen in equations \ref{eqn:1st} and \ref{eqn:2nd} respectively. \todo{Write the equations so they flow}
-
+where $N$ represents the number of cells above and below the cell of interest to construct the column. A similar approach is taken using widths where an interface is more vertical than horizontal. Figure~\ref{fig:hts} gives an example of heights at a liquid-gas interface. In the simplest execution of a height function, approximation of the curvature ($\kappa$) at the point on the grid is achieved by using a simple finite difference of the heights to approximate first and second derivatives as 
 \begin{equation}
-H_{x} = \frac{h_{i-1,j}-h_{i+1,j}}{2 \Delta x}
+H_{x} = \frac{h_{i-1}-h_{i+1}}{2 \Delta x}
 \label{eqn:1st}
 \end{equation}
 \begin{equation}
-H_{xx} = \frac{h_{i+1,j}-2h_{i,j}+h_{i-1,j}}{ \Delta x^2}
+H_{xx} = \frac{h_{i+1}-2h_{i}+h_{i-1}}{ \Delta x^2}.
 \label{eqn:2nd}
 \end{equation}
-
-\noindent Finally, curvature is calculated using:
+Finally, curvature is calculated using
 \begin{equation}
 \kappa = \frac{-H_{xx}}{(1+H_{x}^{2})^{\frac{3}{2}}}.
 \label{eqn:kap}
 \end{equation}
-
-\noindent Clearly the above explanation is relevant for two-dimensional flows. Extension to three-dimensional flows is trivial. \todo{What's Eq. 2.10 in 3D?}
-
-Height functions remain a prevalent method for estimating curvature because of their relative ease of implementation.\todo{and their 2nd order convergence} However, several adjustments to the standard model have been proposed. Adjustments include changing the stencil size over which the heights are gathered~\cite{1}, separating the columns from the computational mesh~\cite{2}, combining heights and widths for approximation~\cite{2}, and applying the approach to level sets~\cite{2}(\hl{this sentence is a paraphrase from Mark's 18 JCP consider revising}).
-
-\subsection{Using Height Functions in Conjunction with Rudman Dual Mesh }
-When a dual grid is used, the standard height function method fails to capture the dynamics occurring on the fine grid. Left unmitigated, these dynamics can result in fine grid interfacial perturbations, small discontinuities in interface structures. These perturbations can grow uncontrollably and result in non-physical dynamics materializing in simulations. An example of this uncontrolled growth resulting in non-physical dynamics can be seen in Figure~\ref{bad2}. The focus of this research is to develop an extension of the standard height function to include information from the Rudman dual mesh. This method results in consistent mass and momentum transport while also providing accurate interface transport that avoids non-physical dynamics.
-\begin{figure}[h!]
-	\centering
-		\includegraphics[width=0.5\textwidth]{figs/bad.png}
-	\caption{Standard method interface breakup.}
-	\label{bad2} 
-\end{figure} 
-
-\subsection{Oscillating Droplet Test Case}
-To further quantify the problem that is occurring, a baseline test case which highlights the shortcomings of current methods is necessary. To this end, an oscillating two-dimensional droplet is used to assess the height function method and the proposed solution methods. This test case was chosen as it is considered a standard benchmark problem for testing the accurate prediction of multiphase flow behavior\cite{Salih2002}. Additionally, for the height function method, the oscillating droplet offers an extensive testing of interface orientations which is important for measuring the robustness of the method. The interface is initialized with an ellipsoid. Surface tension drives the droplet's semi-major axis to fluctuate between alignment with the $x$ and $y$ axes. The period of oscillation $T_{e}$, is a function of surface tension coefficient ($\sigma$), density ($\rho_l$ and $\rho_g$), and equivalent circular radius($R$), and can be computed analytically as~\cite{Rayleigh}
+Clearly the above explanation is relevant for two dimensional flows. Extension to three dimensional flows requires two dimensional approximations of derivatives and results in a curvature calculation of 
 \begin{equation}
-T_{e} = 2 \pi \sqrt{\frac{(\rho_{l}+\rho_{g})R^3}{6\sigma}}.
-\label{period}
+\kappa = \frac{-H_{xx}-H_{yy}-H_{xx}H_y^2-H_{yy}H_x^2+2H_{xy}H_xH_y}{(1+H_{x}^{2}+H_{y}^{2})^{\frac{3}{2}}}.
+\label{eqn:kap3D}
 \end{equation}
-
-To establish successful algorithm performance of NGA, an alternate curvature scheme was selected and an oscillating droplet test case ran. Simulation parameters include a density ratio of 1000, viscosity in both the liquid and gas phases are 0, and no walls are present in the computational domain. For the initial baseline, a mesh of 64x64 grid cells make up the domain. A semi-major radius of 0.24 and a semi-minor axes radius of 0.20 define the initial displacement of the droplet. The total domain length is set to 1.0. These parameters are chosen as they align with the analytic solution assumptions made. Figure \ref{fig:acesKE} shows kinetic energy conservation through the progression of the simulation. Simulation success is quantified by normal periods of oscillation and diminishing kinetic energy with time. Close adherence to this model can be used as a measure of success with cases from here forward and this case will be plotted with all further test cases. 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.5\textwidth]{figs/ACES_KEplot.png}
-	\caption{Kinetic Energy with Time - ACES Method~\ref{Owkes2018}}
-	\label{fig:acesKE}
-\end{figure}
-
-Alternatively, Figure \ref{fig:stdKE} shows the result of the same test case ran with a standard, coarse grid, curvature estimation scheme. The uncontrolled growth seen in the kinetic energy of the standard method is a result of the aformentioned interfacial perturbations. The curvature estimation error and resulting non-physical dynamics are the basis for this research. 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.5\textwidth]{figs/stdHt_KEplot.png}
-	\caption{Kinetic Energy with Time - Standard Height Function Method}
-	\label{fig:stdKE}
-\end{figure}
+Height functions remain a prevalent method for estimating curvature because of their relative ease of implementation and their second order convergence. However, several adjustments to the standard model have been proposed. Adjustments include changing the stencil size over which the heights are gathered~\cite{Sussman2007, Sussman2003}, separating the columns from the computational mesh~\cite{Owkes2015}, combining heights and widths for approximation~\cite{Popinet2009}, and applying the approach to level sets~\cite{Owkes2013}.
