@@ -66,6 +66,12 @@ C.~W. Hirt and B.~D. Nichols.
 \newblock {Volume of fluid (VOF) method for the dynamics of free boundaries}.
 \newblock {\em Journal of Computational Physics}, 39(1):201--225, 1981.
 
+\bibitem{JACQMIN}
+D.~Jacqmin.
+\newblock Calculation of two-phase navier–stokes flows using phase-field
+  modeling.
+\newblock {\em Journal of Computational Physics}, 155(1):96 -- 127, 1999.
+
 \bibitem{magoules}
 F.~Magoules.
 \newblock {\em Computational fluid dynamics}.
@@ -87,6 +93,12 @@ W.~F. {Noh} and P.~{Woodward}.
 P.~J. O'Rourke and A.~A. Amsden.
 \newblock The tab method for numerical calculation of spray droplet breakup.
 \newblock In {\em SAE Technical Paper}. SAE International, 11 1987.
+
+\bibitem{OSHER}
+S.~Osher and J.~A. Sethian.
+\newblock Fronts propagating with curvature-dependent speed: Algorithms based
+  on hamilton-jacobi formulations.
+\newblock {\em Journal of Computational Physics}, 79(1):12 -- 49, 1988.
 
 \bibitem{Owkes2018}
 M.~Owkes, E.~Cauble, J.~Senecal, and R.~A. Currie.
@@ -130,6 +142,12 @@ J.~Palmore and O.~Desjardins.
 \newblock A volume of fluid framework for interface-resolved simulations of
   vaporizing liquid-gas flows.
 \newblock {\em Journal of Computational Physics}, 399:108954, 2019.
+
+\bibitem{pilliod}
+J.~E. Pilliod and E.~G. Puckett.
+\newblock Second-order accurate volume-of-fluid algorithms for tracking
+  material interfaces.
+\newblock {\em Journal of Computational Physics}, 199(2):465 -- 502, 2004.
 
 \bibitem{pope}
 S.~B. Pope.
@@ -192,6 +210,12 @@ G.~Tryggvason, R.~Scardovelli, and S.~Zaleski.
 \newblock {\em Computational fluid dynamics: a practical approach}.
 \newblock Butterworth-Heinemann, 2013.
 
+\bibitem{UNVERDI}
+S.~O. Unverdi and G.~Tryggvason.
+\newblock A front-tracking method for viscous, incompressible, multi-fluid
+  flows.
+\newblock {\em Journal of Computational Physics}, 100(1):25 -- 37, 1992.
+
 \bibitem{ocean}
 J.~Weare.
 \newblock Particle filtering with path sampling and an application to a bimodal
@@ -214,5 +238,11 @@ T.~Yamaguchi, T.~Ishikawa, K.-i. Tsubota, Y.~Imai, M.~Nakamura, and T.~Fukui.
 \newblock Computational blood flow analysis —new trends and methods.
 \newblock {\em Journal of Biomechanical Science and Engineering}, 1:29--50, 01
   2006.
+
+\bibitem{youngs}
+D.~Youngs.
+\newblock {\em Time-Dependent Multi-material Flow with Large Fluid Distortion},
+  volume~24, pages 273--285.
+\newblock 01 1982.
 
 \end{thebibliography}

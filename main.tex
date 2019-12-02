@@ -1,4 +1,4 @@
-\documentclass[thesis,appendsingle]{MSUstyle}
+\documentclass[thesis,appendmultiple]{MSUstyle}
 %
 %  Created by Seth Humphries 
 %  Update and maintained by Prof. Mark Owkes mark.owkes@montana.edu
@@ -90,6 +90,35 @@
 \usepackage{soul}
 \usepackage{fancyvrb}
 
+%% Psuedo-code formatting
+\usepackage{listings}
+%\lstset{
+%	numbers=left, 
+%	numberstyle=\small, 
+%	numbersep=8pt, 
+%	frame = single, 
+%	xleftmargin=3em,
+%	xrightmargin=2em,
+%	language=FORTRAN,
+%	framexleftmargin=15pt}
+
+\lstset{language=Matlab,%
+	%basicstyle=\color{red},
+	breaklines=true,%
+	morekeywords={matlab2tikz},
+	keywordstyle=\color{blue},%
+	morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+	identifierstyle=\color{black},%
+	stringstyle=\color{mylilas},
+	commentstyle=\color{mygreen},%
+	showstringspaces=false,%without this there will be a symbol in the places where there is a space
+	numbers=left,%
+	numberstyle={\tiny \color{black}},% size of the numbers
+	numbersep=9pt, % this defines how far the numbers are from the text
+	emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+	%emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
 \usepackage{amsmath}
 \usepackage{enumitem}
 \usepackage{lipsum} % Generates random text
@@ -125,7 +154,7 @@
 %  Definitions: Change as needed  %
 % =============================== %
 \name{Kristopher Thomas Olshefski} %PUT your FULL name here (First Middle Last)
-\DocTitle{Conservative Simulations of Atomization\\ Applying the Height Function Method to Rudman Dual Grids } 
+\DocTitle{Accurate Conservative Simulations of Multiphase Flows\\ Applying the Height Function Method\\ to Rudman Dual Grids } 
 \OWNwebpage{http://mywebsite.net} %your personal webpage
 \degreetitle{Mechanical Engineering} % may be different than department... ie MS in Electrical Engineering is not Elect. and Com. Engnr degree.
 \department{Mechanical \& Industrial Engineering} 
@@ -137,7 +166,7 @@
 %\draftver{1.0} % versioning for use with draft option
 
 % put searchable words you want internet search engines to find here
-\keys{Engineering, Thesis, Template, Latex, Montana, Montana State University} 
+\keys{Engineering, Thesis, Template, Latex, Montana, Montana State University, curvature, multiphase, multiphase flows, volume of fluid, height function} 
  
 %\bibfiles{mybib} %your .bib file(s), files containing bibliographic 
 
@@ -188,9 +217,9 @@
   \contents
 
   % Nomenclature page (optional, comment out if not using)
-  \begin{nomen}
-    \input{nomenclature} 
-  \end{nomen}
+%  \begin{nomen}
+%    \input{nomenclature} 
+%  \end{nomen}
 
   % Abstract
   \begin{abstract}
@@ -207,15 +236,16 @@
 
 	% REFERENCES
 \bibliographystyle{abbrv} % Use a style you and your adviser like
-\bibliography{mybib.bib} % Bibliography.  Add your .bib file(s) here
+\references
+%\bibliography{mybib.bib} % Bibliography.  Add your .bib file(s) here
 
 
 % APPENDIX
 % If you have an appendix use either the option appendsingle (1 appendix) or appendmultiple (>1 appendix) in your document class
 % If you do not have an appendix comment out below and remove the appendsingle/multiple option from the document class
 \appendix
-\include{appendixa}
 \include{appendixb}
+
 
 \end{document}
 % do not put anything after this

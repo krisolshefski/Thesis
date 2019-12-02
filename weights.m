@@ -111,8 +111,10 @@ for n=0:N % d/dy^n
         loglog(dxs,error,'-.','LineWidth',3)
         hold on
         loglog(dxs,dxs.^5,'LineWidth',3)
+        hold on
+        loglog(dxs,dxs.^4,'LineWidth',3)
         title(['d/dx^',num2str(m),' d/dy^',num2str(n)],'interpreter','latex','fontsize',16)
-        legend('5th Order Method','5th Order', 'Location', 'NorthWest')
+        legend('5th Order Method','5th Order','4th Order', 'Location', 'NorthWest')
         set(gca, 'Color', 'none','Fontsize',16);
         drawnow 
         basefile = 'figs';

@@ -1,43 +1,39 @@
 \setcounter {tocdepth}{1}
-\contentsline {figure}{\numberline {1.1}{\ignorespaces DNS Simulation of Atomizing Jet\relax }}{3}{figure.caption.9}
-\contentsline {figure}{\numberline {2.1}{\ignorespaces The scalar quantity to be advected is approximated and projected out of the control volume for integration over time\nobreakspace {}\cite {Owkes2014}. \relax }}{8}{figure.caption.12}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces The representative volume is partitioned into simplicies (tetrahedra in 3D) until they are sufficiently small such that the simplicies contain only one phase of fluid\nobreakspace {}\cite {Owkes2014}.\relax }}{8}{figure.caption.12}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Typical $(i,j)$ notation of structured grid cells. Grid cells span $\Delta x$ and $\Delta y$ in the horizontal and vertical directions respectively. \relax }}{11}{figure.caption.15}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Simple Unstructured Grid \cite {MIT}\relax }}{12}{figure.caption.16}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Typical notation of structured grid cells. For each cell, pressure values are stored at the center of the control volume, shaded in gray here. Velocity components are stored at the center of the cell faces. \relax }}{13}{figure.caption.18}
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Advection of a one-dimensional fluid interface\relax }}{15}{figure.caption.20}
-\contentsline {figure}{\numberline {2.7}{\ignorespaces Simple Line Interface Calculation of Noh and Woodward adapted from\nobreakspace {}\cite {SLICfig}\relax }}{15}{figure.caption.21}
-\contentsline {figure}{\numberline {2.8}{\ignorespaces Piecewise Linear Interface Calculation of Youngs adapted from\nobreakspace {}\cite {yeoh}\relax }}{16}{figure.caption.22}
-\contentsline {figure}{\numberline {2.9}{\ignorespaces Curvature calculations for varying radii. Curvature can be calculated as the reciprocal of the radius of a curve\nobreakspace {}\cite {Owkes2018}.\relax }}{16}{figure.caption.24}
-\contentsline {figure}{\numberline {2.10}{\ignorespaces Atomization simulations with varying Weber number, adopted from \cite {Desjardins13}.\relax }}{17}{figure.caption.25}
-\contentsline {figure}{\numberline {2.11}{\ignorespaces Traditional height function with a three cell stencil.\relax }}{18}{figure.caption.26}
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Standard height function method interface breakup.\relax }}{21}{figure.caption.28}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Fine grid height function with the same three cell stencil as in Fig.\nobreakspace {}\ref {fig:hts}.\relax }}{22}{figure.caption.30}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Initially, an ellipse is initialized in the domain.\relax }}{23}{figure.caption.32}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Surface tension begins driving motion of the ellipse.\relax }}{23}{figure.caption.32}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Droplet extends and oscillation continues.\relax }}{23}{figure.caption.32}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces For the oscillating droplet test case, capturing kinetic energy over time is a way to discern whether the model is progressing as desired. Regular periods and linearly decreasing kinetic energy represent a favorable result. Simulation using ACES Method\nobreakspace {}\cite {Owkes2018}\relax }}{24}{figure.caption.33}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Kinetic Energy with Time - Standard Height Function Method(-) vs ACES method(.-)\relax }}{25}{figure.caption.34}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces $Proposed 5^{th}$ order fit of heights using columns built from fine grid cells. \relax }}{25}{figure.caption.37}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Proposed $5^{th}$ order method calculating values of $e^x$ plotted against analytic solution.\relax }}{27}{figure.caption.39}
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Proposed $5^{th}$ order method approximating first derivative. Method holds $5^{th}$ order accuracy to machine precision.\relax }}{27}{figure.caption.39}
-\contentsline {figure}{\numberline {3.11}{\ignorespaces Proposed $5^{th}$ order method calculating values of $e^x$ plotted against analytic solution.\relax }}{27}{figure.caption.40}
-\contentsline {figure}{\numberline {3.12}{\ignorespaces Proposed $5^{th}$ order method approximating second derivative. Method holds $5^{th}$ order accuracy to machine precision.\relax }}{27}{figure.caption.40}
-\contentsline {figure}{\numberline {3.13}{\ignorespaces An appropriate fine grid height function requires integral values of heights as opposed to point-wise values.\relax }}{29}{figure.caption.41}
-\contentsline {figure}{\numberline {3.14}{\ignorespaces Improved $5^{th}$ order method approximating a first derivative. The method still holds approximately $5^{th}$ order accuracy.\relax }}{29}{figure.caption.42}
-\contentsline {figure}{\numberline {3.15}{\ignorespaces Improved $5^{th}$ order method approximating a second derivative. The method still holds approximately $5^{th}$ order accuracy.\relax }}{29}{figure.caption.42}
-\contentsline {figure}{\numberline {3.16}{\ignorespaces The proposed $2^{nd}$ order fit still utilizes information from six fine grid heights but hopes to reduce the potential for over-fitting. \relax }}{30}{figure.caption.45}
-\contentsline {figure}{\numberline {3.17}{\ignorespaces Applying a Gaussian filtering kernal to the previous $2^{nd}$ order method allows for an adjustment of scale of the fit.\relax }}{31}{figure.caption.47}
-\contentsline {figure}{\numberline {3.18}{\ignorespaces Discontinuities at regions where PLICS join are the source of interface perturbations.\relax }}{33}{figure.caption.50}
-\contentsline {figure}{\numberline {3.19}{\ignorespaces Discontinuities provide an area with which to scale a fine grid velocity.\relax }}{33}{figure.caption.50}
-\contentsline {figure}{\numberline {3.20}{\ignorespaces Fine grid orientation of subcell indicies. \relax }}{36}{figure.caption.51}
-\contentsline {figure}{\numberline {3.21}{\ignorespaces Parameterization study of an oscillating droplet test case. Plots show kinetic energy over time as seen in previous studies. The varying parameters are $C_{\sigma }$ and $C_{\mu }$ which vary from $1e^{-6}$ to $1e^6$.\relax }}{40}{figure.caption.53}
-\contentsline {figure}{\numberline {3.22}{\ignorespaces Where net velocity fluxing within a coarse cell is zero, the project function does not incorporate the necessary flux values.\relax }}{41}{figure.caption.54}
-\contentsline {figure}{\numberline {3.23}{\ignorespaces Calculation of an exact VOF field by the current implementation of the fine grid curvature scheme.\relax }}{42}{figure.caption.55}
-\contentsline {figure}{\numberline {3.24}{\ignorespaces Kinetic energy plotted over time for an oscillating droplet test case. (-)\nobreakspace {}Current implementation (.-)\nobreakspace {}ACES method\relax }}{42}{figure.caption.55}
-\contentsline {figure}{\numberline {3.25}{\ignorespaces A simplified geometry test case is presented with a sinusoidal interface.\relax }}{43}{figure.caption.58}
-\contentsline {figure}{\numberline {3.26}{\ignorespaces A simplified geometry test case is presented with a horizontal interface that includes a protrusion of approximately one cell width.\relax }}{44}{figure.caption.60}
-\contentsline {figure}{\numberline {3.27}{\ignorespaces A simplified geometry test case is presented with a vertical interface that includes a protrusion of approximately one cell width.\relax }}{44}{figure.caption.60}
-\contentsline {figure}{\numberline {3.28}{\ignorespaces A simplified geometry test case is presented with a diagonal interface that includes a protrusion of approximately one cell width.\relax }}{44}{figure.caption.60}
-\contentsline {figure}{\numberline {3.29}{\ignorespaces Result displaying nonphysical structures typically found in failing oscillating droplet simulations. Often, structures would grow from the four quadrant regions where well defined heights are hardest to obtain.\relax }}{45}{figure.caption.61}
-\contentsline {figure}{\numberline {3.30}{\ignorespaces For the diagonal protrusion test case it is evident that the height function is unable to create the necessary well defined heights that are required for an accurate curvature estimation when a protrusion is on the order of a coarse grid cell.\relax }}{46}{figure.caption.63}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces DNS Simulation of Atomizing Jet\relax }}{3}{figure.caption.8}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Figures included with permission from Elsevier.\relax }}{8}{figure.caption.11}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Simple Unstructured Grid \cite {MIT}\relax }}{12}{figure.caption.14}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Typical $(i,j)$ notation of structured grid cells. Grid cells span $\Delta x$ and $\Delta y$ in the horizontal and vertical directions respectively. \relax }}{13}{figure.caption.15}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Typical notation of structured grid cells. For each cell, pressure values are stored at the center of the control volume, shaded in gray here. Velocity components are stored at the center of the cell faces. \relax }}{14}{figure.caption.17}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Advection of a one-dimensional fluid interface\relax }}{16}{figure.caption.20}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces SLIC method of Noh and Woodward (1976)\relax }}{17}{figure.caption.21}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Piecewise Linear Interface Calculation of Youngs (1982) \relax }}{18}{figure.caption.22}
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Curvature calculations for varying radii. Curvature can be calculated as the reciprocal of the radius of a curve\nobreakspace {}\cite {Owkes2018}.\relax }}{18}{figure.caption.24}
+\contentsline {figure}{\numberline {2.9}{\ignorespaces Atomization simulations with varying Weber number, (a)$We=20$, (b)$We=40$, (c)$We=80$, (d)$We=120$. Adopted with permission from Royal Society Publishing.\relax }}{19}{figure.caption.25}
+\contentsline {figure}{\numberline {2.10}{\ignorespaces Traditional height function with a three cell stencil.\relax }}{20}{figure.caption.26}
+\contentsline {figure}{\numberline {2.11}{\ignorespaces For the diagonal protrusion test case it is evident that the height function is unable to create the necessary well defined heights that are required for an accurate curvature estimation when a protrusion is on the order of a coarse grid cell.\relax }}{21}{figure.caption.27}
+\contentsline {figure}{\numberline {2.12}{\ignorespaces Height function with a three cell stencil using widths.\relax }}{22}{figure.caption.28}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Standard height function method interface breakup.\relax }}{24}{figure.caption.30}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Fine grid height function with the same three coarse grid cell stencil as in Fig.\nobreakspace {}\ref {fig:hts}. Here, dashed lines show fine grid boundaries while solid lines indicate coarse grid boundaries.\relax }}{25}{figure.caption.32}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces An oscillating droplet test case.\relax }}{26}{figure.caption.34}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces For the oscillating droplet test case, capturing kinetic energy over time is a way to discern whether the model is progressing as desired. Regular periods and linearly decreasing kinetic energy represent a favorable result. Simulation using ACES Method\nobreakspace {}\cite {Owkes2018}\relax }}{28}{figure.caption.35}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Kinetic Energy with Time - Standard Height Function Method(Solid) vs ACES method(Dashed)\relax }}{28}{figure.caption.36}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Proposed $5^{th}$ order fit of heights using columns built from fine grid cells. \relax }}{29}{figure.caption.39}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Given a set of three points along a continuous function, it is possible to calculate a second order finite difference operator.\relax }}{30}{figure.caption.40}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces An appropriate fine grid height function requires integral values of heights as opposed to point-wise values.\relax }}{30}{figure.caption.41}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Improved $5^{th}$ order method approximating a first derivative. The method still holds approximately $5^{th}$ order accuracy.\relax }}{32}{figure.caption.42}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Improved $5^{th}$ order method approximating a second derivative. The method holds approximately $4^{th}$ order accuracy.\relax }}{32}{figure.caption.42}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces The proposed $2^{nd}$ order fit still utilizes information from six fine grid heights but hopes to reduce the potential for over-fitting. \relax }}{33}{figure.caption.44}
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Applying a Gaussian filtering kernal to the previous $2^{nd}$ order method allows for an adjustment of scale of the fit.\relax }}{34}{figure.caption.46}
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Motivation for fine grid velocity correction.\relax }}{35}{figure.caption.48}
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Discontinuities at regions where PLICS join are the source of interface perturbations.\relax }}{36}{figure.caption.50}
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Discontinuities provide an area with which to scale a fine grid velocity.\relax }}{36}{figure.caption.50}
+\contentsline {figure}{\numberline {3.16}{\ignorespaces Fine grid orientation of subcell indicies. \relax }}{39}{figure.caption.51}
+\contentsline {figure}{\numberline {3.17}{\ignorespaces Parameterization study of an oscillating droplet test case (64x mesh size). Plots show kinetic energy over time as seen in previous studies. The varying parameters are $C_{\sigma }$ and $C_{\mu }$ which vary from $1e^{-6}$ to $1e^6$.\relax }}{44}{figure.caption.53}
+\contentsline {figure}{\numberline {3.18}{\ignorespaces Parameterization study of an oscillating droplet test case (128x mesh size). Plots show kinetic energy over time as seen in previous studies. The varying parameters are $C_{\sigma }$ and $C_{\mu }$ which vary from $1e^{-6}$ to $1e^6$.\relax }}{44}{figure.caption.54}
+\contentsline {figure}{\numberline {3.19}{\ignorespaces Where net velocity fluxing within a coarse cell is zero, the project function does not incorporate the necessary flux values.\relax }}{46}{figure.caption.55}
+\contentsline {figure}{\numberline {3.20}{\ignorespaces Results from current implementation.\relax }}{48}{figure.caption.57}
+\contentsline {figure}{\numberline {3.21}{\ignorespaces A simplified geometry test case is presented with a sinusoidal interface.\relax }}{49}{figure.caption.60}
+\contentsline {figure}{\numberline {3.22}{\ignorespaces Interfacial perturbation test cases.\relax }}{49}{figure.caption.62}
+\contentsline {figure}{\numberline {3.23}{\ignorespaces Result of $45^{\circ }$ test case showing nonphysical dynamics at simulation completion.\relax }}{50}{figure.caption.64}
+\contentsline {figure}{\numberline {3.24}{\ignorespaces Result displaying nonphysical structures typically found in failing oscillating droplet simulations. Often, structures would grow from the four quadrant regions where well defined heights are hardest to obtain.\relax }}{51}{figure.caption.65}
+\contentsline {figure}{\numberline {3.25}{\ignorespaces For the diagonal protrusion test case it is evident that the height function is unable to create the necessary well defined heights that are required for an accurate curvature estimation when a protrusion is on the order of a coarse grid cell.\relax }}{52}{figure.caption.66}
